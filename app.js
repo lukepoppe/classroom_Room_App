@@ -7,11 +7,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var desks = require('./routes/desks');
+var people = require('./routes/people');
 
 var app = express();
 
 //Mongoose setup
-var mongoURI = "mongodb://localhost:27017/prime_example_passport";
+var mongoURI = "mongodb://localhost:27017/classroom_app";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function(err){
@@ -31,7 +33,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-
+app.use('/people', people);
+app.use('/desks', desks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
