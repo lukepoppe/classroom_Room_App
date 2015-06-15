@@ -16,3 +16,20 @@ a {
 .occupied {
     background-color: #1CA99E;
 }
+
+li {
+    display: inline-block;
+    border: solid 2px black;
+}
+
+li:hover {
+    background-color: #1CA99E;
+}
+
+img {
+    margin-bottom: 10px;
+}
+
+.logo {
+    display: inline-block;
+}
