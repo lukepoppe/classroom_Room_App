@@ -14,20 +14,17 @@ a.classroomSelector {
     display: inline-block;
 }
 
-.block:hover{
+.block:hover {
     background-color: #1CA99E;
     opacity: 0.65;
 }
-
 
 .occupied {
     background-color: #1CA99E;
 }
 
-
-
-li:hover,a:hover {
-   color: white;
+li:hover, a:hover {
+    color: white;
     text-decoration: none;
 
 }
@@ -36,8 +33,8 @@ li:hover,a:hover {
     position: relative;
     padding-right: 5px;
     padding-left: 5px;
-    font:46px;
-    color:black;
+    font: 46px;
+    color: black;
 }
 
 img {
@@ -53,18 +50,19 @@ img {
 /*/////header/////*/
 
 .headBar {
-    border:5px solid #07AA9E;
+    border: 5px solid #07AA9E;
     border-radius: 10px;
     /*display: inline-block;*/
 }
-.g-signin2{
+
+.g-signin2 {
     float: right;
     border: 3px solid black;
     border-radius: 7px;
 }
 
 .navBar {
-    border:22px solid #07AA9E;
+    border: 22px solid #07AA9E;
     /*display: inline-block;*/
     padding-top: 0px;
     background-color: #07AA9E;
@@ -72,71 +70,74 @@ img {
     border-radius: 15px;
 }
 
-
-
-.classRoomName{
+.classRoomName {
     /*text-align: center;*/
     font-size: 46px;
 
 }
+
 .navBar li {
     list-style: none;
     float: left;
-    position: relative ;
+    position: relative;
     /*display: inline-block;*/
     /*border: solid 2px white;*/
     background-color: #07AA9E;
 }
 
-.container{
+.container {
     padding: 0;
     border: 4px solid #07AA9E;
     border-radius: 7px;
 
 }
+
 .helpLevel {
-    border:5px solid #9498a1;
+    border: 5px solid #9498a1;
     border-radius: 7px;
-    -webkit-box-shadow: 10px 10px 10px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 10px 2px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 10px 2px rgba(0,0,0,0.75);
-
-
+    -webkit-box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
 
 }
 
 .helpLevel li {
-       list-style: none;
-
-
+    list-style: none;
 
 }
-.helpLevel li:hover{
-    color:black;
+
+.helpLevel li:hover {
+    color: black;
 }
 
 a.helpStatusGreen {
-    color:green;
-}
-span.glyphicon-ok {
-    font-size: 1.5em;
-    color:green;
+    color: green;
 }
 
-a.helpStatusYellow{
+span.glyphicon-ok {
+    font-size: 1.5em;
+    color: green;
+}
+
+a.helpStatusYellow {
     color: #cdb600;
 }
+
 span.glyphicon-flag {
     font-size: 1.5em;
-    color:#cdb600;
+    color: #cdb600;
 }
-a.helpStatusRed{
-    color:red;
+
+a.helpStatusRed {
+    color: red;
 }
+
 span.glyphicon-warning-sign {
     font-size: 1.5em;
-    color:red;
+    color: red;
 }
-.dropdown{
-    position: relative;.
+
+.dropdown {
+    position: relative;
+.
 }

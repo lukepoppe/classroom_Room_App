@@ -30,7 +30,7 @@ function save() {
     console.log("Saves everything to db?");
 }
 
-// jQuery
+// jQuery, On Clicks
 $(document).ready(function () {
 
     // Load Fresh Classroom Template
