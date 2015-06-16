@@ -24,15 +24,21 @@ $(document).ready(function(){
     // On Click of Grid Blocks
     $('body').on('click', '.block', function() {
 
-        // Create a desk with .block ID as position attribute.
-        deskArray.push(new Desk(deskArray.length+1, $(this).attr('id'), "", classroomNumber));
+        var clickedPosition = $(this).attr('id');
 
-        // Erase a desk?
+        if($(this).hasClass('occupied')){
+            // Erase a desk
+            deskArray = deskArray.filter(function( obj ) {
+                return obj.position !== clickedPosition;
+            });
+
+        } else {
+            // Create a desk with .block ID as position attribute.
+            deskArray.push(new Desk(deskArray.length+1, clickedPosition, "", classroomNumber));
+        }
 
         // Toggle .occupied Class
         $(this).toggleClass('occupied');
-
-
     });
 
     // Load Fresh Classroom Template
