@@ -1,6 +1,5 @@
 console.log('hi');
 
-
 var classroom=1;
 
 $(document).ready(function(){
