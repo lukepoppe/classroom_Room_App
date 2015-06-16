@@ -1,71 +1,79 @@
-console.log('hi');
+console.log('app.js is loaded');
 
-// Set Default Classroom Number to 1
-var classroomNumber=1;
+// Set Default Cohort and Classrooms to 0 (first in array)
+var cohortNumber = 0;
+var classroomNumber = 0;
 
-// Desk Constructor Function
-function Desk(number, position, person, classroom){
-    this.number = number;
-    this.position = position;
-    this.person = person;
-    this.classroom = classroom;
-}
+// Initialize Arrays of all data (DUMMY data for now, will be from DB)
+classroomArray = [dummyClassroom, dummyClassroom2];
+cohortArray = [dummyCohort, dummyCohort2];
 
-// Initialize Array of Desks
-deskArray = [];
+// Initialize variables holding the currently being viewed data
+currentDeskArray = classroomArray[classroomNumber].deskArray;
 
-// Load Fresh Classroom Template Function
+// Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
-    $('.classroom').load('classroom.html');
+    $('.classroom').load('classroom.html', function () {
+        paintDesks();
+    });
 }
 
-$(document).ready(function(){
+// Color desks based on current deskArray data
+function paintDesks() {
+    for (var i = 0; i < currentDeskArray.length; i++) {
+        $('#' + currentDeskArray[i].position).toggleClass('occupied');
+    }
+}
 
-    // On Click of Grid Blocks
-    $('body').on('click', '.block', function() {
+// Save Function
+function save() {
+    console.log("Saves everything to db?");
+}
+
+// jQuery
+$(document).ready(function () {
+
+    // Load Fresh Classroom Template
+    refreshClassroom();
+
+    // Set On Click of Grid Blocks
+    $('body').on('click', '.block', function () {
 
         var clickedPosition = $(this).attr('id');
 
-        if($(this).hasClass('occupied')){
+        if ($(this).hasClass('occupied')) {
             // Erase a desk
-            deskArray = deskArray.filter(function( obj ) {
+            currentDeskArray = currentDeskArray.filter(function (obj) {
                 return obj.position !== clickedPosition;
             });
 
         } else {
             // Create a desk with .block ID as position attribute.
-            deskArray.push(new Desk(deskArray.length+1, clickedPosition, "", classroomNumber));
+            currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
         }
 
         // Toggle .occupied Class
         $(this).toggleClass('occupied');
     });
 
-    // Load Fresh Classroom Template
-    refreshClassroom();
-
-    // On Click of Classroom Selector Links
-    $('body').on('click', '.classroomSelector', function() {
+    // Set On Click of Classroom Selector Links
+    $('body').on('click', '.classroomSelector', function () {
         refreshClassroom();
         classroomNumber = $(this).data('classroom');
-        // To do: Load data for classroom
+        // TO DO: Load data for classroom
 
-    } );
-});
-
-// Google Login Authorization Function
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
-}
-// Google Signout
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
     });
-}
+
+    // Set On Click of Plus Button (Create New Classroom)
+    $('body').on('click', '.newClassroomButton', function () {
+        refreshClassroom();
+        classroomNumber = classroomArray.length;
+        classroomArray.push(new Classroom(classroomNumber, cohortNumber));
+        currentDeskArray = classroomArray[classroomNumber].deskArray;
+    });
+
+    // Set On Click of Save Button (toggle?)
+    $('body').on('click', '.saveButton', function () {
+        save();
+    });
+});
