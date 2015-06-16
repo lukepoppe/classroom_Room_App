@@ -9,7 +9,7 @@ classroomArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
 // Initialize variables holding the currently being viewed data
-currentDeskArray = classroomArray[0].deskArray;
+currentDeskArray = classroomArray[classroomNumber].deskArray;
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
@@ -35,7 +35,6 @@ $(document).ready(function () {
 
     // Load Fresh Classroom Template
     refreshClassroom();
-
 
     // Set On Click of Grid Blocks
     $('body').on('click', '.block', function () {
@@ -68,9 +67,9 @@ $(document).ready(function () {
     // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
         refreshClassroom();
-        classroomNumber = classroomArray.length + 1;
+        classroomNumber = classroomArray.length;
         classroomArray.push(new Classroom(classroomNumber, cohortNumber));
-        currentDeskArray = [];
+        currentDeskArray = classroomArray[classroomNumber].deskArray;
     });
 
     // Set On Click of Save Button (toggle?)

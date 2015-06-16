@@ -1,4 +1,12 @@
 
+// Desk Constructor Function
+function Desk(number, position, person, classroom) {
+    this.number = number;
+    this.position = position;
+    this.person = person;
+    this.classroom = classroom;
+}
+
 // Classroom Constructor Function
 function Classroom(number, cohort, city) {
     this.number = number;
@@ -15,14 +23,6 @@ function Cohort(number, classroom, city, startYear, startMonth, personArray) {
     this.startYear = startYear;
     this.startMonth = startMonth;
     this.personArray = personArray;
-}
-
-// Desk Constructor Function
-function Desk(number, position, person, classroom) {
-    this.number = number;
-    this.position = position;
-    this.person = person;
-    this.classroom = classroom;
 }
 
 // Person Constructor Function
