@@ -1,33 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <title>classroom app</title>
-        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id"
-              content="59557968968-k12mla8saffg79b94h3lt83os5k5dvqa.apps.googleusercontent.com">
-    </head>
-    <body>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <header>
-            <h2>
-                <img class="logo" src="http://placehold.it/50x50">
-                Prime Academy Classroom Thingie
-            </h2>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="#" class="classroomSelector" data-classroom="1">Classroom 1</a></li>
-                <li><a href="#" class="classroomSelector" data-classroom="2">Classroom 2</a></li>
-                <li>+</li>
-            </ul>
-        </nav>
-        <div class="classroom">
+<head lang="en">
+    <title>classroom app</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/toggleButtonStyle.css">
+    <link rel="stylesheet" href="/stylesheets/assignACohort.css">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+          content="59557968968-k12mla8saffg79b94h3lt83os5k5dvqa.apps.googleusercontent.com">
+</head>
+
+
+<header>
+    <div class="headBar">
+        <h2>
+            <img class="logo" src="/images/primeLogo 2.svg">
+            Prime Academy Classroom Thingie
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </h2>
+    </div>
+
+</header>
+<br>
+
+<div class="navBar">
+    <nav>
+        <ul>
+            <li><a href="#" class="classroomSelector" data-classroom="1">Classroom 1</a><span class="divider">|</span>
+            </li>
+            <li><a href="#" class="classroomSelector" data-classroom="2">Classroom 2</a><span class="divider">|</span>
+            </li>
+            <li>+</li>
+        </ul>
+    </nav>
+</div>
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="classroom"></div>
+
+        <div class="col-md-offset-9">
+
+                <div class="randomizeButton"><button class="randomizeButton">Randomize</button></div>
+
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+
+
+            <br>
+            <div class="helpLevel">
+                <ul>
+                    <li><span class="glyphicon glyphicon-ok"></span><a href="#" class="helpStatusGreen" data-helpLevel="1">Green</a></li>
+                    <li><span class="glyphicon glyphicon-flag"></span><a href="#" class="helpStatusYellow" data-helpLevel="2">Yellow</a></li>
+                    <li><span class="glyphicon glyphicon-warning-sign"></span><a href="#" class="helpStatusRed" data-helpLevel="3">Red</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Assign a Cohort
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Beta</a></li>
+                    <li><a href="#">Cohort 1</a></li>
+                    <li><a href="#">Cohort 2</a></li>
+                    <li><a href="#">Cohort 3</a></li>
+                </ul>
+            </div>
+                </ul>
+            </div>
         </div>
+    </div>
+</div>
 
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/javascripts/app.js"></script>
-    </body>
+
+
+
+
+
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/javascripts/app.js"></script>
+<script src="/vendor/bootstrap/bootstrap.min.js"></script>
+</body>
 </html>
