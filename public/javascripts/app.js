@@ -37,24 +37,24 @@ $(document).ready(function () {
     refreshClassroom();
 
     // Set On Click of Grid Blocks
-    $('body').on('click', '.block', function () {
-
-        var clickedPosition = $(this).attr('id');
-
-        if ($(this).hasClass('occupied')) {
-            // Erase a desk
-            currentDeskArray = currentDeskArray.filter(function (obj) {
-                return obj.position !== clickedPosition;
-            });
-
-        } else {
-            // Create a desk with .block ID as position attribute.
-            currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
-        }
-
-        // Toggle .occupied Class
-        $(this).toggleClass('occupied');
-    });
+    //$('body').on('click', '.block', function () {
+    //
+    //    var clickedPosition = $(this).attr('id');
+    //
+    //    if ($(this).hasClass('occupied')) {
+    //        // Erase a desk
+    //        currentDeskArray = currentDeskArray.filter(function (obj) {
+    //            return obj.position !== clickedPosition;
+    //        });
+    //
+    //    } else {
+    //        // Create a desk with .block ID as position attribute.
+    //        currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
+    //    }
+    //
+    //    // Toggle .occupied Class
+    //    $(this).toggleClass('occupied');
+    //});
 
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
