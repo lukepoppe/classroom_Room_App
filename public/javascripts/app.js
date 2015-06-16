@@ -11,21 +11,33 @@ cohortArray = [dummyCohort, dummyCohort2];
 // Initialize variables holding the currently being viewed data
 currentDeskArray = classroomArray[0].deskArray;
 
-// Load Fresh Classroom Template Function
+// Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
-    $('.classroom').load('classroom.html');
+    $('.classroom').load('classroom.html', function () {
+        paintDesks();
+    });
 }
 
+// Color desks based on current deskArray data
+function paintDesks() {
+    for (var i = 0; i < currentDeskArray.length; i++) {
+        $('#' + currentDeskArray[i].position).toggleClass('occupied');
+    }
+}
+
+// Save Function
 function save() {
     console.log("Saves everything to db?");
 }
 
+// jQuery
 $(document).ready(function () {
 
     // Load Fresh Classroom Template
     refreshClassroom();
 
-    // On Click of Grid Blocks
+
+    // Set On Click of Grid Blocks
     $('body').on('click', '.block', function () {
 
         var clickedPosition = $(this).attr('id');
@@ -45,7 +57,7 @@ $(document).ready(function () {
         $(this).toggleClass('occupied');
     });
 
-    // On Click of Classroom Selector Links
+    // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
         refreshClassroom();
         classroomNumber = $(this).data('classroom');
@@ -53,7 +65,7 @@ $(document).ready(function () {
 
     });
 
-    // On Click of Plus Button (Create New Classroom)
+    // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
         refreshClassroom();
         classroomNumber = classroomArray.length + 1;
@@ -61,7 +73,7 @@ $(document).ready(function () {
         currentDeskArray = [];
     });
 
-    // On Click of Save Button
+    // Set On Click of Save Button (toggle?)
     $('body').on('click', '.saveButton', function () {
         save();
     });
