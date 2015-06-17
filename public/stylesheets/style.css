@@ -6,6 +6,8 @@ body {
 
 a.classroomSelector {
     color: black;
+
+
 }
 
 .block {
@@ -52,22 +54,28 @@ img {
 .headBar {
     border: 5px solid #07AA9E;
     border-radius: 10px;
-    /*display: inline-block;*/
+    padding: 0px 20px 0 10px;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
 .g-signin2 {
     float: right;
     border: 3px solid black;
     border-radius: 7px;
+    margin-top: 8px;
 }
 
 .navBar {
-    border: 22px solid #07AA9E;
-    /*display: inline-block;*/
-    padding-top: 0px;
+    /*border:15px solid #07AA9E;*/
+    display: block;
+    padding: 2px 20px 33px 20px;
     background-color: #07AA9E;
-
     border-radius: 15px;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
 .classRoomName {
@@ -79,10 +87,11 @@ img {
 .navBar li {
     list-style: none;
     float: left;
-    position: relative;
+    /*position: relative ;*/
     /*display: inline-block;*/
     /*border: solid 2px white;*/
-    background-color: #07AA9E;
+    /*background-color: #07AA9E;*/
+
 }
 
 .container {
@@ -90,15 +99,20 @@ img {
     border: 4px solid #07AA9E;
     border-radius: 7px;
 
+
+    background-color: #e8e8e8;
+
+
+    -webkit-box-shadow:0 0 25px #07AA9E;
+    -moz-box-shadow: 0 0 25px #07AA9E;
+    box-shadow:0 0 25px #07AA9E;
+}
+
 }
 
 .helpLevel {
-    border: 5px solid #9498a1;
-    border-radius: 7px;
-    -webkit-box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.75);
-
+    border: 5px solid black;
+    /*border-radius: 7px;*/
 }
 
 .helpLevel li {
