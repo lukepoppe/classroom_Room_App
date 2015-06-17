@@ -1,5 +1,6 @@
 function names() {
     var alldesks = [];
+    var deskarray = [];
     var shuffled;
     var classnames = ["Michael",
         "Casie",
@@ -27,7 +28,6 @@ function names() {
     }
 
     alldesks.forEach(function (value) {
-        console.log(value);
         $('#' + value).addClass('occupied');
     });
 
@@ -49,7 +49,7 @@ function names() {
 
             id.find('p').text(shuffled[i]);
         }
-        $(".cohort_list").empty();
+        $(".cohort_list").children().empty();
         init_drag('.label');
     });
 
@@ -60,9 +60,10 @@ function names() {
             drop: function (event, ui) {
 
                 var div = $(this);
+                var desk_id = div.attr('id');
                 var name = ui.draggable.html();
 
-                console.log(div, name);
+                fill_desk(name, desk_id);
 
                 if (div.children().length == 0) {
                     div.append('<p class="label"></p>');
@@ -86,6 +87,7 @@ function names() {
 
                 init_drag('.label');
                 title.text(name);
+                console.log(deskarray);
             }
         });
 
@@ -99,6 +101,29 @@ function names() {
             }
         })
     });
+
+
+//add desks to the array
+    function fill_desk(student, id){
+        var repeat = false;
+        if (deskarray != undefined){
+            for (var i = 0; i < deskarray.length; i++){
+                if (student == deskarray[i].person) {
+                    deskarray[i].number = id;
+                    repeat = true;
+                }
+                if (id == deskarray[i].number){
+                    deskarray[i].person = student;
+                    repeat = true;
+                }
+            }
+            if (repeat == true){
+               return;
+            }
+            deskarray.push(new OccupiedDesk(student, id));
+        }
+    }
+
 
 
 // initialize draggable item
@@ -127,5 +152,10 @@ function names() {
         }
 
         return array;
+    }
+
+    function OccupiedDesk(person, number){
+        this.person = person;
+        this.number = number;
     }
 }
