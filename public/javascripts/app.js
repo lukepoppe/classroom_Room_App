@@ -15,6 +15,7 @@ currentDeskArray = classroomArray[classroomNumber].deskArray;
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
         paintDesks();
+        names();
     });
 }
 
