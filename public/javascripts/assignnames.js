@@ -20,28 +20,32 @@ var classnames = ["Michael",
     "Kaitlin",
     "Jeanne"];
 
-for (var i = 0; i < defaultDeskArray.length; i++){
-    alldesks.push(defaultDeskArray[i].position);
-}
+    for (var i = 0; i < defaultDeskArray.length; i++){
+        alldesks.push(defaultDeskArray[i].position);
+    }
 
-alldesks.forEach(function(value){
-    console.log(value);
-    $('#'+ value).addClass('occupied');
-});
+    alldesks.forEach(function(value){
+        console.log(value);
+        $('#'+ value).addClass('occupied');
+    });
 
-classnames.forEach(function(value){
-    $('.cohort_list').append('<li class="item">'+ value +'</li>');
-});
+    classnames.forEach(function(value){
+        $('.cohort_list').append('<li class="item">'+ value +'</li>');
+    });
+
 
 
 
 $(function(){
     init_drag('.item');
+
     $('.occupied').droppable({
         drop: function (event, ui) {
 
             var div = $(this);
             var name = ui.draggable.html();
+
+            console.log(div, name);
 
             if (div.children().length == 0) {
                 div.append('<p class="label"></p>');
