@@ -49,7 +49,7 @@ function names() {
 
             id.find('p').text(shuffled[i]);
         }
-        $(".cohort_list").children().empty();
+        $(".cohort_list").children().remove();
         init_drag('.label');
     });
 
@@ -88,7 +88,8 @@ function names() {
                 init_drag('.label');
                 title.text(name);
                 console.log(deskarray);
-            }
+            },
+            tolerance: "pointer"
         });
 
         $(".cohort_list").droppable({
