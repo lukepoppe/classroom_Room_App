@@ -31,31 +31,48 @@ function save() {
     console.log("Saves everything to db?");
 }
 
+// Edit Ability Toggle
+var toggleEditing = false;
+
 // jQuery, On Clicks
 $(document).ready(function () {
 
     // Load Fresh Classroom Template
     refreshClassroom();
 
+    // Checkbox
+    $('.onoffswitch-label').click(function () {
+        $(this).parent().toggleClass('onoffswitch-checked');
+
+        if ($(this).parent().hasClass('onoffswitch-checked')) {
+            toggleEditing = false;
+        } else {
+            toggleEditing = true;
+        }
+    });
+
     // Set On Click of Grid Blocks
-    //$('body').on('click', '.block', function () {
-    //
-    //    var clickedPosition = $(this).attr('id');
-    //
-    //    if ($(this).hasClass('occupied')) {
-    //        // Erase a desk
-    //        currentDeskArray = currentDeskArray.filter(function (obj) {
-    //            return obj.position !== clickedPosition;
-    //        });
-    //
-    //    } else {
-    //        // Create a desk with .block ID as position attribute.
-    //        currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
-    //    }
-    //
-    //    // Toggle .occupied Class
-    //    $(this).toggleClass('occupied');
-    //});
+    $('body').on('click', '.block', function () {
+
+        if (toggleEditing == true) {
+            var clickedPosition = $(this).attr('id');
+
+            if ($(this).hasClass('occupied')) {
+                // Erase a desk
+                currentDeskArray = currentDeskArray.filter(function (obj) {
+                    return obj.position !== clickedPosition;
+                });
+
+            } else {
+                // Create a desk with .block ID as position attribute.
+                currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
+            }
+            // Toggle .occupied Class
+            $(this).toggleClass('occupied');
+        } else {
+            console.log("editing disabled");
+        }
+    });
 
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
