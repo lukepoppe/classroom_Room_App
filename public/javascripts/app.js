@@ -68,7 +68,9 @@ $(document).ready(function () {
                 currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
             // Toggle .occupied Class
-            $(this).toggleClass('occupied');
+            //$(this).toggleClass('occupied');
+            // Refresh Classroom with new data.
+            refreshClassroom();
         } else {
             console.log("editing disabled");
         }
