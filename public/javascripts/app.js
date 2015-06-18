@@ -3,14 +3,20 @@ console.log('app.js is loaded');
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
+var currentDeskArray, classroomsArray, cohortArray;
 
 // Initialize Arrays of all data (DUMMY data for now, will be from DB)
-classroomArray = [dummyClassroom, dummyClassroom2];
+// DUMMY DATA
+classroomsArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
-// Initialize variables holding the currently being viewed data
-//currentDeskArray = classroomArray[classroomNumber].deskArray;
-currentDeskArray =
+// update current desk array in memory
+updateCurrentDeskArray();
+
+// Set currently viewed array of Desks
+function updateCurrentDeskArray(){
+    currentDeskArray = classroomsArray[classroomNumber].deskArray;
+}
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
@@ -21,16 +27,16 @@ function refreshClassroom() {
 }
 
 // DB Functions
-function getDesks(){
+function getClassrooms(){
     $.ajax({
-        url: '/desks',
+        url: '/classrooms',
         data: {},
         method: 'get',
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
-            clearData();
-            currentDeskArray = data;
-            //refreshClassroom();
+            classroomsArray = data;
+            updateCurrentDeskArray();
+            refreshClassroom();
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(textStatus,errorThrown);
@@ -41,17 +47,15 @@ function getDesks(){
     });
 }
 
-function updateDesks(desk){
+function updateClassrooms(data){
     $.ajax({
-        url: '/desks/' + desk.number,
-        data: desk,
-        method: 'put',
+        url: '/classrooms/' + data.number,
+        data: data,
+        method: 'post',
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
-            // clear form
-            clearEditor();
             // get new data and update
-            getData();
+            getClassrooms();
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(textStatus,errorThrown);
@@ -67,11 +71,6 @@ function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
         $('#' + currentDeskArray[i].position).toggleClass('occupied');
     }
-}
-
-// Save Function
-function save() {
-    console.log("Saves everything to db?");
 }
 
 // Edit Ability Toggle
@@ -117,6 +116,11 @@ $(document).ready(function () {
         }
     });
 
+    // Save Button
+    $('body').on('click', '.block', function () {
+        updateClassrooms();
+    });
+
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
         refreshClassroom();
@@ -128,9 +132,9 @@ $(document).ready(function () {
     // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
         refreshClassroom();
-        classroomNumber = classroomArray.length;
-        classroomArray.push(new Classroom(classroomNumber, cohortNumber));
-        currentDeskArray = classroomArray[classroomNumber].deskArray;
+        classroomNumber = classroomsArray.length;
+        classroomsArray.push(new Classroom(classroomNumber, cohortNumber));
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
     });
 
     // Set On Click of Save Button (toggle?)

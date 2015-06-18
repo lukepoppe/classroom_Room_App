@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var ClassroomSchema = new Schema({
     number: {type: Number, required: true},
-    deskArray: {type: Array, required: true},
+    deskArray: Array,
     cohort: Number,
     city: String
 });
