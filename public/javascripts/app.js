@@ -67,8 +67,8 @@ $(document).ready(function () {
                 // Create a desk with .block ID as position attribute.
                 currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
-            // Toggle .occupied Class
-            $(this).toggleClass('occupied');
+            // Refresh Classroom with new data.
+            refreshClassroom();
         } else {
             console.log("editing disabled");
         }
