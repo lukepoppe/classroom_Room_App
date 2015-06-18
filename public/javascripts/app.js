@@ -9,13 +9,56 @@ classroomArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
 // Initialize variables holding the currently being viewed data
-currentDeskArray = classroomArray[classroomNumber].deskArray;
+//currentDeskArray = classroomArray[classroomNumber].deskArray;
+currentDeskArray =
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
         paintDesks();
         names();
+    });
+}
+
+// DB Functions
+function getDesks(){
+    $.ajax({
+        url: '/desks',
+        data: {},
+        method: 'get',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            clearData();
+            currentDeskArray = data;
+            //refreshClassroom();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("getData() Ajax Get Complete:", textStatus);
+        }
+    });
+}
+
+function updateDesks(desk){
+    $.ajax({
+        url: '/desks/' + desk.number,
+        data: desk,
+        method: 'put',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            // clear form
+            clearEditor();
+            // get new data and update
+            getData();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("updateData() Ajax Get Complete:", textStatus);
+        }
     });
 }
 

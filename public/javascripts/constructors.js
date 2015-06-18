@@ -16,12 +16,12 @@ function Classroom(number, cohort, city) {
 }
 
 // Cohort Constructor Function
-function Cohort(number, classroom, city, startYear, startMonth, personArray) {
+function Cohort(number, classroom, city, start_date, end_date, personArray) {
     this.number = number;
     this.classroom = classroom;
     this.city = city;
-    this.startYear = startYear;
-    this.startMonth = startMonth;
+    this.start_date = start_date;
+    this.end_date = end_date;
     this.personArray = personArray;
 }
 
