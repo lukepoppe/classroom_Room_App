@@ -1,9 +1,10 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+    //Schema = mongoose.Schema;
 
-var PersonSchema = new Schema({
-    name: {type: String, required: true},
-    email: {type: String, required: true},
+var PersonSchema = new mongoose.Schema({
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
+    email: {type: String, required: false},
     class_role: String,
     help_status: {
         flag: String,

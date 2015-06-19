@@ -1,4 +1,5 @@
 console.log('app.js is loaded');
+var path = "cohorts/cohorts.html";
 
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
@@ -95,5 +96,10 @@ $(document).ready(function () {
     // Set On Click of Save Button (toggle?)
     $('body').on('click', '.saveButton', function () {
         save();
+    });
+
+    $('.cohort').on("click", function() {
+        $('.main').load(path);
+        console.log("cohorts button worked");
     });
 });
