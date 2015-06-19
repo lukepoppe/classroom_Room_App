@@ -27,27 +27,27 @@ function refreshClassroom() {
 }
 
 // DB Functions
-function getClassrooms(){
+function getClassroom(number){
     $.ajax({
-        url: '/classrooms',
+        url: '/classrooms/' + number,
         data: {},
         method: 'get',
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
-            classroomsArray = data;
-            updateCurrentDeskArray();
-            refreshClassroom();
+            classroomsArray[classroomNumber] = data;
+            //updateCurrentDeskArray();
+            //refreshClassroom();
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(textStatus,errorThrown);
         },
         complete: function(jqXHR, textStatus){
-            console.log("getData() Ajax Get Complete:", textStatus);
+            console.log("getClassroom() Ajax Get Complete:", textStatus);
         }
     });
 }
 
-function updateClassrooms(data){
+function updateClassroom(data){
     $.ajax({
         url: '/classrooms/' + data.number,
         data: data,
@@ -55,13 +55,13 @@ function updateClassrooms(data){
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
             // get new data and update
-            getClassrooms();
+            getClassroom(data.number);
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(textStatus,errorThrown);
         },
         complete: function(jqXHR, textStatus){
-            console.log("updateData() Ajax Get Complete:", textStatus);
+            console.log("updateClassroom() Ajax Get Complete:", textStatus);
         }
     });
 }
@@ -118,7 +118,7 @@ $(document).ready(function () {
 
     // Save Button
     $('body').on('click', '.block', function () {
-        updateClassrooms();
+        updateClassroom();
     });
 
     // Set On Click of Classroom Selector Links

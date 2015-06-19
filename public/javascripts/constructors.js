@@ -1,6 +1,7 @@
 
 // Desk Constructor Function
 function Desk(number, position, person, classroom) {
+    //this.id = "";
     this.number = number;
     this.position = position;
     this.person = person;
