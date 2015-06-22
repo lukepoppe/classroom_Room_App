@@ -174,8 +174,8 @@ $(document).ready(function () {
         save();
     });
 
-    $('.cohort').on("click", function() {
-        $('.main').load(path);
+    $('body').on("click",'.cohort', function() {
+        $('.row').load(path);
         console.log("cohorts button worked");
     });
 });
