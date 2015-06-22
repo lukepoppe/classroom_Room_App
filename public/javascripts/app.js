@@ -18,16 +18,13 @@ getAllClassrooms();
 //classroomsArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
-// Load deskArray from classroomsArray in memory
-function updateCurrentDeskArray(){
-    currentDeskArray = classroomsArray[classroomNumber].deskArray;
-}
-
 // DOM DRAWING FUNCTIONS //
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
+        // Load deskArray from classroomsArray in memory
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         names();
     });
@@ -52,7 +49,6 @@ function getAllClassrooms(){
         success: function(data, textStatus, jqXHR){
             classroomsArray= data;
             // update current desk array in memory
-            updateCurrentDeskArray();
             refreshClassroom();
         },
         error: function(jqXHR, textStatus, errorThrown){
@@ -72,7 +68,6 @@ function getClassroom(number){
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
             classroomsArray[classroomNumber]= data[0];
-            //updateCurrentDeskArray();
             //refreshClassroom();
         },
         error: function(jqXHR, textStatus, errorThrown){
@@ -151,11 +146,8 @@ $(document).ready(function () {
 
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
-        refreshClassroom();
         classroomNumber = $(this).data('classroom');
-        // TO DO: Load data for classroom
-        
-
+        refreshClassroom();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
