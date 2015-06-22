@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 
 /* GET classroom template. */
-router.get('/classroom.html', function(req, res, next) {
+router.get('/classroom.html', function (req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/classroom.html'))
 });
 
@@ -12,8 +12,8 @@ router.get('/helpModal.html', function(req, res, next) {
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, '../views/index.html'))
+router.get('/', function (req, res, next) {
+    res.sendFile(path.resolve(__dirname, '../views/index.html'))
 });
 
 module.exports = router;

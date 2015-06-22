@@ -1,16 +1,29 @@
 console.log('app.js is loaded');
 var path = "cohorts/cohorts.html";
 
+// INIT VARS //
+
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
+var currentDeskArray, classroomsArray, cohortArray;
+
+// Edit Ability Toggle
+var toggleEditing = false;
 
 // Initialize Arrays of all data (DUMMY data for now, will be from DB)
-classroomArray = [dummyClassroom, dummyClassroom2];
+getAllClassrooms();
+
+// DUMMY DATA //
+//classroomsArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
-// Initialize variables holding the currently being viewed data
-currentDeskArray = classroomArray[classroomNumber].deskArray;
+// Load deskArray from classroomsArray in memory
+function updateCurrentDeskArray(){
+    currentDeskArray = classroomsArray[classroomNumber].deskArray;
+}
+
+// DOM DRAWING FUNCTIONS //
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
@@ -28,19 +41,73 @@ function paintDesks() {
     }
 }
 
-// Save Function
-function save() {
-    console.log("Saves everything to db?");
+// DB FUNCTIONS //
+
+function getAllClassrooms(){
+    $.ajax({
+        url: '/classrooms/',
+        data: {},
+        method: 'get',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            classroomsArray= data;
+            // update current desk array in memory
+            updateCurrentDeskArray();
+            refreshClassroom();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("getClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
 }
 
-// Edit Ability Toggle
-var toggleEditing = false;
+function getClassroom(number){
+    $.ajax({
+        url: '/classrooms/' + number,
+        data: {},
+        method: 'get',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            classroomsArray[classroomNumber]= data[0];
+            //updateCurrentDeskArray();
+            //refreshClassroom();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("getClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
+}
 
-// jQuery, On Clicks
+function updateClassroom(data){
+    $.ajax({
+        url: '/classrooms/' + data.number,
+        data: data,
+        method: 'post',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            // get new data and update
+            getClassroom(data.number);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("updateClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
+}
+
+// jQuery, On Clicks //
+
 $(document).ready(function () {
 
-    // Load Fresh Classroom Template
-    refreshClassroom();
+    // Status Modal
     loadModal();
 
     // Checkbox
@@ -70,8 +137,6 @@ $(document).ready(function () {
                 // Create a desk with .block ID as position attribute.
                 currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
-            // Toggle .occupied Class
-            //$(this).toggleClass('occupied');
             // Refresh Classroom with new data.
             refreshClassroom();
         } else {
@@ -79,20 +144,26 @@ $(document).ready(function () {
         }
     });
 
+    // Save Button
+    $('body').on('click', '.block', function () {
+        updateClassroom();
+    });
+
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
         refreshClassroom();
         classroomNumber = $(this).data('classroom');
         // TO DO: Load data for classroom
+        
 
     });
 
     // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
         refreshClassroom();
-        classroomNumber = classroomArray.length;
-        classroomArray.push(new Classroom(classroomNumber, cohortNumber));
-        currentDeskArray = classroomArray[classroomNumber].deskArray;
+        classroomNumber = classroomsArray.length;
+        classroomsArray.push(new Classroom(classroomNumber, cohortNumber));
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
     });
 
     // Set On Click of Save Button (toggle?)
