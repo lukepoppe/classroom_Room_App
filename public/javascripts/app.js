@@ -1,5 +1,7 @@
 console.log('app.js is loaded');
 
+// INIT VARS //
+
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
@@ -10,7 +12,8 @@ var toggleEditing = false;
 
 // Initialize Arrays of all data (DUMMY data for now, will be from DB)
 getAllClassrooms();
-// DUMMY DATA
+
+// DUMMY DATA //
 //classroomsArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
