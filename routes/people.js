@@ -5,15 +5,16 @@ var Person = require('../models/person');
 
 
 
-/* GET /todos listing. */
-router.get('/', function(req, res, next) {
+router.get('/cohorts.html', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/cohorts.html'))
 });
+
 
 /* POST /todos */
 router.post('/', function(req, res, next) {
     Person.create(req.body, function (err, post) {
         if (err) return next(err);
+        console.log(res.json(post));
     });
 });
 
@@ -22,7 +23,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     Person.findById(req.params.id, function (err, post) {
         if (err) return next(err);
-        res.json(post);
+        console.log(res.json(post));
     });
 });
 
