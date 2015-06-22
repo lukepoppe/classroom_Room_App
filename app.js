@@ -9,12 +9,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var classrooms = require('./routes/classrooms');
 var people = require('./routes/people');
-var cohorts = require('./routes/cohorts');
+
 
 var app = express();
 
 //Mongoose setup
-var mongoURI = "mongodb://localhost:27017/classroom_app";
+var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+//var mongoURI = "mongodb://localhost:27017/classroom_app";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function(err){
@@ -35,9 +36,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/people', people);
+<<<<<<< HEAD
 //app.use('/desks', desks);
 app.use('/cohorts', cohorts);
 app.use('/classrooms', classrooms);
+=======
+app.use('/desks', desks);
+app.use('/classrooms', classrooms);
+
+>>>>>>> master
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
