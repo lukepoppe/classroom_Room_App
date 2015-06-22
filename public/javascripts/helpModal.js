@@ -7,7 +7,7 @@
 
 
     $('body').on('click', '.yellow', function () {
-        console.log("greenClick");
+        console.log("yellownClick");
         $(".modalQuestionText").show();
         $(this).css("background", "yellow");
         $('.btn-primary').css("background", "yellow");
@@ -15,13 +15,13 @@
         $('.red').css("background", "white");
         $('.green').css("background", "white");
         $('.modal-header').css("background", "yellow");
-
-
+        $('.helpModalButton').css("background", "yellow");
+        $('.helpLevel').css("border-color", "yellow");
 
     });
 
     $('body').on('click', '.red', function () {
-        console.log("yellowClick");
+        console.log("redClick");
         $(".modalQuestionText").show();
         $(this).css("background", "red");
         $('.btn-primary').css("background", "red");
@@ -29,6 +29,9 @@
         $('.yellow').css("background", "white");
         $('.green').css("background", "white");
         $('.modal-header').css("background", "red");
+        $('.helpModalButton').css("background", "red");
+        $('.helpLevel').css("border-color", "red");
+
     });
 
     $('body').on('click', '.green', function () {
@@ -40,6 +43,14 @@
         $('.yellow').css("background", "white");
         $('.red').css("background", "white");
         $('.modal-header').css("background", "green");
+        $('.helpModalButton').css("background", "green");
+        $('.helpLevel').css("border-color", "green");
     });
+
+
+       $('.modal-footer').on('click', '.btn-primary', function () {
+           console.log("submitButtonClick");
+           $('#statusModal').modal('hide');
+       });
 }
 

@@ -167,8 +167,9 @@ span.glyphicon-warning-sign {
 
 
 /*////////modal////////*/
-.modal-header{
+.modal-header {
     background: #337ab7;
+    opacity: 0.8;
 }
 
 
@@ -183,7 +184,7 @@ span.glyphicon-warning-sign {
 }
 
 .helpModalTextbox{
-    width: 315px;
+    width: 310px;
     height:50px;
     font-size: 10px;
 
