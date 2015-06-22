@@ -18,6 +18,7 @@ function refreshClassroom() {
     });
 }
 
+
 // Color desks based on current deskArray data
 function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
@@ -35,6 +36,7 @@ $(document).ready(function () {
 
     // Load Fresh Classroom Template
     refreshClassroom();
+    loadModal();
 
     // Set On Click of Grid Blocks
     $('body').on('click', '.block', function () {
