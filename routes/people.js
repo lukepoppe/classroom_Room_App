@@ -3,13 +3,10 @@ var router = express.Router();
 var path = require('path');
 var Person = require('../models/person');
 
-<<<<<<< HEAD
-/* GET /todos listing. */
-router.get('/', function(req, res, next) {
-=======
+
 
 router.get('/cohorts.html', function(req, res, next) {
->>>>>>> master
+
     res.sendFile(path.resolve(__dirname, '../views/cohorts.html'))
 });
 

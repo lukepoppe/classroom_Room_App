@@ -38,7 +38,7 @@ app.use('/', routes);
 app.use('/people', people);
 
 //app.use('/desks', desks);
-app.use('/cohorts', cohorts);
+
 app.use('/classrooms', classrooms);
 
 
