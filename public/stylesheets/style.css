@@ -108,7 +108,6 @@ img {
     box-shadow:0 0 25px #07AA9E;
 }
 
-}
 
 .helpLevel {
     border: 5px solid black;
@@ -125,12 +124,12 @@ img {
 }
 
 a.helpStatusGreen {
-    color: green;
+    color: #00c900;
 }
 
 span.glyphicon-ok {
     font-size: 1.5em;
-    color: green;
+    color: #00ca00;
 }
 
 a.helpStatusYellow {
@@ -143,23 +142,51 @@ span.glyphicon-flag {
 }
 
 a.helpStatusRed {
-    color: red;
+color: #930000;
 }
 
 span.glyphicon-warning-sign {
     font-size: 1.5em;
-    color: red;
+    color: #930000;
 }
 
-.dropdown {
-    position: relative;
-.
+.dropdown{
+    position: relative;.
 }
+
+
 
 .cohort_list {
     padding-top: 2em;
 }
 
+
 .edit{
     float: right;
 }
+
+
+/*////////modal////////*/
+.modal-header{
+    background: #337ab7;
+}
+
+
+.btn-group {
+    z-index: 1051;
+}
+
+.modal.custom .modal-dialog {
+    width:27%;
+    margin:0 auto;
+    /*add what you want here*/
+}
+
+.helpModalTextbox{
+    width: 315px;
+    height:50px;
+    font-size: 10px;
+
+}
+
+

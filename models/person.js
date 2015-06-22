@@ -4,16 +4,17 @@ var mongoose = require('mongoose');
 var PersonSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    email: {type: String, required: false},
+    email: String,
     class_role: String,
     help_status: {
         flag: String,
-        question: String
+        question: String,
+        timestamp: Date
     },
-    help_history: [],
+    help_history: Array,
     seating_status: {
-        seat: Number,
-        date: Date
+        position: String,
+        timestamp: Date
     },
     seating_history: []
 });
