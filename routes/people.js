@@ -7,19 +7,16 @@ var Person = require('../models/person');
 
 /* GET /todos listing. */
 router.get('/', function(req, res, next) {
-    Person.find(function (err, persons) {
-        if (err) return next(err);
-        res.json(persons);
-    });
+    res.sendFile(path.resolve(__dirname, '../views/cohorts.html'))
 });
 
 /* POST /todos */
 router.post('/', function(req, res, next) {
     Person.create(req.body, function (err, post) {
         if (err) return next(err);
-        res.json(post);
     });
 });
+
 
 /* GET /todos/:id */
 router.get('/:id', function(req, res, next) {

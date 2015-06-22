@@ -12,16 +12,16 @@ $(document).ready(function () {
         $('.entryList').show();
     });
 
-    $('.submit').on("click", function(){
-        $('.showList').show();
-        var firstName = $('.firstName').val();
-        var lastName = $('.lastName').val();
-        var email = $('.email').val();
-        //postData();
-
-        console.log(firstName);
-        $('.showList').append("<p>" + firstName + " " + lastName + "  |  " + email +  "  |  <button class='edit'>Edit</button></p>");
-    });
+    //$('.submit').on("click", function(){
+    //    $('.showList').show();
+    //    var firstName = $('.firstName').val();
+    //    var lastName = $('.lastName').val();
+    //    var email = $('.email').val();
+    //    //postData();
+    //
+    //    console.log(firstName);
+    //    $('.showList').append("<p>" + firstName + " " + lastName + "  |  " + email +  "  |  <button class='edit'>Edit</button></p>");
+    //});
 });
 
 //function postData(){
