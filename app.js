@@ -14,7 +14,8 @@ var cohorts = require('./routes/cohorts');
 var app = express();
 
 //Mongoose setup
-var mongoURI = "mongodb://localhost:27017/classroom_app";
+var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+//var mongoURI = "mongodb://localhost:27017/classroom_app";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function(err){
