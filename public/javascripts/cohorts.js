@@ -1,7 +1,5 @@
 console.log('cohorts.js is loaded');
 
-var cohort = [];
-
 
 $(document).ready(function () {
     $('.entryList').hide();

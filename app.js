@@ -7,14 +7,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var desks = require('./routes/desks');
+var classrooms = require('./routes/classrooms');
 var people = require('./routes/people');
-var cohorts = require('./routes/cohorts');
+
 
 var app = express();
 
 //Mongoose setup
-var mongoURI = "mongodb://localhost:27017/classroom_app";
+var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+//var mongoURI = "mongodb://localhost:27017/classroom_app";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function(err){
@@ -29,14 +30,15 @@ MongoDB.once('open', function(){
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/people', people);
 app.use('/desks', desks);
-app.use('/cohorts', cohorts);
+app.use('/classrooms', classrooms);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
