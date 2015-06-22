@@ -159,3 +159,7 @@ span.glyphicon-warning-sign {
 .cohort_list {
     padding-top: 2em;
 }
+
+.edit{
+    float: right;
+}
