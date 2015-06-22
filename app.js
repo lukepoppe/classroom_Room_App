@@ -36,15 +36,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/people', people);
-<<<<<<< HEAD
+
 //app.use('/desks', desks);
 app.use('/cohorts', cohorts);
 app.use('/classrooms', classrooms);
-=======
-app.use('/desks', desks);
-app.use('/classrooms', classrooms);
 
->>>>>>> master
+
+//app.use('/desks', desks);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
