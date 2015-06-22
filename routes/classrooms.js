@@ -31,11 +31,6 @@ router.put('/:id', function (req, res, next) {
 
 /* POST /classrooms/:id */
 router.post('/:id', function (req, res, next) {
-    console.log(req.body);
-    //var newClass = req.body;
-    //console.log(newClass);
-    //console.log(JSON.stringify(req.body));
-
     classrooms.create(req.body, function (err, data) {
         console.log(data);
         if (err) return next(err);

@@ -5,18 +5,21 @@ var cohortNumber = 0;
 var classroomNumber = 0;
 var currentDeskArray, classroomsArray, cohortArray;
 
+// Edit Ability Toggle
+var toggleEditing = false;
+
 // Initialize Arrays of all data (DUMMY data for now, will be from DB)
+getAllClassrooms();
 // DUMMY DATA
-classroomsArray = [dummyClassroom, dummyClassroom2];
+//classroomsArray = [dummyClassroom, dummyClassroom2];
 cohortArray = [dummyCohort, dummyCohort2];
 
-// update current desk array in memory
-updateCurrentDeskArray();
-
-// Set currently viewed array of Desks
+// Load deskArray from classroomsArray in memory
 function updateCurrentDeskArray(){
     currentDeskArray = classroomsArray[classroomNumber].deskArray;
 }
+
+// DOM DRAWING FUNCTIONS //
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
@@ -26,7 +29,36 @@ function refreshClassroom() {
     });
 }
 
-// DB Functions
+// Color desks based on current deskArray data
+function paintDesks() {
+    for (var i = 0; i < currentDeskArray.length; i++) {
+        $('#' + currentDeskArray[i].position).toggleClass('occupied');
+    }
+}
+
+// DB FUNCTIONS //
+
+function getAllClassrooms(){
+    $.ajax({
+        url: '/classrooms/',
+        data: {},
+        method: 'get',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            classroomsArray= data;
+            // update current desk array in memory
+            updateCurrentDeskArray();
+            refreshClassroom();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("getClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
+}
+
 function getClassroom(number){
     $.ajax({
         url: '/classrooms/' + number,
@@ -34,7 +66,7 @@ function getClassroom(number){
         method: 'get',
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
-            classroomsArray[classroomNumber] = data;
+            classroomsArray[classroomNumber]= data[0];
             //updateCurrentDeskArray();
             //refreshClassroom();
         },
@@ -66,21 +98,12 @@ function updateClassroom(data){
     });
 }
 
-// Color desks based on current deskArray data
-function paintDesks() {
-    for (var i = 0; i < currentDeskArray.length; i++) {
-        $('#' + currentDeskArray[i].position).toggleClass('occupied');
-    }
-}
+// jQuery, On Clicks //
 
-// Edit Ability Toggle
-var toggleEditing = false;
-
-// jQuery, On Clicks
 $(document).ready(function () {
 
-    // Load Fresh Classroom Template
-    refreshClassroom();
+    // Load Fresh Classroom Template (now called in callback of getAllClassrooms();)
+    //refreshClassroom();
 
     // Checkbox
     $('.onoffswitch-label').click(function () {
@@ -126,6 +149,7 @@ $(document).ready(function () {
         refreshClassroom();
         classroomNumber = $(this).data('classroom');
         // TO DO: Load data for classroom
+        
 
     });
 
