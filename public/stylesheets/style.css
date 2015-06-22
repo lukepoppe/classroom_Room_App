@@ -167,12 +167,18 @@ span.glyphicon-warning-sign {
 
 
 /*////////modal////////*/
+
+.modal{
+    position: relative;
+}
+#statusModal{
+    vertical-align: middle;
+}
+
 .modal-header {
     background: #337ab7;
     opacity: 0.8;
 }
-
-
 .btn-group {
     z-index: 1051;
 }
