@@ -164,13 +164,13 @@ $(document).ready(function () {
     });
 
     // Set On Click of Classroom Selector Links
-    $('body').on('click', '.classroomSelector', function () {
+    $('.classroomSelector').on('click', function () {
         classroomNumber = $(this).data('classroom');
         refreshClassroom();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
-    $('body').on('click', '.newClassroomButton', function () {
+    $('.newClassroomButton').on('click', function () {
         refreshClassroom();
         classroomNumber = classroomsArray.length;
         classroomsArray.push(new Classroom(classroomNumber, cohortNumber));
@@ -178,12 +178,14 @@ $(document).ready(function () {
     });
 
     // Set On Click of Save Button (toggle?)
-    $('body').on('click', '.saveButton', function () {
+    $('.navBar').on('click', '.saveButton', function () {
         save();
     });
 
-    $('body').on("click",'.cohort', function() {
+    $('.navBar').on("click",'.cohort', function() {
         $('.row').load(path);
         console.log("cohorts button worked");
     });
+
+    cohortFunc();
 });
