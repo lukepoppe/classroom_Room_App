@@ -4,7 +4,9 @@ var path = require('path');
 var Person = require('../models/person');
 
 
+
 router.get('/cohorts.html', function(req, res, next) {
+
     res.sendFile(path.resolve(__dirname, '../views/cohorts.html'))
 });
 

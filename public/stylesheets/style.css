@@ -55,9 +55,9 @@ img {
     border: 5px solid #07AA9E;
     /*border-radius: 10px;*/
     padding: 0px 20px 0 10px;
-    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
 }
 
 .g-signin2 {
@@ -73,9 +73,9 @@ img {
     padding: 2px 20px 33px 20px;
     background-color: #07AA9E;
     /*border-radius: 15px;*/
-    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
 }
 
 .classRoomName {
@@ -103,9 +103,9 @@ img {
     background-color: #e8e8e8;
 
 
-    -webkit-box-shadow:0 0 25px #07AA9E;
-    -moz-box-shadow: 0 0 25px #07AA9E;
-    box-shadow:0 0 25px #07AA9E;
+    /*-webkit-box-shadow:0 0 25px #07AA9E;*/
+    /*-moz-box-shadow: 0 0 25px #07AA9E;*/
+    /*box-shadow:0 0 25px #07AA9E;*/
 }
 
 
@@ -167,11 +167,18 @@ span.glyphicon-warning-sign {
 
 
 /*////////modal////////*/
-.modal-header{
-    background: #337ab7;
+
+.modal{
+    position: absolute;
+}
+#statusModal{
+    vertical-align: middle;
 }
 
-
+.modal-header {
+    background: #337ab7;
+    opacity: 0.8;
+}
 .btn-group {
     z-index: 1051;
 }
@@ -183,7 +190,7 @@ span.glyphicon-warning-sign {
 }
 
 .helpModalTextbox{
-    width: 315px;
+    width: 310px;
     height:50px;
     font-size: 10px;
 

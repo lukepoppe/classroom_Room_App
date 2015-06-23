@@ -1,0 +1,25 @@
+.helpModalButton {
+    width:25%;
+}
+.helpModalButton {
+    width: 2%;
+    height: 1%;
+    /*padding-bottom: 2%;*/
+    border-radius: 50%;
+    border:1px solid #cfdcec;
+    overflow:hidden;
+
+    background: #4679BD;
+    box-shadow: 0 0 3px gray;
+}
+.helpModalButton:hover {
+    background:#30588e;
+}
+.helpModalButton a {
+    display:block;
+    float:left;
+    width:1%;
+    padding-top:50%;
+    padding-bottom:50%;
+    line-height:1em;
+    margin-top:-0.5em;

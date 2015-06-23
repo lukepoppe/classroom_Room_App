@@ -3,10 +3,14 @@ var path = "people/cohorts.html";
 
 // INIT VARS //
 
+// INIT VARS //
+
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
+
 var currentDeskArray, classroomsArray, cohortArray,i;
+
 
 // Edit Ability Toggle
 var toggleEditing = false;
@@ -23,8 +27,10 @@ cohortArray = [dummyCohort, dummyCohort2];
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
+
         // Draw navbar based on # of Classrooms
         drawNav();
+
         // Load deskArray from classroomsArray in memory
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
@@ -119,6 +125,7 @@ function updateClassroom(number){
     });
 }
 
+
 function drawNav(){
     navBar="";
     for(i=0; i<classroomsArray.length;i++){
@@ -127,6 +134,7 @@ function drawNav(){
     navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohort'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
 }
+
 
 // jQuery, On Clicks //
 
