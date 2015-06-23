@@ -46,8 +46,8 @@ function appendName() {
 
 // Delete Classroom
 function deleteClassroom(number) {
-
     classroomsArray.splice(number, 1);
+    deleteClassroomFromDB(number);
     classroomNumber = classroomsArray.length-1;
     refreshClassroom();
 };
@@ -61,6 +61,24 @@ function paintDesks() {
 
 // DB FUNCTIONS //
 
+function deleteClassroomFromDB(number){
+    $.ajax({
+        url: '/classrooms/' + number,
+        data: {},
+        method: 'delete',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            // Get updated classroomArray from DB and refresh
+            getAllClassrooms();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log("getClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
+}
 function getAllClassrooms() {
     $.ajax({
         url: '/classrooms/',
@@ -89,7 +107,6 @@ function getClassroom(number) {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             classroomsArray[classroomNumber] = data[0];
-            //refreshClassroom();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -107,6 +124,7 @@ function updateClassroom(number) {
         method: 'put',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            console.log("Update success");
             // get new data and update
             getClassroom(number);
         },
@@ -136,15 +154,14 @@ $(document).ready(function () {
     // Status Modal
     loadModal();
 
-    // Delete Classroom
-    $('body').on('show.bs.modal', '#confirm-delete', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+    $('body').on('click', '.closeX', function () {
+        var classroomNumberToDelete = $(this).data('classroom');
+        $('.debug-url').empty().append(classroomNumberToDelete);
+        $('.deleteButton').on('click', function(){
+            console.log(classroomNumberToDelete );
+            deleteClassroom(classroomNumberToDelete);
+        })
     });
-
-    //$('body').on('click', '.closeX', function () {
-    //    deleteClassroom($(this).data('classroom'));
-    //});
 
     // Checkbox
     $('.onoffswitch-label').click(function () {

@@ -21,15 +21,12 @@ router.get('/:id', function (req, res, next) {
 
 /* PUT /classrooms/:id */
 router.put('/:id', function (req, res, next) {
-    console.log(req.body);
-    console.log(req.params);
-
     classrooms.count({'number': req.params.id}, function (err, count){
         if(count>0){
             //document exists
             classrooms.findOneAndUpdate({'number': req.params.id}, req.body, function (err, data) {
                 if (err) return next(err);
-                res.json(data);
+                //res.json(data);
             });
         }
         else {
@@ -44,7 +41,8 @@ router.put('/:id', function (req, res, next) {
 
 /* DELETE /classrooms/:id */
 router.delete('/:id', function (req, res, next) {
-    classrooms.findByIdAndRemove(req.params.id, req.body, function (err, data) {
+    //console.log(req.body);
+    classrooms.findOneAndRemove({'number': req.params.id}, req.body, function (err, data) {
         if (err) return next(err);
         res.json(data);
     });
