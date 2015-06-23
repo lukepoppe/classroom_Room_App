@@ -63,7 +63,7 @@ function paintDesks() {
 
 function deleteClassroomFromDB(number){
     $.ajax({
-        url: '/classrooms/' + number,
+        url: '/classrooms/' + classroomsArray[number]._id,
         data: {},
         method: 'delete',
         dataType: 'json',
@@ -101,7 +101,7 @@ function getAllClassrooms() {
 
 function getClassroom(number) {
     $.ajax({
-        url: '/classrooms/' + number,
+        url: '/classrooms/' + classroomsArray[number]._id,
         data: {},
         method: 'get',
         dataType: 'json',
@@ -119,14 +119,14 @@ function getClassroom(number) {
 
 function updateClassroom(number) {
     $.ajax({
-        url: '/classrooms/' + number,
+        url: '/classrooms/' + classroomsArray[number]._id,
         data: classroomsArray[number],
         method: 'put',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             console.log("Update success");
             // get new data and update
-            getClassroom(number);
+            getAllClassrooms();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
