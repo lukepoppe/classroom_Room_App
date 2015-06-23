@@ -6,7 +6,8 @@ var ClassroomSchema = new Schema({
     number: {type: Number, required: true},
     deskArray: [DeskSchema],
     cohort: Number,
-    city: String
+    city: String,
+    name: String
 });
 
 module.exports = mongoose.model('Classroom', ClassroomSchema);

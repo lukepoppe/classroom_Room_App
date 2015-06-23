@@ -9,11 +9,12 @@ function Desk(number, position, person, classroom) {
 }
 
 // Classroom Constructor Function
-function Classroom(number, cohort, city) {
+function Classroom(number, cohort, city, name) {
     this.number = number;
     this.deskArray = defaultDeskArray;
     this.cohort = cohort;
     this.city = city; // TO DO: Option to change City?
+    this.name = name;
 }
 
 // Cohort Constructor Function

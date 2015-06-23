@@ -13,6 +13,30 @@
               content="59557968968-k12mla8saffg79b94h3lt83os5k5dvqa.apps.googleusercontent.com">
     </head>
     <body>
+        <!-- Bootstrap Classroom Delete Modal-->
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>You are about to delete one track, this procedure is irreversible.</p>
+                        <p>Do you want to proceed?</p>
+                        <p class="debug-url"></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bootstrap Classroom Delete Modal -->
 
         <header>
             <div class="headBar">
@@ -27,8 +51,8 @@
         <br>
 
         <div class="navBar">
-                <ul>
-                </ul>
+            <ul>
+            </ul>
         </div>
         <br>
 
@@ -61,9 +85,9 @@
                     <br>
 
                     <div class="helpLevel">
-                            <li><a href="#" class="helpStatusGreen" data-helpLevel="1">  Green</a></li>
-                            <li><a href="#" class="helpStatusYellow" data-helpLevel="2">  Yellow</a></li>
-                            <li><a href="#" class="helpStatusRed" data-helpLevel="3">  Red</a></li>
+                        <li><a href="#" class="helpStatusGreen" data-helpLevel="1"> Green</a></li>
+                        <li><a href="#" class="helpStatusYellow" data-helpLevel="2"> Yellow</a></li>
+                        <li><a href="#" class="helpStatusRed" data-helpLevel="3"> Red</a></li>
                     </div>
                     <br>
 
