@@ -196,6 +196,6 @@ span.glyphicon-warning-sign {
 
 }
 
-.saveButton {
+.saveButton, .editClassroomNameButton {
     margin-bottom: 10px;
 }
