@@ -3,8 +3,6 @@ var path = "people/cohorts.html";
 
 // INIT VARS //
 
-// INIT VARS //
-
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
@@ -172,13 +170,24 @@ $(document).ready(function () {
     // Status Modal
     loadModal();
 
+    // Close Button On Click (Delete Classroom Modal)
     $('body').on('click', '.closeX', function () {
         var classroomNumberToDelete = $(this).data('classroom');
-        $('.debug-url').empty().append(classroomNumberToDelete);
+        $('.warnOfClassName').empty().append(classroomsArray[classroomNumberToDelete].name);
         $('.deleteButton').on('click', function () {
             console.log(classroomNumberToDelete);
             deleteClassroom(classroomNumberToDelete);
         })
+    });
+
+    // Edit Classroom Name On Click
+    $('body').on('click', '.editClassroomNameButton', function () {
+        $('#newClassName').val(classroomsArray[classroomNumber].name);
+        $('.confirmEditButton').on('click', function(){
+            classroomsArray[classroomNumber].name = $('#newClassName').val();
+            updateClassroom(classroomNumber);
+        });
+
     });
 
     // Checkbox
@@ -190,6 +199,11 @@ $(document).ready(function () {
         } else {
             toggleEditing = true;
         }
+    });
+
+    // Edit Classroom Name On Click
+    $('body').on('click', '.editClassroomNameButton', function() {
+
     });
 
     // Set On Click of Grid Blocks
