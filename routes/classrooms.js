@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 /* GET /classrooms/:id */
 router.get('/:id', function (req, res, next) {
-    classrooms.findById(req.params.id,function (err, data) {
+    classrooms.findById(req.params.id, function (err, data) {
         if (err) return next(err);
         res.json(data);
     });
@@ -21,27 +21,22 @@ router.get('/:id', function (req, res, next) {
 
 /* PUT /classrooms/:id */
 router.put('/:id', function (req, res, next) {
-    classrooms.count(req.params.id, function (err, count){
-        if(count>0){
-            //document exists
-            classrooms.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
-                if (err) return next(err);
-                res.json(data);
-            });
-        }
-        else {
-            classrooms.create(req.body, function (err, data) {
-                //console.log(data);
-                if (err) return next(err);
-                res.json(data);
-            });
-        }
+    classrooms.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
+        if (err) return next(err);
+        res.json(data);
+    });
+});
+
+/* POST /classrooms/:id */
+router.post('/', function (req, res, next) {
+    classrooms.create(req.body, function (err, data) {
+        if (err) return next(err);
+        res.json(data);
     });
 });
 
 /* DELETE /classrooms/:id */
 router.delete('/:id', function (req, res, next) {
-    //console.log(req.body);
     classrooms.findByIdAndRemove(req.params.id, req.body, function (err, data) {
         if (err) return next(err);
         res.json(data);

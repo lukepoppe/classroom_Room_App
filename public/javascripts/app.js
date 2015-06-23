@@ -35,6 +35,8 @@ function refreshClassroom() {
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
+
+        // assignnames.js
         names();
     });
 }
@@ -46,10 +48,7 @@ function appendName() {
 
 // Delete Classroom
 function deleteClassroom(number) {
-    classroomsArray.splice(number, 1);
     deleteClassroomFromDB(number);
-    classroomNumber = classroomsArray.length-1;
-    refreshClassroom();
 };
 
 // Color desks based on current deskArray data
@@ -61,13 +60,14 @@ function paintDesks() {
 
 // DB FUNCTIONS //
 
-function deleteClassroomFromDB(number){
+function deleteClassroomFromDB(number) {
     $.ajax({
         url: '/classrooms/' + classroomsArray[number]._id,
         data: {},
         method: 'delete',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            classroomNumber = 0;
             // Get updated classroomArray from DB and refresh
             getAllClassrooms();
         },
@@ -75,7 +75,7 @@ function deleteClassroomFromDB(number){
             console.log(textStatus, errorThrown);
         },
         complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax Get Complete:", textStatus);
+            console.log("deleteClassroomFromDB() Ajax Get Complete:", textStatus);
         }
     });
 }
@@ -94,7 +94,7 @@ function getAllClassrooms() {
             console.log(textStatus, errorThrown);
         },
         complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax Get Complete:", textStatus);
+            console.log("getAllClassroom() Ajax GET Complete:", textStatus);
         }
     });
 }
@@ -112,7 +112,7 @@ function getClassroom(number) {
             console.log(textStatus, errorThrown);
         },
         complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax Get Complete:", textStatus);
+            console.log("getClassroom() Ajax GET Complete:", textStatus);
         }
     });
 }
@@ -132,7 +132,26 @@ function updateClassroom(number) {
             console.log(textStatus, errorThrown);
         },
         complete: function (jqXHR, textStatus) {
-            console.log("updateClassroom() Ajax Get Complete:", textStatus);
+            console.log("updateClassroom() Ajax PUT Complete:", textStatus);
+        }
+    });
+}
+
+function createClassroomInDB() {
+    $.ajax({
+        url: '/classrooms/',
+        data: classroomsArray[classroomNumber],
+        method: 'post',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            // get new data and update
+            getAllClassrooms();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log("createClassroomInDB() Ajax POST Complete:", textStatus);
         }
     });
 }
@@ -140,12 +159,11 @@ function updateClassroom(number) {
 function drawNav() {
     navBar = "";
     for (i = 0; i < classroomsArray.length; i++) {
-        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>"+" X</a><span class='divider'>|</span></li>";
+        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>" + " X</a><span class='divider'>|</span></li>";
     }
     navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohort'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
 }
-
 
 // jQuery, On Clicks //
 
@@ -157,8 +175,8 @@ $(document).ready(function () {
     $('body').on('click', '.closeX', function () {
         var classroomNumberToDelete = $(this).data('classroom');
         $('.debug-url').empty().append(classroomNumberToDelete);
-        $('.deleteButton').on('click', function(){
-            console.log(classroomNumberToDelete );
+        $('.deleteButton').on('click', function () {
+            console.log(classroomNumberToDelete);
             deleteClassroom(classroomNumberToDelete);
         })
     });
@@ -206,9 +224,9 @@ $(document).ready(function () {
 
     // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
-        refreshClassroom();
         classroomNumber = classroomsArray.length;
         classroomsArray.push(new Classroom(classroomNumber, cohortNumber, "Bloomington", "defaultName"));
+        createClassroomInDB();
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
     });
 
