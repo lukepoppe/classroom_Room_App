@@ -26,7 +26,7 @@ router.put('/:id', function (req, res, next) {
 
     classrooms.count({'number': req.params.id}, function (err, count){
         if(count>0){
-            //document exists });
+            //document exists
             classrooms.findOneAndUpdate({'number': req.params.id}, req.body, function (err, data) {
                 console.log(err.message);
                 if (err) return next(err);
