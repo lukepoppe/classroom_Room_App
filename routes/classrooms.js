@@ -21,20 +21,25 @@ router.get('/:id', function (req, res, next) {
 
 /* PUT /classrooms/:id */
 router.put('/:id', function (req, res, next) {
-    classrooms.findByIdAndUpdate({'number': req.params.id}, req.body, function (err, data) {
-        console.log(err.message);
-        if (err) return next(err);
-        res.json(data);
-    });
+    console.log(req.body);
+    console.log(req.params);
 
-});
-
-/* POST /classrooms/:id */
-router.post('/:id', function (req, res, next) {
-    classrooms.create(req.body, function (err, data) {
-        console.log(data);
-        if (err) return next(err);
-        res.json(data);
+    classrooms.count({'number': req.params.id}, function (err, count){
+        if(count>0){
+            //document exists });
+            classrooms.findOneAndUpdate({'number': req.params.id}, req.body, function (err, data) {
+                console.log(err.message);
+                if (err) return next(err);
+                res.json(data);
+            });
+        }
+        else {
+            classrooms.create(req.body, function (err, data) {
+                //console.log(data);
+                if (err) return next(err);
+                res.json(data);
+            });
+        }
     });
 });
 

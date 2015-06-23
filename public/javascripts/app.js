@@ -81,15 +81,34 @@ function getClassroom(number){
     });
 }
 
-function updateClassroom(data){
+function createNewClassroom(number){
     $.ajax({
-        url: '/classrooms/' + data.number,
-        data: data,
+        url: '/classrooms/' + number,
+        data: classroomsArray[number],
         method: 'post',
         dataType: 'json',
         success: function(data, textStatus, jqXHR){
             // get new data and update
-            getClassroom(data.number);
+            getClassroom(number);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus,errorThrown);
+        },
+        complete: function(jqXHR, textStatus){
+            console.log("saveClassroom() Ajax Get Complete:", textStatus);
+        }
+    });
+}
+
+function updateClassroom(number){
+    $.ajax({
+        url: '/classrooms/' + number,
+        data: classroomsArray[number],
+        method: 'put',
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR){
+            // get new data and update
+            getClassroom(number);
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(textStatus,errorThrown);
@@ -103,7 +122,7 @@ function updateClassroom(data){
 function drawNav(){
     navBar="";
     for(i=0; i<classroomsArray.length;i++){
-        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='"+i+"'>Classroom "+ (i+1) +"</a><span class='divider'>|</span></li>";
+        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='"+i+"'>Classroom "+ (i+1) +"</a><span class='closeX'><a href='#'> X</a></span><span class='divider'>|</span></li>";
     }
     navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohort'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
@@ -150,10 +169,6 @@ $(document).ready(function () {
         }
     });
 
-    // Save Button
-    $('body').on('click', '.block', function () {
-        updateClassroom();
-    });
 
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
@@ -171,7 +186,7 @@ $(document).ready(function () {
 
     // Set On Click of Save Button (toggle?)
     $('body').on('click', '.saveButton', function () {
-        save();
+        updateClassroom(classroomNumber);
     });
 
     $('body').on("click",'.cohort', function() {
