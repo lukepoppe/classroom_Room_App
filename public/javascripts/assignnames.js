@@ -39,13 +39,17 @@ function names() {
         for (var i = 0; i < shuffled.length; i++) {
             var select = alldesks[i];
             var id = $('#' + select);
+            var randomname = shuffled[i];
 
             if (id.children().length == 0) {
                 id.append('<p class="label"></p>');
             }
 
-            id.find('p').text(shuffled[i]);
+            id.find('p').text(randomname);
+
+            fill_desk(randomname, select);
         }
+        console.log(currentDeskArray);
         $(".cohort_list").children().remove();
         init_drag('.label');
     });
