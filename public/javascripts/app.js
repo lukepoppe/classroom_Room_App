@@ -35,7 +35,7 @@ function refreshClassroom() {
         appendName();
 
         // assignnames.js
-        //names();
+        names();
     });
 }
 
