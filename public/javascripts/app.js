@@ -116,6 +116,7 @@ function getClassroom(number) {
 }
 
 function updateClassroom(number) {
+    classroomsArray[classroomNumber].deskArray = currentDeskArray;
     $.ajax({
         url: '/classrooms/' + classroomsArray[number]._id,
         data: classroomsArray[number],
