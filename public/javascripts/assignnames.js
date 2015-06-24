@@ -1,7 +1,6 @@
 function names() {
     var alldesks = [];
-    var deskarray = [];
-    var shuffled, shuffled_desks;
+    var shuffled;
     var classnames = ["Michael",
         "Casie",
         "Luke",
@@ -27,10 +26,6 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
-    // REPLICATES PAINTDESKS();
-    //alldesks.forEach(function (value) {
-    //    $('#' + value).addClass('occupied');
-    //});
 
     classnames.forEach(function (value) {
         $('.cohort_list').append('<li class="item">' + value + '</li>');
@@ -89,7 +84,6 @@ function names() {
 
                 init_drag('.label');
                 title.text(name);
-                console.log(deskarray);
             },
             tolerance: "pointer"
         });
@@ -106,24 +100,13 @@ function names() {
     });
 
 
-//add desks to the array
+//add desks to the current desk array
     function fill_desk(student, id) {
-        var repeat = false;
-        if (deskarray != undefined) {
-            for (var i = 0; i < deskarray.length; i++) {
-                if (student == deskarray[i].person) {
-                    deskarray[i].number = id;
-                    repeat = true;
-                }
-                if (id == deskarray[i].number) {
-                    deskarray[i].person = student;
-                    repeat = true;
-                }
+        for (var i in currentDeskArray) {
+            if (currentDeskArray[i].position == id) {
+                currentDeskArray[i].student = student;
+                break;
             }
-            if (repeat == true) {
-                return;
-            }
-            deskarray.push(new OccupiedDesk(student, id));
         }
     }
 
@@ -156,8 +139,4 @@ function names() {
         return array;
     }
 
-    function OccupiedDesk(person, number) {
-        this.person = person;
-        this.number = number;
-    }
 }
