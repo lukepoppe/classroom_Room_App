@@ -15,30 +15,48 @@ function cohortFunc(){
         var firstName = $('.firstName').val();
         var lastName = $('.lastName').val();
         var email = $('.email').val();
-        //postData();
+        postData();
 
         console.log(firstName);
         //$('.showList').append("<p>" + firstName + " " + lastName + "  |  " + email +  "  |  <button class='edit'>Edit</button></p>");
     });
 }
 
-function postData(){
+//function postData(){
+//    $.ajax({
+//        url: '/people/',
+//        method: 'post',
+//        data: {firstName: firstName, lastName: lastName, email: email},
+//        dataType: 'json',
+//        success: function(response, textStatus, jqXHR){
+//            //clearData();
+//            //processData(response);
+//            console.log("AJAX call worked!")
+//        },
+//        error: function(jqXHR, textStatus, errorThrown){
+//            console.log(textStatus,errorThrown);
+//        },
+//        complete: function(jqXHR, textStatus){
+//            console.log("postData() Ajax Post Complete:", textStatus);
+//        }
+//    })
+//}
+
+function postData() {
     $.ajax({
-        url: '/people',
-        method: 'post',
+        url: '/people/',
         data: {},
+        method: 'post',
         dataType: 'json',
-        success: function(response, textStatus, jqXHR){
-            //clearData();
-            //processData(response);
+        success: function (data, textStatus, jqXHR) {
+            // get new data and update
             console.log("AJAX call worked!")
         },
-        error: function(jqXHR, textStatus, errorThrown){
-            console.log(textStatus,errorThrown);
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
         },
-        complete: function(jqXHR, textStatus){
-            console.log("postData() Ajax Post Complete:", textStatus);
+        complete: function (jqXHR, textStatus) {
+            console.log("postData() Ajax POST Complete:", textStatus);
         }
-    })
+    });
 }
-
