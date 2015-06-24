@@ -30,12 +30,12 @@ function refreshClassroom() {
         drawNav();
 
         // Load deskArray from classroomsArray in memory
-        currentDeskArray = classroomsArray[classroomNumber].deskArray;
+        //currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
 
         // assignnames.js
-        names();
+        //names();
     });
 }
 
@@ -85,6 +85,7 @@ function getAllClassrooms() {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             classroomsArray = data;
+            currentDeskArray = classroomsArray[classroomNumber].deskArray;
             // update current desk array in memory
             refreshClassroom();
         },
@@ -209,22 +210,22 @@ $(document).ready(function () {
 
     // Set On Click of Grid Blocks
     $('body').on('click', '.block', function () {
-
+        // IF editing is enabled
         if (toggleEditing == true) {
             var clickedPosition = $(this).attr('id');
 
             if ($(this).hasClass('occupied')) {
-                // Erase a desk
+                // Erase a desk from client-side array
                 currentDeskArray = currentDeskArray.filter(function (obj) {
                     return obj.position !== clickedPosition;
                 });
-
             } else {
                 // Create a desk with .block ID as position attribute.
                 currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
-            // Refresh Classroom with new data.
+            // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
             refreshClassroom();
+            //paintDesks();
         } else {
             console.log("editing disabled");
         }
@@ -234,6 +235,7 @@ $(document).ready(function () {
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
         classroomNumber = $(this).data('classroom');
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
     });
 
