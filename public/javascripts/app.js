@@ -52,7 +52,11 @@ function deleteClassroom(number) {
 // Color desks based on current deskArray data
 function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
+        //var person = currentDeskArray[i].person;
         $('#' + currentDeskArray[i].position).toggleClass('occupied');
+        //if (person != undefined) {
+        //    $('#' + currentDeskArray[i].position).append("<p>" + person + "</p>");
+        //}
     }
 }
 

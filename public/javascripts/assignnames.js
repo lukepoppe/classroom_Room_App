@@ -26,11 +26,18 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
+    console.log("on load: ", currentDeskArray);
 
-    classnames.forEach(function (value) {
-        $('.cohort_list').append('<li class="item">' + value + '</li>');
+    appendnames();
+
+
+    $('.clearButton').click(function(){
+        $('.label').text('');
+        appendnames();
+        clear_desk();
+        console.log(currentDeskArray);
+        init_drag('.item');
     });
-
 
     $(".randomizeButton").click(function () {
         $('.label').text('');
@@ -103,12 +110,27 @@ function names() {
         })
     });
 
+    //add cohort names to list
+    function appendnames() {
+        $(".cohort_list").children().remove();
+        classnames.forEach(function (value) {
+            $('.cohort_list').append('<li class="item">' + value + '</li>');
+        });
+    }
+
+
+    function clear_desk() {
+        for (var i in currentDeskArray) {
+            currentDeskArray[i].person = '';
+        }
+    }
+
 
 //add desks to the current desk array
     function fill_desk(student, id) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
-                currentDeskArray[i].student = student;
+                currentDeskArray[i].person = student;
                 break;
             }
         }
