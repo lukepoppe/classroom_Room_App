@@ -28,13 +28,13 @@ function names() {
 
     console.log("on load: ", currentDeskArray);
 
-    appendnames();
+    getnames();
 
 
     $('.clearButton').click(function(){
         $('.label').text('');
         appendnames();
-        clear_desk();
+        clear_desks();
         console.log(currentDeskArray);
         init_drag('.item');
     });
@@ -90,7 +90,6 @@ function names() {
                 if (name == text) {
                     div.append('<p class="label"></p>');
                     title = div.find("p");
-                    text = title.text();
                 }
 
                 init_drag('.label');
@@ -100,7 +99,7 @@ function names() {
         });
 
         $(".cohort_list").droppable({
-            accept: "p",
+            //accept: "p",
             drop: function (event, ui) {
                 var item = ui.draggable.html();
                 $(this).append('<li class="item">' + item + '</li>');
@@ -109,6 +108,26 @@ function names() {
             }
         })
     });
+
+
+    function getnames(){
+        var saved;
+        $(".cohort_list").children().remove();
+        classnames.forEach(function (value){
+            saved = false;
+            for (var i = 0; i < currentDeskArray.length; i++) {
+                if (currentDeskArray[i].person == value) {
+                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value + '</p>');
+                    saved = true;
+                }
+            }
+            if (saved == false){
+                $('.cohort_list').append('<li class="item">' + value + '</li>');
+            }
+        });
+        init_drag('.item');
+        init_drag('.label');
+    }
 
     //add cohort names to list
     function appendnames() {
@@ -119,14 +138,24 @@ function names() {
     }
 
 
-    function clear_desk() {
+//clear out person attribute in desk objects
+    function clear_desks() {
         for (var i in currentDeskArray) {
             currentDeskArray[i].person = '';
         }
     }
 
+    //empty desk on drag event
+    function empty_desk(student, id){
+        for (var i in currentDeskArray) {
+            if (currentDeskArray[i].position == id) {
+                currentDeskArray[i].person = '';
+                break;
+            }
+        }
+    }
 
-//add desks to the current desk array
+//add student to the current desk array
     function fill_desk(student, id) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
@@ -135,6 +164,7 @@ function names() {
             }
         }
     }
+
 
 
 // initialize draggable item
