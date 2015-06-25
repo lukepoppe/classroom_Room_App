@@ -12,6 +12,7 @@
         <meta name="google-signin-client_id"
               content="59557968968-k12mla8saffg79b94h3lt83os5k5dvqa.apps.googleusercontent.com">
     </head>
+    <body>
     <div>
         <!-- Bootstrap Classroom Delete Modal-->
         <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -72,18 +73,18 @@
         </div>
         <!-- End Bootstrap Edit Classroom Name Modal -->
 
-        <header>
-            <div class="headBar">
-                <h2>
-                    <img class="logo" src="/images/primeLogo 2.svg">
-                    Prime Academy Classroom Thingie
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                </h2>
-            </div>
-        </header>
-
+    <header>
+        <div class="headBar">
+            <img class="logo" src="/images/primeLogo 2.svg"/>Prime Academy Classroom Thingie
+                <div class="userProf">
+                    <button type="signOutButton" class="signOutButton">Sign Out</button>
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                        <div class="userNameDom"></div>
+                            <div class="userImageDom"></div>
+                 </div>
+        </div>
+    </header>
         <br>
-
         <div class="navBar">
             <ul>
             </ul>
@@ -91,6 +92,7 @@
         <br>
 
         <div class="helpModal"></div>
+
         <div class="container-fluid">
             <div class="row">
 

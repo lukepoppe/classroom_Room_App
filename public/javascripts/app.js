@@ -169,6 +169,10 @@ $(document).ready(function () {
 
     // Status Modal
     loadModal();
+    hideSignInButton();
+
+
+
 
     // Close Button On Click (Delete Classroom Modal)
     $('body').on('click', '.closeX', function () {
