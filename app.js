@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var classrooms = require('./routes/classrooms');
 var people = require('./routes/people');
+var cohort = require('./routes/cohort');
 
 
 var app = express();
@@ -41,12 +42,10 @@ app.use('/people', people);
 
 app.use('/classrooms', classrooms);
 
+app.use('/cohort', cohort);
+
 
 //app.use('/desks', desks);
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

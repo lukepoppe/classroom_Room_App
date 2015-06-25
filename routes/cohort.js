@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var person = require('../models/person');
+var cohort = require('../models/cohort');
 
 
 
@@ -12,19 +12,19 @@ router.get('/cohorts.html', function(req, res, next) {
 
 /* POST /todos */
 router.post('/', function(req, res, next) {
-    person.create(req.body, function (err, data) {
+    cohort.create(req.body, function (err, data) {
         if (err) return next(err);
         res.json(data);
     });
 });
 
-
-router.get('/:id', function(req, res, next) {
-    person.findById(req.params.id, function (err, data) {
-        if (err) return next(err);
-        res.json(data);
-    });
-});
+//
+//router.get('/:id', function(req, res, next) {
+//    person.findById(req.params.id, function (err, data) {
+//        if (err) return next(err);
+//        res.json(data);
+//    });
+//});
 
 
 ///* PUT /todos/:id */

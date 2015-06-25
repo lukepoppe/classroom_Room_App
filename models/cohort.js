@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var CohortSchema = new Schema({
-    number: {type: Number, required: true},
+var CohortSchema = new mongoose.Schema({
+    cohortNum: Number,
     classroom: Number,
     city: String,
     start_date: Date,
