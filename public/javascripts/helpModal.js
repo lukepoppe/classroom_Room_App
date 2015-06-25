@@ -4,7 +4,7 @@
 
    function helpModal(){
         $(".modalQuestionText").hide();
-
+       //$("#statusModal").modal({}).draggable();
 
     $('body').on('click', '.yellow', function () {
         console.log("yellownClick");
@@ -16,7 +16,7 @@
         $('.green').css("background", "white");
         $('.modal-header').css("background", "yellow");
         $('.helpModalButton').css("background", "yellow");
-        $('.helpLevel').css("border-color", "yellow");
+        $('#userImageDom').css("border-color", "yellow");
 
     });
 
@@ -31,6 +31,7 @@
         $('.modal-header').css("background", "red");
         $('.helpModalButton').css("background", "red");
         $('.helpLevel').css("border-color", "red");
+        $('#userImageDom').css("border-color", "red");
 
     });
 
@@ -45,12 +46,19 @@
         $('.modal-header').css("background", "green");
         $('.helpModalButton').css("background", "green");
         $('.helpLevel').css("border-color", "green");
+        $('#userImageDom').css("border-color", "green");
     });
 
 
        $('.modal-footer').on('click', '.btn-primary', function () {
            console.log("submitButtonClick");
            $('#statusModal').modal('hide');
+
        });
-}
+
+
+   }
+
+
+
 

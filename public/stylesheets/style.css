@@ -39,14 +39,12 @@ li:hover, a:hover {
     color: black;
 }
 
-img {
-    margin-bottom: 10px;
-}
 
 .logo {
     display: inline-block;
     height: 55px;
     width: 55px;
+    margin-bottom: 10px;
 }
 
 /*/////header/////*/
@@ -54,18 +52,16 @@ img {
 .headBar {
     border: 5px solid #07AA9E;
     /*border-radius: 10px;*/
-    padding: 0px 20px 0 10px;
+    padding: 10px 20px 0px 10px;
     /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*display:inline-block;*/
+    position: relative;
+
+
 }
 
-.g-signin2 {
-    float: right;
-    border: 3px solid black;
-    /*border-radius: 7px;*/
-    margin-top: 8px;
-}
 
 .navBar {
     /*border:15px solid #07AA9E;*/
@@ -199,3 +195,59 @@ span.glyphicon-warning-sign {
 .saveButton, .editClassroomNameButton {
     margin-bottom: 10px;
 }
+
+/*///////user info///////////*/
+
+
+#userImageDom{
+    border-radius: 50%;
+    border: 7px solid #ffffff;
+    float:left;
+    height: 50px;
+
+
+
+
+}
+.g-signin2{
+    float:right;
+    padding:10px 0 0 0px;
+}
+.userNameDom{
+    float:right;
+    padding:16px 0 0 25px;
+
+
+}
+.userImageDom{
+    float:right;
+    padding:5 0 0 75px;
+
+}
+
+.userProf {
+    /*float: right;*/
+    /*border: 3px solid black;*/
+    /*/!*border-radius: 7px;*!/*/
+    /*margin-top: 8px;*/
+    display: inline-block;
+
+    float:right;
+
+}
+
+.signOutButton{
+    float: right;
+    height: 35px;
+    width: 190px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 200px;
+    background: #4285f4;
+    color: white;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+
+
