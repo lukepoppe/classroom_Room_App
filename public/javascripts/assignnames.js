@@ -1,7 +1,7 @@
 function names() {
     var alldesks = [];
     var deskarray = [];
-    var shuffled;
+    var shuffled, shuffled_desks;
     var classnames = ["Michael",
         "Casie",
         "Luke",
@@ -23,25 +23,27 @@ function names() {
         "Kaitlin",
         "Jeanne"];
 
-    for (var i = 0; i < defaultDeskArray.length; i++) {
-        alldesks.push(defaultDeskArray[i].position);
+    for (var i = 0; i < currentDeskArray.length; i++) {
+        alldesks.push(currentDeskArray[i].position);
     }
 
-    alldesks.forEach(function (value) {
-        $('#' + value).addClass('occupied');
-    });
+    // REPLICATES PAINTDESKS();
+    //alldesks.forEach(function (value) {
+    //    $('#' + value).addClass('occupied');
+    //});
 
     classnames.forEach(function (value) {
         $('.cohort_list').append('<li class="item">' + value + '</li>');
     });
 
 
-    $(".randomizeButton").click(function(){
+    $(".randomizeButton").click(function () {
         $('.label').text('');
         shuffled = shuffle(classnames);
-        for (var i = 0; i < shuffled.length; i++){
+        alldesks = shuffle(alldesks);
+        for (var i = 0; i < shuffled.length; i++) {
             var select = alldesks[i];
-            var id = $('#'+ select);
+            var id = $('#' + select);
 
             if (id.children().length == 0) {
                 id.append('<p class="label"></p>');
@@ -94,9 +96,9 @@ function names() {
 
         $(".cohort_list").droppable({
             accept: "p",
-            drop: function(event, ui){
+            drop: function (event, ui) {
                 var item = ui.draggable.html();
-                $(this).append('<li class="item">'+ item +'</li>');
+                $(this).append('<li class="item">' + item + '</li>');
                 init_drag(".item");
                 ui.draggable.remove();
             }
@@ -105,26 +107,25 @@ function names() {
 
 
 //add desks to the array
-    function fill_desk(student, id){
+    function fill_desk(student, id) {
         var repeat = false;
-        if (deskarray != undefined){
-            for (var i = 0; i < deskarray.length; i++){
+        if (deskarray != undefined) {
+            for (var i = 0; i < deskarray.length; i++) {
                 if (student == deskarray[i].person) {
                     deskarray[i].number = id;
                     repeat = true;
                 }
-                if (id == deskarray[i].number){
+                if (id == deskarray[i].number) {
                     deskarray[i].person = student;
                     repeat = true;
                 }
             }
-            if (repeat == true){
-               return;
+            if (repeat == true) {
+                return;
             }
             deskarray.push(new OccupiedDesk(student, id));
         }
     }
-
 
 
 // initialize draggable item
@@ -155,7 +156,7 @@ function names() {
         return array;
     }
 
-    function OccupiedDesk(person, number){
+    function OccupiedDesk(person, number) {
         this.person = person;
         this.number = number;
     }

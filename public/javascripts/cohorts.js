@@ -61,7 +61,7 @@ function postData() {
 function createCohort() {
     $.ajax({
         url: '/cohort/',
-        data: {cohortNum: cohort},
+        data: {cohortNum: cohort, personArray: cohortArray},
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {

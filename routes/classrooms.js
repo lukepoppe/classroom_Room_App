@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 /* GET /classrooms/:id */
 router.get('/:id', function (req, res, next) {
-    classrooms.find({'number': req.params.id},function (err, data) {
+    classrooms.findById(req.params.id, function (err, data) {
         if (err) return next(err);
         res.json(data);
     });
@@ -21,18 +21,15 @@ router.get('/:id', function (req, res, next) {
 
 /* PUT /classrooms/:id */
 router.put('/:id', function (req, res, next) {
-    classrooms.findByIdAndUpdate({'number': req.params.id}, req.body, function (err, data) {
-        console.log(err.message);
+    classrooms.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
         if (err) return next(err);
         res.json(data);
     });
-
 });
 
 /* POST /classrooms/:id */
-router.post('/:id', function (req, res, next) {
+router.post('/', function (req, res, next) {
     classrooms.create(req.body, function (err, data) {
-        console.log(data);
         if (err) return next(err);
         res.json(data);
     });

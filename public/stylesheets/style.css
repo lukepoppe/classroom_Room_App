@@ -177,7 +177,7 @@ span.glyphicon-warning-sign {
 
 .modal-header {
     background: #337ab7;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 .btn-group {
     z-index: 1051;
@@ -196,4 +196,6 @@ span.glyphicon-warning-sign {
 
 }
 
-
+.saveButton, .editClassroomNameButton {
+    margin-bottom: 10px;
+}
