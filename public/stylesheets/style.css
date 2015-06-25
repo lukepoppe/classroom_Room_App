@@ -238,8 +238,8 @@ span.glyphicon-warning-sign {
 
 .signOutButton{
     float: right;
-    height: 35px;
-    width: 100px;
+    height: 36px;
+    width: 120px;
     margin-top: 10px;
     text-align: center;
     margin-left: 200px;
@@ -247,9 +247,11 @@ span.glyphicon-warning-sign {
     color: white;
     border-radius: 3px;
     white-space: nowrap;
-    font-family: 'Tangerine', serif;
-    font-weight: normal;
-
+    font-family: Roboto, arial, sans-serif;
+    font-weight: 650;
+    font-size: 12px;
+    line-height: 30px;
+    border: none;
 }
 
 
