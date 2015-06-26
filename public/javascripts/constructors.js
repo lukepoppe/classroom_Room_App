@@ -27,8 +27,9 @@ function Cohort() {
 }
 
 // Person Constructor Function
-function Person(name, email, class_role) {
-    this.name = name;
+function Person(firstName, lastName, email, class_role) {
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
     this.class_role = class_role;
     this.help_status = {};

@@ -55,16 +55,25 @@ function createCohort() {
     createCohortInDB();
 }
 
+function submitPerson() {
+    cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
+}
+
 function cohortPageInit(){
 
     $('.entryList').hide();
     $('.showList').hide();
 
     $('.createCohort').click(function(){
-        console.log("yes");
+        console.log("createCohort clicked");
         createCohort();
         $('.entryList').show();
         $('.headline').text("Students of Cohort #" + cohortNumber);
+    });
+
+    $('.submitPerson').click(function(){
+        console.log('submitPerson clicked');
+        submitPerson();
     });
 
     //$('body').on("click", '.submit', function(){
