@@ -16,7 +16,8 @@ var PersonSchema = new mongoose.Schema({
         position: String,
         timestamp: Date
     },
-    seating_history: []
+    seating_history: [],
+    lastViewedPage: String
 });
 
 module.exports = mongoose.model('Person', PersonSchema);
