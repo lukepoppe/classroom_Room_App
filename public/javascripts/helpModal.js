@@ -1,5 +1,5 @@
-
-    console.log("helpModal.js.ready!");
+    //
+    //console.log("helpModal.js.ready!");
 
 
    function helpModal(){

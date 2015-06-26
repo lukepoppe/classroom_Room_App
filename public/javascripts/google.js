@@ -1,35 +1,64 @@
-// Google Login Authorization Function
-var profile;
-var signInShowing;
-console.log(profile +': outOfFunction');
+
 
 function onSignIn(googleUser) {
-     profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    var profile = googleUser.getBasicProfile();
 
-    var userName = profile.getName();
+        var userNameProf = profile.getName();
+
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('profile: '+ profile);
+
+        var userName = profile.getName();
         $('.userNameDom').append(userName);
-            console.log('Name: ' + profile.getName());
+            console.log("userNameProf: " + userNameProf);
 
     var userImage = profile.getImageUrl();
         $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
             console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
 
-    hideSignInButton();
+    hideSignInButton(userNameProf, profile);
+
 
 
 }
-function hideSignInButton() {
-            //console.log(profile +': inFunction');
-        if (profile != null) {
+function hideSignInButton(userNameProf, profile) {
+   //if signed out show nothing
+    console.log('prof: ' + profile);
+    console.log('nameCheck: ' + userNameProf);
+
+
+
+        if (profile === undefined) {
+        $('.g-signin2').show();
+        $('.signOutButton').hide();
+            $('.navBar').children('ul').hide();
+            $('.helpModal').hide();
+            $('.adminViews').hide();
+
+
+    //if admin- show everything
+    } else if (userNameProf == "Luke Poppe") {
+        $('.signOutButton').show();
             $('.g-signin2').hide();
+                $('.navBar').children('ul').show();
+                    $('.helpModal').show();
+                        $('.adminViews').show();
+
+
+    }  else {
             $('.signOutButton').show();
-        } else {
-            $('.signOutButton').hide();
-        }
-            //console.log(profile + "profile2");
+            $('.g-signin2').hide();
+                $('.navBar').children('ul').hide();
+                    $('.helpModal').show();
+                        $('.adminViews').hide();
+    }
 }
+
+
+
+            //console.log(profile + "profile2");
+
 
 
 // Google Signout
@@ -52,6 +81,9 @@ $('.signOutButton').on('click', function () {
         $('.userImageDom').empty();
         $('.g-signin2').show();
         $('.signOutButton').hide();
+    hideSignInButton();
 });
+
+
 
 

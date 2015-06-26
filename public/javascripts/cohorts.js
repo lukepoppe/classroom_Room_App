@@ -1,4 +1,4 @@
-console.log('cohorts.js is loaded');
+//console.log('cohorts.js is loaded');
 
 
 $(document).ready(function () {
