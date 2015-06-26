@@ -1,8 +1,9 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+//var PersonSchema = require('./person').model('Person').schema;
 
 var CohortSchema = new mongoose.Schema({
-    cohortNum: Number,
+    cohortName: String,
     classroom: Number,
     city: String,
     start_date: Date,
