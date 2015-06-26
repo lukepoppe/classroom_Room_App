@@ -8,6 +8,7 @@ var cohortsArray, currentPersonArray;
 getAllCohorts();
 
 function getAllCohorts() {
+    console.log('getAllCohorts');
     $.ajax({
         url: '/cohorts/',
         data: {},
@@ -27,12 +28,14 @@ function getAllCohorts() {
 }
 
 function createCohortInDB() {
+    console.log("createCohortInDB");
     $.ajax({
         url: '/cohorts/',
         data: cohortsArray[cohortNumber],
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            console.log('DBSuccess');
             // get new data and update
             getAllCohorts();
         },
@@ -46,6 +49,7 @@ function createCohortInDB() {
 }
 
 function createCohort() {
+    console.log("createCohort");
     cohortNumber = cohortsArray.length;
     cohortsArray.push(new Cohort(cohortNumber, "Bloomington", "defaultName"));
     createCohortInDB();
@@ -54,9 +58,9 @@ function createCohort() {
 function cohortPageInit(){
 
     $('.entryList').hide();
-    $('body').find('.showList').hide();
+    $('.showList').hide();
 
-    $('body').on("click", '.create',function(){
+    $('.createCohort').click(function(){
         console.log("yes");
         createCohort();
         $('.entryList').show();

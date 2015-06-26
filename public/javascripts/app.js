@@ -33,8 +33,8 @@ function refreshClassroom() {
         paintDesks();
         appendName();
 
-        // assignnames.js UNCOMMENT
-        //names();
+        // assignnames.js
+        names();
     });
 }
 
@@ -170,9 +170,9 @@ function drawNav() {
 
 $(document).ready(function () {
 
-    // Status Modal UNCOMMENT
-    //loadModal();
-    //hideSignInButton();
+    // Status Modal
+    loadModal();
+    hideSignInButton();
 
     // Close Button On Click (Delete Classroom Modal)
     $('.navBar').on('click', '.closeX', function () {
@@ -248,10 +248,13 @@ $(document).ready(function () {
 
     // Cohorts on Click
     $('.navBar').on("click", '.cohort', function () {
-        $('.row').load("people/cohorts.html", function () {
+        console.log("cohort link click");
+
+        $('.mainArea').load("people/cohorts.html", function () {
+            console.log("cohort load");
             cohortPageInit();
         });
-        $('body').find('.helpModal').hide();
+        $('.helpModal').hide();
     });
 
 });

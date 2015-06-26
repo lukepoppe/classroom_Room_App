@@ -22,7 +22,7 @@ router.get('/:id', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
     classrooms.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
         if (err) return next(err);
-        return res.json(data);
+        res.json(data);
     });
 });
 
