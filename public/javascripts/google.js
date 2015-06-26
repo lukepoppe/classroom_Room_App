@@ -1,7 +1,6 @@
 // Google Login Authorization Function
 var profile;
 var signInShowing;
-console.log(profile +': outOfFunction');
 
 function onSignIn(googleUser) {
      profile = googleUser.getBasicProfile();
