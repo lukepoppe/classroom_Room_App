@@ -39,6 +39,7 @@ app.use('/', routes);
 app.use('/people', people);
 
 app.use('/classrooms', classrooms);
+app.use('/cohort', cohort);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

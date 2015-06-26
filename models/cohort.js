@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 //var PersonSchema = require('./person').model('Person').schema;
 
 var CohortSchema = new mongoose.Schema({
-    cohortName: String,
+    cohortNum: Number,
     classroom: Number,
     city: String,
     start_date: Date,
