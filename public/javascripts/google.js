@@ -1,6 +1,5 @@
 // Google Login Authorization Function
 var profile;
-var signInShowing;
 
 function onSignIn(googleUser) {
      profile = googleUser.getBasicProfile();
@@ -16,20 +15,16 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail());
 
     hideSignInButton();
-
-
 }
+
 function hideSignInButton() {
-            //console.log(profile +': inFunction');
-        if (profile != null) {
+        if (profile !== null) {
             $('.g-signin2').hide();
             $('.signOutButton').show();
-        } else {
+        } else if(profile === null){
             $('.signOutButton').hide();
         }
-            //console.log(profile + "profile2");
 }
-
 
 // Google Signout
 function signOut() {
@@ -45,7 +40,6 @@ $('.g-signin2').on('click', function () {
 });
 
 $('.signOutButton').on('click', function () {
-        //console.log("signOutButton");
         signOut();
         $('.userNameDom').empty();
         $('.userImageDom').empty();

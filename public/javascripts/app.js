@@ -24,7 +24,7 @@ cohortArray = [dummyCohort, dummyCohort2];
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
-
+        console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
 
@@ -33,8 +33,8 @@ function refreshClassroom() {
         paintDesks();
         appendName();
 
-        // assignnames.js
-        names();
+        // assignnames.js UNCOMMENT
+        //names();
     });
 }
 
@@ -116,14 +116,16 @@ function getClassroom(number) {
 }
 
 function updateClassroom(number) {
+    // Set current desk array into classrooms array before updating.
     classroomsArray[classroomNumber].deskArray = currentDeskArray;
+
     $.ajax({
         url: '/classrooms/' + classroomsArray[number]._id,
         data: classroomsArray[number],
         method: 'put',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
-            console.log("Update success");
+            console.log("updateClassroom success");
             // get new data and update
             getAllClassrooms();
         },
@@ -168,9 +170,9 @@ function drawNav() {
 
 $(document).ready(function () {
 
-    // Status Modal
-    loadModal();
-    hideSignInButton();
+    // Status Modal UNCOMMENT
+    //loadModal();
+    //hideSignInButton();
 
     // Close Button On Click (Delete Classroom Modal)
     $('.navBar').on('click', '.closeX', function () {
@@ -204,8 +206,9 @@ $(document).ready(function () {
 
     // Set On Click of Grid Blocks
     $('.classroom').on('click', '.block', function () {
+        console.log('click');
         // IF editing is enabled
-        if (toggleEditing == true) {
+        if (toggleEditing === true) {
             var clickedPosition = $(this).attr('id');
 
             if ($(this).hasClass('occupied')) {
@@ -219,8 +222,7 @@ $(document).ready(function () {
             }
             // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
             refreshClassroom();
-            //paintDesks();
-        } else {
+        } if(toggleEditing===false) {
             console.log("editing disabled");
         }
     });
@@ -242,7 +244,6 @@ $(document).ready(function () {
     // Set On Click of Save Button (toggle?)
     $('.saveButton').on('click', function () {
         updateClassroom(classroomNumber);
-        console.log('click');
     });
 
     // Cohorts on Click
