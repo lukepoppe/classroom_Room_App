@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-    <head lang="en">
+<html lang="en">
+    <head>
         <title>classroom app</title>
 
         <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
@@ -13,7 +13,6 @@
               content="59557968968-k12mla8saffg79b94h3lt83os5k5dvqa.apps.googleusercontent.com">
     </head>
     <body>
-    <div>
         <!-- Bootstrap Classroom Delete Modal-->
         <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -26,7 +25,8 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>You are about to delete classroom named <span class="warnOfClassName"></span>, this procedure
+                        <p>You are about to delete classroom named <span class="warnOfClassName"></span>, this
+                            procedure
                             is irreversible.</p>
 
                         <p>Do you want to proceed?</p>
@@ -53,16 +53,6 @@
                     </div>
                     <div class="modal-body">
                         <input type="text" id="newClassName">
-                        <!-- -->
-                        <!--<form>-->
-                        <!--<fieldset>-->
-                        <!--<label for="name">Name</label>-->
-                        <!--<input type="text" name="name" id="name" value="Jane Smith"-->
-                        <!--class="text ui-widget-content ui-corner-all">-->
-                        <!--&lt;!&ndash; Allow form submission with keyboard without duplicating the dialog button &ndash;&gt;-->
-                        <!--<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">-->
-                        <!--</fieldset>-->
-                        <!--</form>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -73,18 +63,19 @@
         </div>
         <!-- End Bootstrap Edit Classroom Name Modal -->
 
-    <header>
-        <div class="headBar">
-            <img class="logo" src="/images/primeLogo 2.svg"/>Prime Academy Classroom Thingie
+        <header>
+            <div class="headBar">
+                <img class="logo" src="/images/primeLogo 2.svg"/>Prime Academy Classroom Thingie
                 <div class="userProf">
                     <button type="signOutButton" class="signOutButton">Sign Out</button>
                     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                        <div class="userNameDom"></div>
-                            <div class="userImageDom"></div>
-                 </div>
-        </div>
-    </header>
+                    <div class="userNameDom"></div>
+                    <div class="userImageDom"></div>
+                </div>
+            </div>
+        </header>
         <br>
+
         <div class="navBar">
             <ul>
             </ul>
@@ -95,72 +86,134 @@
 
         <div class="container-fluid">
             <div class="row">
-
                 <div class="classroom"></div>
-
-
                 <div class="col-md-offset-9">
                     <div class="adminViews">
-                    <div class="saveButton">
-                        <button class="saveButton">Save</button>
-                    </div>
+                        <div class="saveButton">
+                            <button class="saveButton">Save</button>
+                        </div>
 
-                    <div class="editClassroomNameButton">
-                        <button class="editClassroomNameButton" data-toggle='modal' data-target="#editClassroomName">
-                            Edit Classroom Name
-                        </button>
-                    </div>
+                        <div class="editClassroomNameButton">
+                            <button class="editClassroomNameButton" data-toggle='modal'
+                                    data-target="#editClassroomName">
+                                Edit Classroom Name
+                            </button>
+                        </div>
 
-                    <div class="randomizeButton">
-                        <button class="randomizeButton">Randomize</button>
-                    </div>
-                    <br>
+                        <div class="randomizeButton">
+                            <button class="randomizeButton">Randomize</button>
+                        </div>
+                        <br>
 
-                    <div class="onoffswitch onoffswitch-checked">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                               checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                    <br>
+                        <div class="onoffswitch onoffswitch-checked">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                                   checked>
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                        <br>
 
-                    <!--<div class="helpLevel">-->
+                        <!--<div class="helpLevel">-->
                         <!--<li><a href="#" class="helpStatusGreen" data-helpLevel="1"> Green</a></li>-->
                         <!--<li><a href="#" class="helpStatusYellow" data-helpLevel="2"> Yellow</a></li>-->
                         <!--<li><a href="#" class="helpStatusRed" data-helpLevel="3"> Red</a></li>-->
-                    <!--</div>-->
+                        <!--</div>-->
+                        <br>
+
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Assign a Cohort
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Beta</a></li>
+                                <li><a href="#">Cohort 1</a></li>
+                                <li><a href="#">Cohort 2</a></li>
+                                <li><a href="#">Cohort 3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </header>
                     <br>
 
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Assign a Cohort
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Beta</a></li>
-                            <li><a href="#">Cohort 1</a></li>
-                            <li><a href="#">Cohort 2</a></li>
-                            <li><a href="#">Cohort 3</a></li>
+                    <div class="navBar">
+                        <ul>
                         </ul>
                     </div>
+                    <br>
 
-                    <div>
-                        <ul class="cohort_list">list of students</ul>
-                    </div>
+                    <div class="helpModal"></div>
+
+                    <div class="container-fluid mainArea">
+                        <div class="row">
+                            <div class="classroom"></div>
+                            <div class="col-md-offset-9">
+
+                                <div class="saveButton">
+                                    <button>Save</button>
+                                </div>
+
+                                <div class="editClassroomNameButton">
+                                    <button data-toggle='modal'
+                                            data-target="#editClassroomName">
+                                        Edit Classroom Name
+                                    </button>
+                                </div>
+
+                                <div class="randomizeButton">
+                                    <button>Randomize</button>
+                                </div>
+                                <br>
+
+                                <div class="onoffswitch onoffswitch-checked">
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                           id="myonoffswitch"
+                                           checked>
+                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                                <br>
+
+                                <div class="helpLevel">
+                                    <li><a href="#" class="helpStatusGreen" data-helpLevel="1"> Green</a></li>
+                                    <li><a href="#" class="helpStatusYellow" data-helpLevel="2"> Yellow</a></li>
+                                    <li><a href="#" class="helpStatusRed" data-helpLevel="3"> Red</a></li>
+                                </div>
+                                <br>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Assign a Cohort
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">Beta</a></li>
+                                        <li><a href="#">Cohort 1</a></li>
+                                        <li><a href="#">Cohort 2</a></li>
+                                        <li><a href="#">Cohort 3</a></li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <ul class="cohort_list">list of students</ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
         <!--SCRIPTS-->
-
 
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/jquery-ui/jquery-ui.min.js"></script>
+        <script src="/vendor/bootstrap/bootstrap.min.js"></script>
         <script src="/javascripts/constructors.js"></script>
         <script src="/javascripts/defaultDeskArray.js"></script>
         <script src="/javascripts/dummydata.js"></script>
@@ -170,6 +223,5 @@
         <script src="/javascripts/app.js"></script>
         <script src="/javascripts/cohorts.js"></script>
         <script src="/javascripts/assignnames.js"></script>
-        <script src="/vendor/bootstrap/bootstrap.min.js"></script>
-        </body>
+    </body>
 </html>

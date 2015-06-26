@@ -9,30 +9,32 @@ function Desk(number, position, person, classroom) {
 }
 
 // Classroom Constructor Function
-function Classroom(number, cohort, city, name) {
+function Classroom(cohort, city, name) {
     this.deskArray = defaultDeskArray;
     this.cohort = cohort;
-    this.city = city; // TO DO: Option to change City?
+    this.city = city;
     this.name = name;
 }
 
 // Cohort Constructor Function
-function Cohort(number, classroom, city, start_date, end_date, personArray) {
-    this.number = number;
-    this.classroom = classroom;
-    this.city = city;
-    this.start_date = start_date;
-    this.end_date = end_date;
-    this.personArray = personArray;
+function Cohort() {
+    this.name = "defaultName";
+    this.classroom = "";
+    this.city = "Bloomington";
+    this.start_date = "";
+    this.end_date = "";
+    this.personArray = [];
 }
 
 // Person Constructor Function
-function Person(name, email, class_role, help_status, help_history, seating_status, seating_history) {
-    this.name = name;
+function Person(firstName, lastName, email, class_role) {
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
     this.class_role = class_role;
-    this.help_status = help_status;
-    this.help_history = help_history;
-    this.seating_status = seating_status;
-    this.seating_history = seating_history;
+    this.help_status = {};
+    this.help_history = [];
+    this.seating_status = {};
+    this.seating_history = [];
+    lastViewedPage = "home";
 }

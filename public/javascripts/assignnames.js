@@ -27,11 +27,6 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
-    // REPLICATES PAINTDESKS();
-    //alldesks.forEach(function (value) {
-    //    $('#' + value).addClass('occupied');
-    //});
-
     classnames.forEach(function (value) {
         $('.cohort_list').append('<li class="item">' + value + '</li>');
     });
