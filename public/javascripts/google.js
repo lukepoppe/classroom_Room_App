@@ -38,7 +38,7 @@ function hideSignInButton(userNameProf, profile) {
 
 
     //if admin- show everything
-    } else if (userNameProf == "Luke Poppe") {
+    } else if (userNameProf == "Luke Poppe" || userNameProf == "Michael Liquori" || userNameProf == "Mary White" || userNameProf == "Michael Liquori" ) {
         $('.signOutButton').show();
             $('.g-signin2').hide();
                 $('.navBar').children('ul').show();
