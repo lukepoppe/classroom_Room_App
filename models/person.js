@@ -11,7 +11,7 @@ var PersonSchema = new mongoose.Schema({
         question: String,
         timestamp: Date
     },
-    help_history: Array,
+    help_history: [],
     seating_status: {
         position: String,
         timestamp: Date

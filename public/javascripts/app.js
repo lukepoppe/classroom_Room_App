@@ -1,5 +1,4 @@
 console.log('app.js is loaded');
-var path = "people/cohorts.html";
 
 // INIT VARS //
 
@@ -173,9 +172,6 @@ $(document).ready(function () {
     loadModal();
     hideSignInButton();
 
-
-
-
     // Close Button On Click (Delete Classroom Modal)
     $('body').on('click', '.closeX', function () {
         var classroomNumberToDelete = $(this).data('classroom');
@@ -235,7 +231,6 @@ $(document).ready(function () {
         }
     });
 
-
     // Set On Click of Classroom Selector Links
     $('body').on('click', '.classroomSelector', function () {
         classroomNumber = $(this).data('classroom');
@@ -246,9 +241,8 @@ $(document).ready(function () {
     // Set On Click of Plus Button (Create New Classroom)
     $('body').on('click', '.newClassroomButton', function () {
         classroomNumber = classroomsArray.length;
-        classroomsArray.push(new Classroom(classroomNumber, cohortNumber, "Bloomington", "defaultName"));
+        classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
         createClassroomInDB();
-        currentDeskArray = classroomsArray[classroomNumber].deskArray;
     });
 
     // Set On Click of Save Button (toggle?)
@@ -256,8 +250,12 @@ $(document).ready(function () {
         updateClassroom(classroomNumber);
     });
 
+    // Cohorts on Click
     $('body').on("click", '.cohort', function () {
-        $('.row').load(path);
-        console.log("cohorts button worked");
+        $('.row').load("people/cohorts.html", function(){
+            cohortPageInit();
+        });
+        $('body').find('.helpModal').hide();
     });
+
 });

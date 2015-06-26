@@ -1,10 +1,9 @@
+console.log("helpModal.js.ready!");
 
-    console.log("helpModal.js.ready!");
 
-
-   function helpModal(){
-        $(".modalQuestionText").hide();
-       //$("#statusModal").modal({}).draggable();
+function helpModal() {
+    $(".modalQuestionText").hide();
+    //$("#statusModal").modal({}).draggable();
 
     $('body').on('click', '.yellow', function () {
         console.log("yellownClick");
@@ -50,14 +49,14 @@
     });
 
 
-       $('.modal-footer').on('click', '.btn-primary', function () {
-           console.log("submitButtonClick");
-           $('#statusModal').modal('hide');
+    $('.modal-footer').on('click', '.btn-primary', function () {
+        console.log("submitButtonClick");
+        $('#statusModal').modal('hide');
 
-       });
+    });
 
 
-   }
+}
 
 
 
