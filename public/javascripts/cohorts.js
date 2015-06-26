@@ -57,6 +57,30 @@ function createCohort() {
 
 function submitPerson() {
     cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
+
+    // Update cohort in DB
+    $.ajax({
+        url: '/cohorts/' + cohortsArray[cohortNumber]._id,
+        data: cohortsArray[cohortNumber],
+        method: 'put',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            console.log("updateCohorts success");
+            // get new data and update
+            getAllClassrooms();
+            drawList();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log("updateCohorts() Ajax PUT Complete:", textStatus);
+        }
+    });
+}
+
+function drawList(){
+    console.log(cohortsArray[cohortNumber].personArray);
 }
 
 function cohortPageInit(){
