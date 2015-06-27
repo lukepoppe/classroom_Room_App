@@ -41,6 +41,7 @@ function names() {
 
     $(".randomizeButton").click(function () {
         $('.label').text('');
+        clear_desks();
         shuffled = shuffle(classnames);
         alldesks = shuffle(alldesks);
         for (var i = 0; i < shuffled.length; i++) {
@@ -71,6 +72,7 @@ function names() {
                 var desk_id = div.attr('id');
                 var name = ui.draggable.html();
 
+                empty_desk(name);
                 fill_desk(name, desk_id);
 
                 if (div.children().length == 0) {
@@ -102,6 +104,7 @@ function names() {
             //accept: "p",
             drop: function (event, ui) {
                 var item = ui.draggable.html();
+                empty_desk(item);
                 $(this).append('<li class="item">' + item + '</li>');
                 init_drag(".item");
                 ui.draggable.remove();
@@ -146,9 +149,9 @@ function names() {
     }
 
     //empty desk on drag event
-    function empty_desk(id){
+    function empty_desk(name){
         for (var i in currentDeskArray) {
-            if (currentDeskArray[i].position == id) {
+            if (currentDeskArray[i].person == name) {
                 currentDeskArray[i].person = '';
                 break;
             }
