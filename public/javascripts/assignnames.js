@@ -174,7 +174,8 @@ function names() {
     function init_drag(el) {
         $(el).draggable({
             cursor: "move",
-            revert: "invalid"
+            revert: "invalid",
+            stack: el
         });
     }
 
