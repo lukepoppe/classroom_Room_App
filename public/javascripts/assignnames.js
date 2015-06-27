@@ -26,7 +26,6 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
-    console.log("on load: ", currentDeskArray);
 
     getnames();
 

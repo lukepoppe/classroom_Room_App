@@ -11,9 +11,14 @@ router.get('/helpModal.html', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/helpModal.html'))
 });
 
+router.get('/people/cohorts.html', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname, '../views/cohorts.html'))
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/index.html'))
 });
+
 
 module.exports = router;
