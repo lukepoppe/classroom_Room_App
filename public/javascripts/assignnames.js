@@ -101,7 +101,7 @@ function names() {
         });
 
         $(".cohort_list").droppable({
-            //accept: "p",
+            accept: ".label",
             drop: function (event, ui) {
                 var item = ui.draggable.html();
                 empty_desk(item);
