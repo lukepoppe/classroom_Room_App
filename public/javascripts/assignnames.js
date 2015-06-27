@@ -141,7 +141,7 @@ function names() {
     }
 
 
-//clear out person attribute in desk objects
+//clear out person attribute in all desk objects
     function clear_desks() {
         for (var i in currentDeskArray) {
             currentDeskArray[i].person = '';
