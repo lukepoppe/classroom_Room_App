@@ -146,7 +146,7 @@ function names() {
     }
 
     //empty desk on drag event
-    function empty_desk(student, id){
+    function empty_desk(id){
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
                 currentDeskArray[i].person = '';
