@@ -84,20 +84,28 @@ function drawList(){
 }
 
 function cohortPageInit(){
-
     $('.entryList').hide();
     $('.showList').hide();
 
-    $('.createCohort').click(function(){
+    for(var i=0; i < cohortsArray.length; i++) {
+        $('.cohortList').append("<li>" + cohortsArray[i]._id + "</li>");
+    };
+
+    $('.createCohort').on("click", function(){
         console.log("createCohort clicked");
         createCohort();
+        $('.cohortList').append("<li>" + cohortsArray[cohortNumber]._id + "</li>");
+
         $('.entryList').show();
         $('.headline').text("Students of Cohort #" + cohortNumber);
     });
-
-    $('.submitPerson').click(function(){
+    var click = 0;
+    $('.submitPerson').on("click", function(){
         console.log('submitPerson clicked');
         submitPerson();
+        $('.showList').show();
+        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + "</li>")
+        click++;
     });
 
     //$('body').on("click", '.submit', function(){
