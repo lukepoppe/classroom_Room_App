@@ -6,7 +6,7 @@ console.log('app.js is loaded');
 var cohortNumber = 0;
 var classroomNumber = 0;
 
-var currentDeskArray, classroomsArray, cohortArray, i;
+var currentDeskArray, classroomsArray, i;
 
 
 // Edit Ability Toggle
@@ -17,7 +17,7 @@ getAllClassrooms();
 
 // DUMMY DATA //
 //classroomsArray = [dummyClassroom, dummyClassroom2];
-cohortArray = [dummyCohort, dummyCohort2];
+// var cohortArray = [dummyCohort, dummyCohort2];
 
 // DOM DRAWING FUNCTIONS //
 
@@ -203,6 +203,15 @@ $(document).ready(function () {
     // Edit Classroom Name On Click
     $('.editClassroomNameButton').on('click', function () {
         $('#newClassName').val(classroomsArray[classroomNumber].name);
+        $('.confirmEditButton').on('click', function () {
+            classroomsArray[classroomNumber].name = $('#newClassName').val();
+            updateClassroom(classroomNumber);
+        });
+    });
+
+    // Edit Cohort Name On Click
+    $('.editCohortNameButton').on('click', function () {
+        $('#newCohortName').val(coh);
         $('.confirmEditButton').on('click', function () {
             classroomsArray[classroomNumber].name = $('#newClassName').val();
             updateClassroom(classroomNumber);

@@ -4,8 +4,6 @@
 var cohortNumber = 0;
 var cohortsArray, currentPersonArray;
 var cohortID;
-var currentCohortArray = [];
-var currentStudentArray = [];
 
 // Get current cohort array from DB
 getAllCohorts();
@@ -20,6 +18,8 @@ function getAllCohorts() {
         success: function (data, textStatus, jqXHR) {
             cohortsArray = data;
             currentPersonArray = cohortsArray[cohortNumber].personArray;
+            drawList();
+            console.log("get all success");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -58,9 +58,7 @@ function createCohort() {
     createCohortInDB();
 }
 
-function submitPerson() {
-    cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
-
+function updateCohortInDB(){
     // Update cohort in DB
     $.ajax({
         url: '/cohorts/' + cohortsArray[cohortNumber]._id,
@@ -71,7 +69,6 @@ function submitPerson() {
             console.log("updateCohorts success");
             // get new data and update
             getAllCohorts();
-            drawList();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -82,30 +79,17 @@ function submitPerson() {
     });
 }
 
-function drawList(){
-    console.log(cohortsArray[cohortNumber].personArray);
+function submitPerson() {
+    cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
+    updateCohortInDB();
 }
 
-function getStudents() {
-    console.log('getStudents');
-    $.ajax({
-        url: '/cohorts/' + cohortID,
-        data: {},
-        method: 'get',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            currentCohortArray = data;
-            currentStudentArray = currentCohortArray.personArray;
-
-                console.log("get students worked " + currentStudentArray[1].firstName);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-        complete: function (jqXHR, textStatus) {
-            console.log("getAllCohorts() Ajax GET Complete:", textStatus);
-        }
-    });
+function drawList(){
+    console.log("drawList()");
+    $('.showList').children('ul').empty();
+    for(var i = 0; i < currentPersonArray.length; i++) {
+        $('.showList').children('ul').append("<li>" + currentPersonArray[i].firstName + "</li>");
+    };
 }
 
 function cohortPageInit(){
@@ -120,14 +104,9 @@ function cohortPageInit(){
     $('.cohortID').on("click", function(){
         $('.entryList').show();
         $('.showList').show();
-        $('.headline').text("Students of Cohort #" + (cohortNumber+1));
-        console.log($(this).attr('id'));
-        cohortID = $(this).text();
-        console.log(cohortID);
-        getStudents();
-        for(var i = 0; i < currentStudentArray.length; i++) {
-            $('.showList').append("<li>" + currentStudentArray[i].firstName + "</li>");
-        };
+        $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
+        cohortID = $(this).attr('id');
+        drawList();
     });
 
     $('.createCohort').on("click", function(){
@@ -148,6 +127,4 @@ function cohortPageInit(){
         $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email +  "   <button class='deletePerson'>Delete</button></li>");
         click++;
     });
-
 }
-
