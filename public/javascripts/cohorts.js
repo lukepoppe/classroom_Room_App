@@ -84,16 +84,28 @@ function submitPerson() {
 }
 
 function drawList(){
+    // Redraw list of cohorts on left
     $('.cohortList').empty();
     for(var i=0; i < cohortsArray.length; i++) {
         $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "' data-cohortnumber="+i+">" + cohortsArray[i].name + "</li>");
     };
 
+    // Draw title of cohort on right
     $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
+
+    // Draw list of people from cohort
     $('.showList').children('ul').empty();
     for(var i = 0; i < currentPersonArray.length; i++) {
-        $('.showList').children('ul').append("<li>" + currentPersonArray[i].firstName + "</li>");
+        $('.showList').children('ul').append("<li data-number='"+i+"'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary'>Edit</button><button class='btn btn-danger deleteName'>Delete</button></li>");
     };
+
+    // On Click of edit and delete buttons
+    $('.editName').click(function(){
+        console.log($(this).parent('li').data('number'));
+    });
+    $('.deleteName').click(function(){
+        console.log($(this).parent('li').data('number'));
+    });
 }
 
 function cohortPageInit(){
