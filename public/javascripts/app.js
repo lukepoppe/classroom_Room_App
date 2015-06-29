@@ -1,5 +1,4 @@
-//console.log('app.js is loaded');
-var path = "people/cohorts.html";
+console.log('app.js is loaded');
 
 // INIT VARS //
 
@@ -25,7 +24,7 @@ cohortArray = [dummyCohort, dummyCohort2];
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
-
+        console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
 
@@ -52,7 +51,11 @@ function deleteClassroom(number) {
 // Color desks based on current deskArray data
 function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
+        //var person = currentDeskArray[i].person;
         $('#' + currentDeskArray[i].position).toggleClass('occupied');
+        //if (person != undefined) {
+        //    $('#' + currentDeskArray[i].position).append("<p>" + person + "</p>");
+        //}
     }
 }
 
@@ -117,14 +120,16 @@ function getClassroom(number) {
 }
 
 function updateClassroom(number) {
+    // Set current desk array into classrooms array before updating.
     classroomsArray[classroomNumber].deskArray = currentDeskArray;
+
     $.ajax({
         url: '/classrooms/' + classroomsArray[number]._id,
         data: classroomsArray[number],
         method: 'put',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
-            console.log("Update success");
+            console.log("updateClassroom success");
             // get new data and update
             getAllClassrooms();
         },
@@ -144,6 +149,7 @@ function createClassroomInDB() {
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            classroomNumber=0;
             // get new data and update
             getAllClassrooms();
         },
@@ -161,8 +167,19 @@ function drawNav() {
     for (i = 0; i < classroomsArray.length; i++) {
         navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>" + " X</a><span class='divider'>|</span></li>";
     }
-    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohort'>Cohorts</a></li>";
+    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohortLink'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
+
+    // Cohorts on Click
+    $('.cohortLink').click(function () {
+        console.log("cohort link click");
+        $('.classroom').load("people/cohorts.html", function () {
+            console.log("cohort load");
+            cohortPageInit();
+        });
+        $('.helpModal').hide();
+        $('.adminViews').hide();
+    });
 }
 
 // jQuery, On Clicks //
@@ -173,11 +190,8 @@ $(document).ready(function () {
     loadModal();
     hideSignInButton();
 
-
-
-
     // Close Button On Click (Delete Classroom Modal)
-    $('body').on('click', '.closeX', function () {
+    $('.navBar').on('click', '.closeX', function () {
         var classroomNumberToDelete = $(this).data('classroom');
         $('.warnOfClassName').empty().append(classroomsArray[classroomNumberToDelete].name);
         $('.deleteButton').on('click', function () {
@@ -187,13 +201,12 @@ $(document).ready(function () {
     });
 
     // Edit Classroom Name On Click
-    $('body').on('click', '.editClassroomNameButton', function () {
+    $('.editClassroomNameButton').on('click', function () {
         $('#newClassName').val(classroomsArray[classroomNumber].name);
-        $('.confirmEditButton').on('click', function(){
+        $('.confirmEditButton').on('click', function () {
             classroomsArray[classroomNumber].name = $('#newClassName').val();
             updateClassroom(classroomNumber);
         });
-
     });
 
     // Checkbox
@@ -207,15 +220,11 @@ $(document).ready(function () {
         }
     });
 
-    // Edit Classroom Name On Click
-    $('body').on('click', '.editClassroomNameButton', function() {
-
-    });
-
     // Set On Click of Grid Blocks
-    $('body').on('click', '.block', function () {
+    $('.classroom').on('click', '.block', function () {
+        console.log('click');
         // IF editing is enabled
-        if (toggleEditing == true) {
+        if (toggleEditing === true) {
             var clickedPosition = $(this).attr('id');
 
             if ($(this).hasClass('occupied')) {
@@ -229,35 +238,31 @@ $(document).ready(function () {
             }
             // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
             refreshClassroom();
-            //paintDesks();
-        } else {
+        } if(toggleEditing===false) {
             console.log("editing disabled");
         }
     });
 
-
     // Set On Click of Classroom Selector Links
-    $('body').on('click', '.classroomSelector', function () {
+    $('.navBar').on('click', '.classroomSelector', function () {
+        console.log('click');
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
+        $('.adminViews').show();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
-    $('body').on('click', '.newClassroomButton', function () {
+    $('.navBar').on('click', '.newClassroomButton', function () {
         classroomNumber = classroomsArray.length;
-        classroomsArray.push(new Classroom(classroomNumber, cohortNumber, "Bloomington", "defaultName"));
+        classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
         createClassroomInDB();
-        currentDeskArray = classroomsArray[classroomNumber].deskArray;
+        $('.adminViews').show();
     });
 
     // Set On Click of Save Button (toggle?)
-    $('body').on('click', '.saveButton', function () {
+    $('.saveButton').on('click', function () {
         updateClassroom(classroomNumber);
     });
 
-    $('body').on("click", '.cohort', function () {
-        $('.row').load(path);
-        console.log("cohorts button worked");
-    });
 });

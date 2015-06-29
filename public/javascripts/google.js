@@ -1,5 +1,4 @@
 
-
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
@@ -55,12 +54,6 @@ function hideSignInButton(userNameProf, profile) {
     }
 }
 
-
-
-            //console.log(profile + "profile2");
-
-
-
 // Google Signout
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -75,7 +68,6 @@ $('.g-signin2').on('click', function () {
 });
 
 $('.signOutButton').on('click', function () {
-        //console.log("signOutButton");
         signOut();
         $('.userNameDom').empty();
         $('.userImageDom').empty();

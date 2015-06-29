@@ -1,26 +1,30 @@
+<h2>COHORTS HEADLINE!!!</h2>
+<div class="container-fluid">
+    <div class="col-sm-4 well chooseCohort">
+        <ul class="cohortList">
+            <li>
+                <button class="createCohort">Create a New Cohort</button>
+            </li>
+        </ul>
+    </div>
 
-<h1>COHORTS HEADLINE!!!</h1>
+    <div class="col-sm-offset-2 col-sm-4 well entryList form-group">
+        <h1 class="headline"></h1>
+        Add a person
+            <!--<label for="firstName">first name:</label>-->
+            <input class="form-control" placeholder="first name" name="firstName" id="firstName" type="text"
+                   required="required">
+            <!--<label for="lastName">last name:</label>-->
+            <input class="form-control" placeholder="last name" name="lastName" id="lastName" type="lastName"
+                   required="required">
+            <!--<label for="email">e-mail address:</label>-->
+            <input class="form-control" placeholder="email" name="email" id="email" type="email" required="required">
+            <button class="btn btn-primary submitPerson">Submit</button>
+            <br/>
+            <ul class="showList">
+            </ul>
+    </div>
+    </div>
+    </div>
 
-<div class="container-fluid col-md-4 well chooseCohort">
-    <ul class="cohortList">
-        <li><button class="create">Create a New Cohort</button></li>
-
-    </ul>
-</div>
-<div class="container-fluid col-md-offset-2 col-md-4 well entryList">
-    <form action="/people" method="post" class="entry">
-        <label for="firstName">first name:</label>
-        <input name="firstName" id="firstName" type="text" required="required">
-        <label for="lastName">last name:</label>
-        <input name="lastName" id="lastName" type="lastName" required="required">
-        <label for="email">e-mail address:</label>
-        <input name="email" id="email" type="email" required="required">
-        <input type="submit" value="Submit">
-    </form>
-
-</div>
-<div class="container-fluid col-md-offset-6 col-md-4 well showList">
-
-
-    <script src="/javascripts/cohorts.js"></script>
 </div>

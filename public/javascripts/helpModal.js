@@ -1,13 +1,11 @@
-    //
-    //console.log("helpModal.js.ready!");
+console.log("helpModal.js.ready!");
 
+function helpModal() {
+    $(".modalQuestionText").hide();
+    //$("#statusModal").modal({}).draggable();
 
-   function helpModal(){
-        $(".modalQuestionText").hide();
-       //$("#statusModal").modal({}).draggable();
-
-    $('body').on('click', '.yellow', function () {
-        console.log("yellownClick");
+    $('.yellow').click(function () {
+        console.log("yellow Click");
         $(".modalQuestionText").show();
         $(this).css("background", "yellow");
         $('.btn-primary').css("background", "yellow");
@@ -17,10 +15,9 @@
         $('.modal-header').css("background", "yellow");
         $('.helpModalButton').css("background", "yellow");
         $('#userImageDom').css("border-color", "yellow");
-
     });
 
-    $('body').on('click', '.red', function () {
+    $('.red').click(function () {
         console.log("redClick");
         $(".modalQuestionText").show();
         $(this).css("background", "red");
@@ -32,10 +29,9 @@
         $('.helpModalButton').css("background", "red");
         $('.helpLevel').css("border-color", "red");
         $('#userImageDom').css("border-color", "red");
-
     });
 
-    $('body').on('click', '.green', function () {
+    $('.green').click(function () {
         console.log("greenClick");
         $(".modalQuestionText").hide();
         $('.btn-primary').css("background", "green");
@@ -49,15 +45,11 @@
         $('#userImageDom').css("border-color", "green");
     });
 
-
-       $('.modal-footer').on('click', '.btn-primary', function () {
-           console.log("submitButtonClick");
-           $('#statusModal').modal('hide');
-
-       });
-
-
-   }
+    $('.modal-footer').on('click', '.btn-primary', function () {
+        console.log("submitButtonClick");
+        $('#statusModal').modal('hide');
+    });
+}
 
 
 

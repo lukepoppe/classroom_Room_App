@@ -1,7 +1,6 @@
 function names() {
     var alldesks = [];
-    var deskarray = [];
-    var shuffled, shuffled_desks;
+    var shuffled;
     var classnames = ["Michael",
         "Casie",
         "Luke",
@@ -27,30 +26,35 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
-    // REPLICATES PAINTDESKS();
-    //alldesks.forEach(function (value) {
-    //    $('#' + value).addClass('occupied');
-    //});
+    getnames();
 
-    classnames.forEach(function (value) {
-        $('.cohort_list').append('<li class="item">' + value + '</li>');
+    $('.clearButton').click(function(){
+        $('.label').text('');
+        appendnames();
+        clear_desks();
+        console.log(currentDeskArray);
+        init_drag('.item');
     });
-
 
     $(".randomizeButton").click(function () {
         $('.label').text('');
+        clear_desks();
         shuffled = shuffle(classnames);
         alldesks = shuffle(alldesks);
         for (var i = 0; i < shuffled.length; i++) {
             var select = alldesks[i];
             var id = $('#' + select);
+            var randomname = shuffled[i];
 
             if (id.children().length == 0) {
                 id.append('<p class="label"></p>');
             }
 
-            id.find('p').text(shuffled[i]);
+            id.find('p').text(randomname);
+
+            fill_desk(randomname, select);
         }
+        console.log(currentDeskArray);
         $(".cohort_list").children().remove();
         init_drag('.label');
     });
@@ -65,6 +69,7 @@ function names() {
                 var desk_id = div.attr('id');
                 var name = ui.draggable.html();
 
+                empty_desk(name);
                 fill_desk(name, desk_id);
 
                 if (div.children().length == 0) {
@@ -84,20 +89,19 @@ function names() {
                 if (name == text) {
                     div.append('<p class="label"></p>');
                     title = div.find("p");
-                    text = title.text();
                 }
 
                 init_drag('.label');
                 title.text(name);
-                console.log(deskarray);
             },
             tolerance: "pointer"
         });
 
         $(".cohort_list").droppable({
-            accept: "p",
+            accept: ".label",
             drop: function (event, ui) {
                 var item = ui.draggable.html();
+                empty_desk(item);
                 $(this).append('<li class="item">' + item + '</li>');
                 init_drag(".item");
                 ui.draggable.remove();
@@ -106,33 +110,69 @@ function names() {
     });
 
 
-//add desks to the array
-    function fill_desk(student, id) {
-        var repeat = false;
-        if (deskarray != undefined) {
-            for (var i = 0; i < deskarray.length; i++) {
-                if (student == deskarray[i].person) {
-                    deskarray[i].number = id;
-                    repeat = true;
-                }
-                if (id == deskarray[i].number) {
-                    deskarray[i].person = student;
-                    repeat = true;
+    function getnames(){
+        var saved;
+        $(".cohort_list").children().remove();
+        classnames.forEach(function (value){
+            saved = false;
+            for (var i = 0; i < currentDeskArray.length; i++) {
+                if (currentDeskArray[i].person == value) {
+                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value + '</p>');
+                    saved = true;
                 }
             }
-            if (repeat == true) {
-                return;
+            if (saved == false){
+                $('.cohort_list').append('<li class="item">' + value + '</li>');
             }
-            deskarray.push(new OccupiedDesk(student, id));
+        });
+        init_drag('.item');
+        init_drag('.label');
+    }
+
+    //add cohort names to list
+    function appendnames() {
+        $(".cohort_list").children().remove();
+        classnames.forEach(function (value) {
+            $('.cohort_list').append('<li class="item">' + value + '</li>');
+        });
+    }
+
+
+//clear out person attribute in all desk objects
+    function clear_desks() {
+        for (var i in currentDeskArray) {
+            currentDeskArray[i].person = '';
         }
     }
+
+    //empty desk on drag event
+    function empty_desk(name){
+        for (var i in currentDeskArray) {
+            if (currentDeskArray[i].person == name) {
+                currentDeskArray[i].person = '';
+                break;
+            }
+        }
+    }
+
+//add student to the current desk array
+    function fill_desk(student, id) {
+        for (var i in currentDeskArray) {
+            if (currentDeskArray[i].position == id) {
+                currentDeskArray[i].person = student;
+                break;
+            }
+        }
+    }
+
 
 
 // initialize draggable item
     function init_drag(el) {
         $(el).draggable({
             cursor: "move",
-            revert: "invalid"
+            revert: "invalid",
+            stack: el
         });
     }
 
@@ -156,8 +196,4 @@ function names() {
         return array;
     }
 
-    function OccupiedDesk(person, number) {
-        this.person = person;
-        this.number = number;
-    }
 }
