@@ -67,7 +67,7 @@ function submitPerson() {
         success: function (data, textStatus, jqXHR) {
             console.log("updateCohorts success");
             // get new data and update
-            getAllClassrooms();
+            getAllCohorts();
             drawList();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -107,7 +107,7 @@ function cohortPageInit(){
         console.log('submitPerson clicked');
         submitPerson();
         $('.showList').show();
-        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + "</li>")
+        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + "</li>");
         click++;
     });
 
