@@ -3,6 +3,9 @@
 // INIT VARS //
 var cohortNumber = 0;
 var cohortsArray, currentPersonArray;
+var cohortID;
+var currentCohortArray = [];
+var currentStudentArray = [];
 
 // Get current cohort array from DB
 getAllCohorts();
@@ -83,14 +86,49 @@ function drawList(){
     console.log(cohortsArray[cohortNumber].personArray);
 }
 
+function getStudents() {
+    console.log('getStudents');
+    $.ajax({
+        url: '/cohorts/' + cohortID,
+        data: {},
+        method: 'get',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            currentCohortArray = data;
+            currentStudentArray = currentCohortArray.personArray;
+
+                console.log("get students worked " + currentStudentArray[1].firstName);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log("getAllCohorts() Ajax GET Complete:", textStatus);
+        }
+    });
+}
+
 function cohortPageInit(){
     $('.entryList').hide();
     $('.showList').hide();
     var click = 0;
 
     for(var i=0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li>" + cohortsArray[i]._id + "</li>");
+        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "'>" + cohortsArray[i]._id + "</li>");
     };
+
+    $('.cohortID').on("click", function(){
+        $('.entryList').show();
+        $('.showList').show();
+        $('.headline').text("Students of Cohort #" + (cohortNumber+1));
+        console.log($(this).attr('id'));
+        cohortID = $(this).text();
+        console.log(cohortID);
+        getStudents();
+        for(var i = 0; i < currentStudentArray.length; i++) {
+            $('.showList').append("<li>" + currentStudentArray[i].firstName + "</li>");
+        };
+    });
 
     $('.createCohort').on("click", function(){
         click = 0;
@@ -100,27 +138,16 @@ function cohortPageInit(){
         $('.cohortList').append("<li>Cohort # " + (cohortNumber+1) + "</li>");
 
         $('.entryList').show();
-        $('.headline').text("Students of Cohort #" + (cohortNumber+1));
+        $('.headline').text("Add Students to Cohort #" + (cohortNumber+1));
     });
 
     $('.submitPerson').on("click", function(){
         console.log('submitPerson clicked');
         submitPerson();
         $('.showList').show();
-        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + "</li>");
+        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email +  "   <button class='deletePerson'>Delete</button></li>");
         click++;
     });
 
-    //$('body').on("click", '.submit', function(){
-    //    console.log("THIS BUTTON WORKS");
-    //    $('body').find('.showList').show();
-    //    firstName = $('.firstName').val();
-    //    lastName = $('.lastName').val();
-    //    email = $('.email').val();
-    //    console.log(firstName);
-    //    console.log(cohortArray);
-    //
-    //
-    //    $('body').find(".showList").append("<li>Testing Testing<button class='edit'>Edit</button></li>");
-    //});
 }
+
