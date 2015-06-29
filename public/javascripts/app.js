@@ -101,24 +101,6 @@ function getAllClassrooms() {
     });
 }
 
-function getClassroom(number) {
-    $.ajax({
-        url: '/classrooms/' + classroomsArray[number]._id,
-        data: {},
-        method: 'get',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            classroomsArray[classroomNumber] = data[0];
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-        complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax GET Complete:", textStatus);
-        }
-    });
-}
-
 function updateClassroom(number) {
     // Set current desk array into classrooms array before updating.
     classroomsArray[classroomNumber].deskArray = currentDeskArray;
@@ -211,10 +193,10 @@ $(document).ready(function () {
 
     // Edit Cohort Name On Click
     $('.editCohortNameButton').on('click', function () {
-        $('#newCohortName').val(coh);
-        $('.confirmEditButton').on('click', function () {
-            classroomsArray[classroomNumber].name = $('#newClassName').val();
-            updateClassroom(classroomNumber);
+        $('#newCohortName').val(cohortsArray[cohortNumber].name);
+        $('.confirmCohortEditButton').on('click', function () {
+            cohortsArray[cohortNumber].name = $('#newCohortName').val();
+            updateCohortInDB();
         });
     });
 

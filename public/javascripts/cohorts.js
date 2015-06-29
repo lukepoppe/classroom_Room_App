@@ -59,7 +59,6 @@ function createCohort() {
 }
 
 function updateCohortInDB(){
-    // Update cohort in DB
     $.ajax({
         url: '/cohorts/' + cohortsArray[cohortNumber]._id,
         data: cohortsArray[cohortNumber],
@@ -98,26 +97,22 @@ function cohortPageInit(){
     var click = 0;
 
     for(var i=0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "'>" + cohortsArray[i]._id + "</li>");
+        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "' data-cohortnumber="+i+">" + cohortsArray[i].name + "</li>");
     };
 
     $('.cohortID').on("click", function(){
         $('.entryList').show();
         $('.showList').show();
+        cohortNumber = $(this).data('cohortnumber');
         $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
         cohortID = $(this).attr('id');
+        currentPersonArray = cohortsArray[cohortNumber].personArray;
         drawList();
     });
 
     $('.createCohort').on("click", function(){
-        click = 0;
-        $('.showList').empty();
         console.log("createCohort clicked");
         createCohort();
-        $('.cohortList').append("<li>Cohort # " + (cohortNumber+1) + "</li>");
-
-        $('.entryList').show();
-        $('.headline').text("Add Students to Cohort #" + (cohortNumber+1));
     });
 
     $('.submitPerson').on("click", function(){
