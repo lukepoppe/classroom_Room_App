@@ -88,6 +88,7 @@ function getAllClassrooms() {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             classroomsArray = data;
+            console.log(classroomsArray);
             currentDeskArray = classroomsArray[classroomNumber].deskArray;
             // update current desk array in memory
             refreshClassroom();
