@@ -191,15 +191,6 @@ $(document).ready(function () {
         });
     });
 
-    // Edit Cohort Name On Click
-    $('.editCohortNameButton').on('click', function () {
-        $('#newCohortName').val(cohortsArray[cohortNumber].name);
-        $('.confirmCohortEditButton').on('click', function () {
-            cohortsArray[cohortNumber].name = $('#newCohortName').val();
-            updateCohortInDB();
-        });
-    });
-
     // Checkbox
     $('.onoffswitch-label').click(function () {
         $(this).parent().toggleClass('onoffswitch-checked');

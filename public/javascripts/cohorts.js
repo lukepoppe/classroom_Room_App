@@ -84,7 +84,12 @@ function submitPerson() {
 }
 
 function drawList(){
-    console.log("drawList()");
+    $('.cohortList').empty();
+    for(var i=0; i < cohortsArray.length; i++) {
+        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "' data-cohortnumber="+i+">" + cohortsArray[i].name + "</li>");
+    };
+
+    $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
     $('.showList').children('ul').empty();
     for(var i = 0; i < currentPersonArray.length; i++) {
         $('.showList').children('ul').append("<li>" + currentPersonArray[i].firstName + "</li>");
@@ -96,15 +101,21 @@ function cohortPageInit(){
     $('.showList').hide();
     var click = 0;
 
-    for(var i=0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "' data-cohortnumber="+i+">" + cohortsArray[i].name + "</li>");
-    };
+    drawList();
 
-    $('.cohortID').on("click", function(){
+    // Edit Cohort Name On Click
+    $('.editCohortNameButton').on('click', function () {
+        $('#newCohortName').val(cohortsArray[cohortNumber].name);
+        $('.confirmCohortEditButton').on('click', function () {
+            cohortsArray[cohortNumber].name = $('#newCohortName').val();
+            updateCohortInDB();
+        });
+    });
+
+    $('.cohortList').on('click','.cohortID', function(){
         $('.entryList').show();
         $('.showList').show();
         cohortNumber = $(this).data('cohortnumber');
-        $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
         cohortID = $(this).attr('id');
         currentPersonArray = cohortsArray[cohortNumber].personArray;
         drawList();
