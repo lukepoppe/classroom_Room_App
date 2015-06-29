@@ -17,7 +17,7 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail());
 
 
-    //findhuman();
+    findhuman(profile.getEmail().toLowerCase());
 
     hideSignInButton(userNameProf, profile);
 

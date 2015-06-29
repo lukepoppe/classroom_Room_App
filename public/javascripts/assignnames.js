@@ -34,7 +34,6 @@ function names() {
         $('.label').text('');
         appendnames();
         clear_desks();
-        console.log(currentDeskArray);
         init_drag('.item');
     });
 
