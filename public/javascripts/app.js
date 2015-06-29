@@ -6,7 +6,7 @@ console.log('app.js is loaded');
 var cohortNumber = 0;
 var classroomNumber = 0;
 
-var currentDeskArray, classroomsArray, cohortArray, i;
+var currentDeskArray, classroomsArray, i;
 
 
 // Edit Ability Toggle
@@ -17,7 +17,7 @@ getAllClassrooms();
 
 // DUMMY DATA //
 //classroomsArray = [dummyClassroom, dummyClassroom2];
-cohortArray = [dummyCohort, dummyCohort2];
+// var cohortArray = [dummyCohort, dummyCohort2];
 
 // DOM DRAWING FUNCTIONS //
 
@@ -97,24 +97,6 @@ function getAllClassrooms() {
         },
         complete: function (jqXHR, textStatus) {
             console.log("getAllClassroom() Ajax GET Complete:", textStatus);
-        }
-    });
-}
-
-function getClassroom(number) {
-    $.ajax({
-        url: '/classrooms/' + classroomsArray[number]._id,
-        data: {},
-        method: 'get',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            classroomsArray[classroomNumber] = data[0];
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-        complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax GET Complete:", textStatus);
         }
     });
 }
