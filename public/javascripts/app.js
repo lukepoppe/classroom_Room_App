@@ -23,7 +23,7 @@ cohortArray = [dummyCohort, dummyCohort2];
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
-    $('.classroom').load('classroom.html', function () {
+    $('.mainArea').load('classroom.html', function () {
         console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
@@ -149,6 +149,7 @@ function createClassroomInDB() {
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            classroomNumber=0;
             // get new data and update
             getAllClassrooms();
         },
@@ -233,6 +234,7 @@ $(document).ready(function () {
 
     // Set On Click of Classroom Selector Links
     $('.navBar').on('click', '.classroomSelector', function () {
+        console.log('click');
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
