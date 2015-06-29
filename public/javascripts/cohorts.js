@@ -118,13 +118,14 @@ function cohortPageInit(){
     };
 
     $('.cohortID').on("click", function(){
+        $('.showList').empty();
         $('.entryList').show();
         $('.showList').show();
-        $('.headline').text("Students of Cohort #" + (cohortNumber+1));
         console.log($(this).attr('id'));
         cohortID = $(this).text();
         console.log(cohortID);
         getStudents();
+        $('.headline').text("Students of Cohort " + cohortID);
         for(var i = 0; i < currentStudentArray.length; i++) {
             $('.showList').append("<li>" + currentStudentArray[i].firstName + "</li>");
         };
@@ -145,9 +146,8 @@ function cohortPageInit(){
         console.log('submitPerson clicked');
         submitPerson();
         $('.showList').show();
-        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email +  "   <button class='deletePerson'>Delete</button></li>");
+        //$('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email +  "   <button class='deletePerson'>Delete</button></li>");
         click++;
     });
-
 }
 
