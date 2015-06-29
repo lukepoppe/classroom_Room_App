@@ -23,7 +23,7 @@ cohortArray = [dummyCohort, dummyCohort2];
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
-    $('.mainArea').load('classroom.html', function () {
+    $('.classroom').load('classroom.html', function () {
         console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
@@ -167,8 +167,19 @@ function drawNav() {
     for (i = 0; i < classroomsArray.length; i++) {
         navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>" + " X</a><span class='divider'>|</span></li>";
     }
-    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohort'>Cohorts</a></li>";
+    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohortLink'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
+
+    // Cohorts on Click
+    $('.cohortLink').click(function () {
+        console.log("cohort link click");
+        $('.classroom').load("people/cohorts.html", function () {
+            console.log("cohort load");
+            cohortPageInit();
+        });
+        $('.helpModal').hide();
+        $('.adminViews').hide();
+    });
 }
 
 // jQuery, On Clicks //
@@ -238,6 +249,7 @@ $(document).ready(function () {
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
+        $('.adminViews').show();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
@@ -245,22 +257,12 @@ $(document).ready(function () {
         classroomNumber = classroomsArray.length;
         classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
         createClassroomInDB();
+        $('.adminViews').show();
     });
 
     // Set On Click of Save Button (toggle?)
     $('.saveButton').on('click', function () {
         updateClassroom(classroomNumber);
-    });
-
-    // Cohorts on Click
-    $('.navBar').on("click", '.cohort', function () {
-        console.log("cohort link click");
-
-        $('.mainArea').load("people/cohorts.html", function () {
-            console.log("cohort load");
-            cohortPageInit();
-        });
-        $('.helpModal').hide();
     });
 
 });

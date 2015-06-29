@@ -26,9 +26,7 @@ function names() {
         alldesks.push(currentDeskArray[i].position);
     }
 
-
     getnames();
-
 
     $('.clearButton').click(function(){
         $('.label').text('');
