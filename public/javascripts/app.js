@@ -149,6 +149,7 @@ function createClassroomInDB() {
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
+            classroomNumber=0;
             // get new data and update
             getAllClassrooms();
         },
