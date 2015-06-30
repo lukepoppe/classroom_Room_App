@@ -115,6 +115,16 @@ function drawList() {
         $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='editCohortName btn btn-primary' data-target='#editCohortName' data-toggle='modal'>Edit</button><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button></li>");
     };
 
+    // On Click of cohort list
+    $('.cohortList').on('click', '.cohortID', function () {
+        $('.entryList').show();
+        $('.showList').show();
+        cohortNumber = $(this).data('cohortnumber');
+        cohortID = $(this).attr('id');
+        currentPersonArray = cohortsArray[cohortNumber].personArray;
+        drawList();
+    });
+
     // On Click of Delete Cohort
     $('.deleteCohort').click(function () {
         var cohortIdToDelete = ($(this).siblings('a').attr('id'));
@@ -136,7 +146,14 @@ function drawList() {
     });
 
     // Create New Cohort Button
-    $('.cohortList').append('<li><button class="createCohort">Create a New Cohort</button></li>');
+    $('.cohortList').append('<li><button class="createCohort btn btn-success">Create a New Cohort</button></li>');
+
+    // On Click of New Cohort Button
+    $('.createCohort').on("click", function () {
+        console.log("createCohort clicked");
+        createCohort();
+    });
+
     // Draw title of cohort on right
     $('.headline').empty().append("<h1>" + cohortsArray[cohortNumber].name + "</h1>");
 
@@ -179,20 +196,6 @@ function cohortPageInit() {
     $('.cohortListDiv').hide();
 
     drawList();
-
-    $('.cohortList').on('click', '.cohortID', function () {
-        $('.entryList').show();
-        $('.showList').show();
-        cohortNumber = $(this).data('cohortnumber');
-        cohortID = $(this).attr('id');
-        currentPersonArray = cohortsArray[cohortNumber].personArray;
-        drawList();
-    });
-
-    $('.createCohort').on("click", function () {
-        console.log("createCohort clicked");
-        createCohort();
-    });
 
     $('.submitPerson').on("click", function () {
         console.log('submitPerson clicked');
