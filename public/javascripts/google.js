@@ -40,7 +40,6 @@ $('.signOutButton').on('click', function () {
         $('.userImageDom').empty();
         $('.g-signin2').show();
         $('.signOutButton').hide();
-    hideSignInButton();
 });
 
 
