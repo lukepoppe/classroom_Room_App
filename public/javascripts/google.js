@@ -1,3 +1,4 @@
+var userEmail;
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
@@ -11,12 +12,14 @@ function onSignIn(googleUser) {
 
     var userImage = profile.getImageUrl();
     $('.userImageDom').append('<img src=" ' + userImage + ' "id="userImageDom">');
+
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
 
     hideSignInButton(userNameProf, profile);
-
-    findhuman(profile.getEmail().toLowerCase());
+    userEmail = profile.getEmail().toLowerCase();
+    //console.log(userEmail);
+    findhuman(userEmail);
 
 }
 function hideSignInButton(userNameProf, profile) {
