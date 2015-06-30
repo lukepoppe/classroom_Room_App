@@ -89,7 +89,8 @@ function drawList() {
     for (var i = 0; i < cohortsArray.length; i++) {
         $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a></li>");
     };
-
+    // Create New Cohort Button
+    $('.cohortList').append('<li><button class="createCohort">Create a New Cohort</button></li>');
     // Draw title of cohort on right
     $('.headline').empty().append("<h1>" + cohortsArray[cohortNumber].name + "</h1>");
 
@@ -101,8 +102,14 @@ function drawList() {
 
     // On Click of edit and delete buttons
     $('.editName').click(function () {
-        console.log($(this).parent('li').data('number'));
-
+        var nameNumber = $(this).parent('li').data('number');
+        console.log(nameNumber);
+        console.log(cohortsArray);
+        $('#newPersonName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
+        $('.confirmCohortEditButton').on('click', function () {
+            cohortsArray[cohortNumber].personArray[nameNumber].name = $('#newCohortName').val();
+            updateCohortInDB();
+        });
     });
     $('.deleteName').click(function () {
         console.log($(this).parent('li').data('number'));
