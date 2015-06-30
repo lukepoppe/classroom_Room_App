@@ -78,6 +78,27 @@ function updateCohortInDB() {
     });
 }
 
+function deleteCohortFromDB(number) {
+    $.ajax({
+        url: '/cohorts/' + cohortsArray[number]._id,
+        data: {},
+        method: 'delete',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            cohortNumber = 0;
+            // Get updated classroomArray from DB and refresh
+            getAllCohorts();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log("deleteClassroomFromDB() Ajax Get Complete:", textStatus);
+        }
+    });
+}
+
+
 function submitPerson() {
     cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
     updateCohortInDB();
@@ -100,7 +121,7 @@ function drawList() {
         $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button><button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
     };
 
-    // On Click of edit and delete buttons
+    // On Click of Edit Name
     $('.editName').click(function () {
         var nameNumber = $(this).parent('li').data('number');
         $('#newPersonFirstName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
@@ -113,8 +134,15 @@ function drawList() {
             updateCohortInDB();
         });
     });
+
+    // On Click of Delete Name
     $('.deleteName').click(function () {
-        console.log($(this).parent('li').data('number'));
+        var nameNumber = $(this).parent('li').data('number');
+        $('.warnOfPersonName').empty().append(cohortsArray[cohortNumber].personArray[nameNumber].firstName + " " + cohortsArray[cohortNumber].personArray[nameNumber].lastName);
+        $('.deleteNameButton').on('click', function () {
+            cohortsArray[cohortNumber].personArray.splice(nameNumber,1);
+            updateCohortInDB();
+        });
     });
 }
 
