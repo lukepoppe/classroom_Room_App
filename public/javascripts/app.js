@@ -250,6 +250,7 @@ $(document).ready(function () {
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
         $('.adminViews').show();
+        $('.cohortListDiv').show();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
