@@ -127,6 +127,7 @@ function drawList() {
     // On Click of Edit Cohort
     $('.editCohortName').on('click', function () {
         //var coh = ($(this).siblings('a').attr('id'));
+        cohortNumber = $(this).siblings('a').data('cohortnumber');
         $('#newCohortName').val($(this).siblings('a').text());
         $('.confirmCohortEditButton').on('click', function () {
             cohortsArray[cohortNumber].name = $('#newCohortName').val();
