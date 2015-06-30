@@ -73,11 +73,11 @@ function helpModal() {
 
                 // Push old help_status into help_history
                 cohortsArray[userCohortNumber].personArray[i].push(cohortsArray[userCohortNumber].personArray[i].help_status);
-                // Set new help_status in array
+                // Set new help_status in array if there was a help_status before.
                 cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
                 // Update cohort DB
                 updateCohortInDB(userCohortNumber);
-                
+
             }
         }
 
