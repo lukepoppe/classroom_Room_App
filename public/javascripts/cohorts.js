@@ -58,7 +58,7 @@ function createCohort() {
     createCohortInDB();
 }
 
-function updateCohortInDB(){
+function updateCohortInDB() {
     $.ajax({
         url: '/cohorts/' + cohortsArray[cohortNumber]._id,
         data: cohortsArray[cohortNumber],
@@ -83,32 +83,33 @@ function submitPerson() {
     updateCohortInDB();
 }
 
-function drawList(){
+function drawList() {
     // Redraw list of cohorts on left
     $('.cohortList').empty();
-    for(var i=0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li class ='cohortID' id ='"+ cohortsArray[i]._id + "' data-cohortnumber="+i+">" + cohortsArray[i].name + "</li>");
+    for (var i = 0; i < cohortsArray.length; i++) {
+        $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a></li>");
     };
 
     // Draw title of cohort on right
-    $('.headline').empty().append("<h1>"+cohortsArray[cohortNumber].name+"</h1>");
+    $('.headline').empty().append("<h1>" + cohortsArray[cohortNumber].name + "</h1>");
 
     // Draw list of people from cohort
     $('.showList').children('ul').empty();
-    for(var i = 0; i < currentPersonArray.length; i++) {
-        $('.showList').children('ul').append("<li data-number='"+i+"'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary'>Edit</button><button class='btn btn-danger deleteName'>Delete</button></li>");
+    for (var i = 0; i < currentPersonArray.length; i++) {
+        $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button><button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
     };
 
     // On Click of edit and delete buttons
-    $('.editName').click(function(){
+    $('.editName').click(function () {
         console.log($(this).parent('li').data('number'));
+
     });
-    $('.deleteName').click(function(){
+    $('.deleteName').click(function () {
         console.log($(this).parent('li').data('number'));
     });
 }
 
-function cohortPageInit(){
+function cohortPageInit() {
     $('.entryList').hide();
     $('.showList').hide();
     var click = 0;
@@ -124,7 +125,7 @@ function cohortPageInit(){
         });
     });
 
-    $('.cohortList').on('click','.cohortID', function(){
+    $('.cohortList').on('click', '.cohortID', function () {
         $('.entryList').show();
         $('.showList').show();
         cohortNumber = $(this).data('cohortnumber');
@@ -133,16 +134,16 @@ function cohortPageInit(){
         drawList();
     });
 
-    $('.createCohort').on("click", function(){
+    $('.createCohort').on("click", function () {
         console.log("createCohort clicked");
         createCohort();
     });
 
-    $('.submitPerson').on("click", function(){
+    $('.submitPerson').on("click", function () {
         console.log('submitPerson clicked');
         submitPerson();
         $('.showList').show();
-        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email +  "   <button class='deletePerson'>Delete</button></li>");
+        $('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email + "   <button class='deletePerson'>Delete</button></li>");
         click++;
     });
 }

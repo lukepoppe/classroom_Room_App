@@ -8,7 +8,6 @@ var classroomNumber = 0;
 
 var currentDeskArray, classroomsArray, i;
 
-
 // Edit Ability Toggle
 var toggleEditing = false;
 
@@ -16,7 +15,7 @@ var toggleEditing = false;
 getAllClassrooms();
 
 // DUMMY DATA //
-//classroomsArray = [dummyClassroom, dummyClassroom2];
+// classroomsArray = [dummyClassroom, dummyClassroom2];
 // var cohortArray = [dummyCohort, dummyCohort2];
 
 // DOM DRAWING FUNCTIONS //
