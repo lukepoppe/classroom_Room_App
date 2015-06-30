@@ -37,6 +37,52 @@
             </div>
         </div>
         <!-- End Bootstrap Classroom Delete Modal -->
+        <!-- Bootstrap Cohort Delete Modal-->
+        <div class="modal fade" id="deleteCohort" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to delete cohort named <span class="warnOfCohortName"></span>, this procedure
+                            is irreversible.</p>
+
+                        <p>Do you want to proceed?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok deleteCohortButton" data-dismiss="modal">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bootstrap Cohort Delete Modal -->
+        <!-- Bootstrap Person Delete Modal-->
+        <div class="modal fade" id="deletePerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to delete person named <span class="warnOfPersonName"></span>, this procedure
+                            is irreversible.</p>
+
+                        <p>Do you want to proceed?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok deleteNameButton" data-dismiss="modal">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bootstrap Person Delete Modal -->
         <!-- Bootstrap Edit Classroom Name Modal -->
         <div class="modal fade" id="editClassroomName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -57,18 +103,60 @@
             </div>
         </div>
         <!-- End Bootstrap Edit Classroom Name Modal -->
+        <!-- Bootstrap Edit Cohort Name Modal -->
+        <div class="modal fade" id="editCohortName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Cohort Name</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="newCohortName">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-default btn-primary confirmCohortEditButton" data-dismiss="modal">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bootstrap Edit Cohort Name Modal -->
+        <!-- Bootstrap Edit Person Name Modal -->
+        <div class="modal fade" id="editPersonName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Person Name</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" placeholder="first name" id="newPersonFirstName">
+                        <input type="text" placeholder="last name" id="newPersonLastName">
+                        <input type="text" placeholder="email" id="newPersonEmail">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-default btn-primary confirmPersonEditButton" data-dismiss="modal">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bootstrap Edit Person Name Modal -->
         <header>
             <div class="headBar">
                 <img class="logo" src="/images/primeLogo 2.svg"/>
-                    <div class="logoTitle">Prime Academy Classroom Thingie</div>
-                        <div class="userProf">
-                            <button type="signOutButton" class="signOutButton">Sign Out</button>
-                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                                    <div class="userNameDom"></div>
-                                        <div class="userImageDom"></div>
-                    </div>
-            </div>
 
+                <div class="logoTitle">Prime Academy Classroom Thingie</div>
+                <div class="userProf">
+                    <button type="signOutButton" class="signOutButton">Sign Out</button>
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                    <div class="userNameDom"></div>
+                    <div class="userImageDom"></div>
+                </div>
+            </div>
         </header>
 
         <br>
@@ -81,59 +169,64 @@
 
         <div class="helpModal"></div>
 
-        <div class="container-fluid mainArea row">
+        <div class="container-fluid mainArea">
+            <div class="row">
+                <div class="classroom"></div>
+                <div class="col-md-offset-9">
+                    <div class="adminViews">
+                        <div class="saveButton">
+                            <button class="saveButton">Save</button>
+                        </div>
 
-            <div class="classroom"></div>
+                        <div class="editClassroomNameButton">
+                            <button class="editClassroomNameButton" data-toggle='modal'
+                                    data-target="#editClassroomName">
+                                Edit Classroom Name
+                            </button>
+                        </div>
 
-            <div class="col-md-offset-9 adminViews">
-                <div class="saveButton">
-                    <button class="saveButton">Save</button>
-                </div>
+                        <div class="randomizeButton">
+                            <button class="randomizeButton">Randomize</button>
+                        </div>
+                        <br>
 
-                <div class="editClassroomNameButton">
-                    <button class="editClassroomNameButton" data-toggle='modal'
-                            data-target="#editClassroomName">
-                        Edit Classroom Name
-                    </button>
-                </div>
+                        <div class="clearButton">
+                            <button class="clearButton">Clear</button>
+                        </div>
 
-                <div class="randomizeButton">
-                    <button class="randomizeButton">Randomize</button>
-                </div>
-                <br>
+                        <div class="onoffswitch onoffswitch-checked">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                                   checked>
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                        <br>                        <div class="onoffswitch onoffswitch-checked">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                               checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                        <br>
 
-                <div class="clearButton">
-                    <button class="clearButton">Clear</button>
-                </div>
-
-                <div class="onoffswitch onoffswitch-checked">
-                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                           checked>
-                    <label class="onoffswitch-label" for="myonoffswitch">
-                        <span class="onoffswitch-inner"></span>
-                        <span class="onoffswitch-switch"></span>
-                    </label>
-                </div>
-                <br>
-
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Assign a Cohort
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Beta</a></li>
-                        <li><a href="#">Cohort 1</a></li>
-                        <li><a href="#">Cohort 2</a></li>
-                        <li><a href="#">Cohort 3</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="cohort_list">list of students</ul>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Assign a Cohort
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="cohort_list">list of students</ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <!--SCRIPTS-->
 
@@ -143,6 +236,7 @@
         <script src="/javascripts/constructors.js"></script>
         <script src="/javascripts/defaultDeskArray.js"></script>
         <script src="/javascripts/dummydata.js"></script>
+        <script src="/javascripts/whoami.js"></script>
         <script src="/javascripts/google.js"></script>
         <script src="/javascripts/modalRoute.js"></script>
         <script src="/javascripts/helpModal.js"></script>
