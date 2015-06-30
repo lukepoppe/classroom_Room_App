@@ -181,6 +181,7 @@ $(document).ready(function () {
     // Status Modal
     loadModal();
 
+
     //click function for dropdown
     //add cohort id to classroom cohort property
     $('.dropdown').on('click', '.dropdown-menu li a', function () {

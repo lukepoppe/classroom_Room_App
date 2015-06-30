@@ -46,8 +46,8 @@ function findclassroom(id) {
 
 function hideSignInButton() {
     if (authenticated) {
-        $('.signOutButton').show();
-        $('.g-signin2').hide();
+        $('.signOutButton').removeClass('hidden');
+        $('.g-signin2').addClass('hidden');
         $('.helpModal').show();
         if (admin) {
             console.log('yes admin');
