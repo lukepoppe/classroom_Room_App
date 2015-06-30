@@ -1,10 +1,12 @@
 //find human in a cohort
+var authenticated = false;
+var admin = false;
+
 function findhuman(email) {
     var cohort;
     var person;
     var classroomid;
     var name;
-    console.log(cohortsArray);
     for (var i = 0; i < cohortsArray.length; i++){
             cohort = cohortsArray[i];
             classroomid = cohort._id;
@@ -14,8 +16,12 @@ function findhuman(email) {
                     console.log(person);
                     if (person.email.toLowerCase() == email) {
                         findclassroom(classroomid);
-                        console.log(name);
-                        hideSignInButton(name);
+                        authenticated = true;
+                        //console.log(name);
+                        //hideSignInButton(name);
+                        if (name == "ADMIN") {
+                            admin = true;
+                        }
                         break;
             }
         }
@@ -31,7 +37,6 @@ function findclassroom(id) {
             console.log(i, classroom.cohort, id);
             classroomNumber = i;
             currentDeskArray = classroom.deskArray;
-            console.log(currentDeskArray);
             refreshClassroom();
             break;
         }
@@ -39,18 +44,21 @@ function findclassroom(id) {
 
 }
 
-function hideSignInButton(name) {
-    $('.signOutButton').show();
-    $('.g-signin2').hide();
-    $('.helpModal').show();
-
-        //if admin- show everything
-    if ( name == "ADMIN" ) {
-        console.log('yes admin');
-        $('.navBar').children('ul').show();
-        $('.adminViews').show();
-    }  else {
-        $('.navBar').children('ul').hide();
-        $('.adminViews').hide();
+function hideSignInButton() {
+    if (authenticated) {
+        $('.signOutButton').show();
+        $('.g-signin2').hide();
+        $('.helpModal').show();
+        if (admin) {
+            console.log('yes admin');
+            $('.navBar').children('ul').show();
+            $('.adminViews').show();
+        } else {
+            $('.adminViews').hide();
+            $('.newClassroomButton').hide();
+            $('.lastpipe').hide();
+            $('.cohortLink').hide();
+            $('.closeX').hide();
+        }
     }
 }

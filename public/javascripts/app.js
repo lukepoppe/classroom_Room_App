@@ -26,7 +26,7 @@ function refreshClassroom() {
         console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
-
+        hideSignInButton();
         //draw dropdown based on all cohorts
         draw_dropdown();
 
@@ -147,7 +147,7 @@ function drawNav() {
     for (i = 0; i < classroomsArray.length; i++) {
         navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>" + " X</a><span class='divider'>|</span></li>";
     }
-    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider'>|</span></li><li><a href='#' class='cohortLink'>Cohorts</a></li>";
+    navBar += "<li><a href='#' class='newClassroomButton'>+</a><span class='divider lastpipe'>|</span></li><li class='adminViews'><a href='#' class='cohortLink'>Cohorts</a></li>";
     $('.navBar').children('ul').empty().append(navBar);
 
     // Cohorts on Click
@@ -180,7 +180,6 @@ $(document).ready(function () {
 
     // Status Modal
     loadModal();
-    hideSignInButton();
 
     //click function for dropdown
     //add cohort id to classroom cohort property
@@ -249,7 +248,6 @@ $(document).ready(function () {
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();
-        $('.adminViews').show();
     });
 
     // Set On Click of Plus Button (Create New Classroom)
