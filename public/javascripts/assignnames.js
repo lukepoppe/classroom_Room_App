@@ -110,7 +110,7 @@ function names() {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value) {
-                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value + '</p>');
+                    $('#' + currentDeskArray[i].position).append('<p class="hidden label">' + value + '</p>');
                     saved = true;
                 }
             }

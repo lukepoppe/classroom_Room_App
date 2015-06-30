@@ -50,6 +50,7 @@ function hideSignInButton() {
         $('.g-signin2').addClass('hidden');
         $('helpModalButton').removeClass('hidden');
         if (admin) {
+            $('.item').removeClass('hidden');
             $('.newClassroomButton').removeClass('hidden');
             $('.lastpipe').removeClass('hidden');
             $('.cohortLink').removeClass('hidden');
