@@ -1,23 +1,15 @@
+var userName, userImage;
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
+    userName = profile.getName();
+    userImage = profile.getImageUrl();
 
-        var userNameProf = profile.getName();
-
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('profile: '+ profile);
-
-        var userName = profile.getName();
-        $('.userNameDom').append(userName);
-            console.log("userNameProf: " + userNameProf);
-
-    var userImage = profile.getImageUrl();
-        $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
-            console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
 
 
     findhuman(profile.getEmail().toLowerCase());
+    hideSignInButton();
+
 
 }
 

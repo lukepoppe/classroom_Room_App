@@ -13,12 +13,9 @@ function findhuman(email) {
             name = cohort.name;
                 for (var j = 0; j < cohort.personArray.length; j++) {
                     person = cohort.personArray[j];
-                    console.log(person);
                     if (person.email.toLowerCase() == email) {
                         findclassroom(classroomid);
                         authenticated = true;
-                        //console.log(name);
-                        //hideSignInButton(name);
                         if (name == "ADMIN") {
                             admin = true;
                         }
@@ -44,9 +41,11 @@ function findclassroom(id) {
 
 }
 
+//still need to make this a lil nicer
 function hideSignInButton() {
-    console.log(authenticated, admin);
     if (authenticated) {
+        $('.userNameDom').append(userName);
+        $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
         $('helpModalButton').removeClass('hidden');
@@ -57,5 +56,7 @@ function hideSignInButton() {
             $('.closeX').removeClass('hidden');
             $('.adminViews').removeClass('hidden');
         }
+    } else {
+        signOut();
     }
 }
