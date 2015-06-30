@@ -246,6 +246,7 @@ $(document).ready(function () {
 
     // Set On Click of Classroom Selector Links
     $('.navBar').on('click', '.classroomSelector', function () {
+        $('.classroomShit').show();
         console.log('click');
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
