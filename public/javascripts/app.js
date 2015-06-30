@@ -5,7 +5,7 @@ console.log('app.js is loaded');
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
 var classroomNumber = 0;
-
+var userCohortNumber;
 var currentDeskArray, classroomsArray, i;
 
 // Edit Ability Toggle

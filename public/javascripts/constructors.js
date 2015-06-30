@@ -32,7 +32,11 @@ function Person(firstName, lastName, email, class_role) {
     this.lastName = lastName;
     this.email = email;
     this.class_role = class_role;
-    this.help_status = {};
+    this.help_status = {
+        flag: "green",
+        question: "",
+        timestamp: new Date
+    };
     this.help_history = [];
     this.seating_status = {};
     this.seating_history = [];

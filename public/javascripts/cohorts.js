@@ -58,10 +58,10 @@ function createCohort() {
     createCohortInDB();
 }
 
-function updateCohortInDB() {
+function updateCohortInDB(number) {
     $.ajax({
-        url: '/cohorts/' + cohortsArray[cohortNumber]._id,
-        data: cohortsArray[cohortNumber],
+        url: '/cohorts/' + cohortsArray[number]._id,
+        data: cohortsArray[number],
         method: 'put',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
@@ -105,7 +105,7 @@ function submitPerson() {
     $('#firstName').val("");
     $('#lastName').val("");
     $('#email').val("");
-    updateCohortInDB();
+    updateCohortInDB(cohortNumber);
 }
 
 function drawList() {
@@ -141,7 +141,7 @@ function drawList() {
         $('#newCohortName').val($(this).siblings('a').text());
         $('.confirmCohortEditButton').on('click', function () {
             cohortsArray[cohortNumber].name = $('#newCohortName').val();
-            updateCohortInDB();
+            updateCohortInDB(cohortNumber);
         });
     });
 
@@ -174,7 +174,7 @@ function drawList() {
             cohortsArray[cohortNumber].personArray[nameNumber].firstName = $('#newPersonFirstName').val();
             cohortsArray[cohortNumber].personArray[nameNumber].lastName = $('#newPersonLastName').val();
             cohortsArray[cohortNumber].personArray[nameNumber].email = $('#newPersonEmail').val();
-            updateCohortInDB();
+            updateCohortInDB(cohortNumber);
         });
     });
 
@@ -184,7 +184,7 @@ function drawList() {
         $('.warnOfPersonName').empty().append(cohortsArray[cohortNumber].personArray[nameNumber].firstName + " " + cohortsArray[cohortNumber].personArray[nameNumber].lastName);
         $('.deleteNameButton').on('click', function () {
             cohortsArray[cohortNumber].personArray.splice(nameNumber,1);
-            updateCohortInDB();
+            updateCohortInDB(cohortNumber);
         });
     });
 }
