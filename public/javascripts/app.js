@@ -6,8 +6,7 @@ console.log('app.js is loaded');
 var cohortNumber = 0;
 var classroomNumber = 0;
 
-var currentDeskArray, classroomsArray, cohortArray, i;
-
+var currentDeskArray, classroomsArray, i;
 
 // Edit Ability Toggle
 var toggleEditing = false;
@@ -16,8 +15,8 @@ var toggleEditing = false;
 getAllClassrooms();
 
 // DUMMY DATA //
-//classroomsArray = [dummyClassroom, dummyClassroom2];
-cohortArray = [dummyCohort, dummyCohort2];
+// classroomsArray = [dummyClassroom, dummyClassroom2];
+// var cohortArray = [dummyCohort, dummyCohort2];
 
 // DOM DRAWING FUNCTIONS //
 
@@ -27,6 +26,9 @@ function refreshClassroom() {
         console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
+
+        //draw dropdown based on all cohorts
+        draw_dropdown();
 
         // Load deskArray from classroomsArray in memory
         //currentDeskArray = classroomsArray[classroomNumber].deskArray;
@@ -51,11 +53,7 @@ function deleteClassroom(number) {
 // Color desks based on current deskArray data
 function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
-        //var person = currentDeskArray[i].person;
         $('#' + currentDeskArray[i].position).toggleClass('occupied');
-        //if (person != undefined) {
-        //    $('#' + currentDeskArray[i].position).append("<p>" + person + "</p>");
-        //}
     }
 }
 
@@ -97,24 +95,6 @@ function getAllClassrooms() {
         },
         complete: function (jqXHR, textStatus) {
             console.log("getAllClassroom() Ajax GET Complete:", textStatus);
-        }
-    });
-}
-
-function getClassroom(number) {
-    $.ajax({
-        url: '/classrooms/' + classroomsArray[number]._id,
-        data: {},
-        method: 'get',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            classroomsArray[classroomNumber] = data[0];
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-        complete: function (jqXHR, textStatus) {
-            console.log("getClassroom() Ajax GET Complete:", textStatus);
         }
     });
 }
@@ -182,6 +162,18 @@ function drawNav() {
     });
 }
 
+function draw_dropdown() {
+    $('.dropdown-menu').children().empty();
+    if (cohortsArray != undefined) {
+        cohortsArray.forEach(function(cohort){
+            var cohortname = cohort.name;
+            var cohortid = cohort._id;
+            var el = "<li><a id='" + cohortid +"' href='#'>" + cohortname + "</a></li>";
+            $('.dropdown-menu').append(el)
+        })
+    }
+}
+
 // jQuery, On Clicks //
 
 $(document).ready(function () {
@@ -189,6 +181,14 @@ $(document).ready(function () {
     // Status Modal
     loadModal();
     hideSignInButton();
+
+    //click function for dropdown
+    //add cohort id to classroom cohort property
+    $('.dropdown').on('click', '.dropdown-menu li a', function () {
+        classroomsArray[classroomNumber].cohort = $(this).attr("id");
+        console.log(classroomsArray, classroomsArray[classroomNumber].cohort);
+        updateClassroom(classroomNumber);
+    });
 
     // Close Button On Click (Delete Classroom Modal)
     $('.navBar').on('click', '.closeX', function () {

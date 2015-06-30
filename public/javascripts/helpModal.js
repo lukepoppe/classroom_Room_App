@@ -48,7 +48,7 @@ function helpModal() {
             $('.classRoomName').css("background", "green");
     });
 
-    $('.modal-footer').on('click', '.btn-primary', function () {
+    $('.helpModalFooter').on('click', '.btn-primary', function () {
         console.log("submitButtonClick");
             $('#statusModal').modal('hide');
     });

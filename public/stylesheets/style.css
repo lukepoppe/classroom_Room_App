@@ -258,8 +258,16 @@ span.glyphicon-warning-sign {
     border: none;
 }
 
+
 .classRoomName{
     border: 5px solid black;
     width: 400px;
     text-align: center;
 }
+
+
+.deletePerson {
+    float: right;
+}
+
+

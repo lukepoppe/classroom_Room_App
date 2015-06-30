@@ -15,7 +15,13 @@ function onSignIn(googleUser) {
                 console.log('Image URL: ' + profile.getImageUrl());
                     console.log('Email: ' + profile.getEmail());
 
+
         hideSignInButton(userNameProf, profile);
+
+
+        findhuman(profile.getEmail().toLowerCase());
+
+
 
 
 
