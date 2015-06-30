@@ -112,7 +112,7 @@ function drawList() {
     // Redraw list of cohorts on left
     $('.cohortList').empty();
     for (var i = 0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='btn btn-primary editCohortNameButton' data-toggle='modal' data-target='#editCohortName'>Edit Cohort Name</button><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button></li>");
+        $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='editCohortName btn btn-primary' data-target='#editCohortName' data-toggle='modal'>Edit</button><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button></li>");
     };
 
     // On Click of Delete Cohort
@@ -142,7 +142,7 @@ function drawList() {
     // Draw list of people from cohort
     $('.showList').children('ul').empty();
     for (var i = 0; i < currentPersonArray.length; i++) {
-        $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + " " + currentPersonArray[i].lastName + " | " + currentPersonArray[i].email + "    <button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button>   <button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
+        $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + " " + currentPersonArray[i].lastName + " | " + currentPersonArray[i].email + "    <button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit Name</button>   <button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
     };
 
     // On Click of Edit Name
