@@ -78,9 +78,9 @@ function updateCohortInDB() {
     });
 }
 
-function deleteCohortFromDB(number) {
+function deleteCohortFromDB(id) {
     $.ajax({
-        url: '/cohorts/' + cohortsArray[number]._id,
+        url: '/cohorts/' + id,
         data: {},
         method: 'delete',
         dataType: 'json',
@@ -108,8 +108,19 @@ function drawList() {
     // Redraw list of cohorts on left
     $('.cohortList').empty();
     for (var i = 0; i < cohortsArray.length; i++) {
-        $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a></li>");
+        $('.cohortList').append("<li><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button></li>");
     };
+
+    // On Click of Delete Cohort
+    $('.deleteCohort').click(function () {
+
+        var cohortIdToDelete = ($(this).siblings('a').attr('id'));
+        $('.warnOfCohortName').empty().append($(this).siblings('a').text());
+        $('.deleteCohortButton').on('click', function () {
+            deleteCohortFromDB(cohortIdToDelete);
+        });
+    });
+
     // Create New Cohort Button
     $('.cohortList').append('<li><button class="createCohort">Create a New Cohort</button></li>');
     // Draw title of cohort on right
