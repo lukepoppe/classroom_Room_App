@@ -303,11 +303,21 @@ h1{
 }
 
 .studentList:hover{
-    color: #07AA9E;
+    color: black;
     text-decoration: none;
 }
 
 .editCohortName{
     float: right;
     margin: 2px 5px 2px 5px;
+}
+
+.cohortID{
+    color: black;
+    text-decoration: none;
+}
+
+.cohortID:hover{
+    color: #07AA9E;
+    text-decoration: none;
 }
