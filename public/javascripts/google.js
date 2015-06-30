@@ -24,38 +24,6 @@ function onSignIn(googleUser) {
 
 
 }
-function hideSignInButton(userNameProf, profile) {
-   //if signed out show nothing
-    console.log('prof: ' + profile);
-    console.log('nameCheck: ' + userNameProf);
-
-
-
-        if (profile === undefined) {
-        $('.g-signin2').show();
-        $('.signOutButton').hide();
-            $('.navBar').children('ul').hide();
-            $('.helpModal').hide();
-            $('.adminViews').hide();
-
-
-    //if admin- show everything
-    } else if (userNameProf == "Luke Poppe" || userNameProf == "Michael Liquori" || userNameProf == "Mary White" || userNameProf == "Casie Lynch" ) {
-        $('.signOutButton').show();
-            $('.g-signin2').hide();
-                $('.navBar').children('ul').show();
-                    $('.helpModal').show();
-                        $('.adminViews').show();
-
-
-    }  else {
-            $('.signOutButton').show();
-            $('.g-signin2').hide();
-                $('.navBar').children('ul').hide();
-                    $('.helpModal').show();
-                        $('.adminViews').hide();
-    }
-}
 
 // Google Signout
 function signOut() {
