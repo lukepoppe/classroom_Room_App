@@ -1,20 +1,16 @@
-//console.log("helpModal.js.ready!");
+var help_status = {};
+
 function loadModal() {
     $('.helpModal').load('helpModal.html', function () {
-        //console.log('helpModal.html is loaded');
         helpModal();
     });
 }
-
-
-var help_status = {};
 
 function helpModal() {
     $(".modalQuestionText").hide();
     //$("#statusModal").modal({}).draggable();
 
     $('.yellow').click(function () {
-        //console.log("yellow Click");
         $(".modalQuestionText").show();
         $(this).css("background", "yellow");
         $('.btn-primary').css("background", "yellow");
@@ -29,7 +25,6 @@ function helpModal() {
     });
 
     $('.red').click(function () {
-        //console.log("redClick");
         $(".modalQuestionText").show();
         $(this).css("background", "red");
         $('.btn-primary').css("background", "red");
@@ -45,7 +40,6 @@ function helpModal() {
     });
 
     $('.green').click(function () {
-        //console.log("greenClick");
         $(".modalQuestionText").hide();
         $('.btn-primary').css("background", "green");
         $('.btn-primary').css("color", "black");
@@ -62,15 +56,10 @@ function helpModal() {
     });
 
     $('.helpModalFooter').on('click', '.btn-primary', function () {
-        console.log("submitButtonClick");
         help_status.question = $('.helpModalTextbox').val();
         help_status.timestamp = new Date;
-        console.log(help_status);
         for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
-            console.log(userCohortNumber);
-            console.log(cohortsArray[userCohortNumber]);
             if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
-
                 // Push old help_status into help_history
                 cohortsArray[userCohortNumber].personArray[i].push(cohortsArray[userCohortNumber].personArray[i].help_status);
                 // Set new help_status in array if there was a help_status before.
@@ -80,13 +69,6 @@ function helpModal() {
 
             }
         }
-
-
         $('#statusModal').modal('hide');
     });
 }
-
-
-
-
-

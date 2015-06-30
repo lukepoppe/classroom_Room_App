@@ -129,7 +129,7 @@ function createClassroomInDB() {
         method: 'post',
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
-            classroomNumber=0;
+            classroomNumber = 0;
             // get new data and update
             getAllClassrooms();
         },
@@ -157,7 +157,7 @@ function drawNav() {
             console.log("cohort load");
             cohortPageInit();
         });
-        $('.helpModal').hide();
+        //$('.helpModal').hide();
         $('.adminViews').hide();
     });
 }
@@ -165,10 +165,10 @@ function drawNav() {
 function draw_dropdown() {
     $('.dropdown-menu').children().empty();
     if (cohortsArray != undefined) {
-        cohortsArray.forEach(function(cohort){
+        cohortsArray.forEach(function (cohort) {
             var cohortname = cohort.name;
             var cohortid = cohort._id;
-            var el = "<li><a id='" + cohortid +"' href='#'>" + cohortname + "</a></li>";
+            var el = "<li><a id='" + cohortid + "' href='#'>" + cohortname + "</a></li>";
             $('.dropdown-menu').append(el)
         })
     }
@@ -238,7 +238,8 @@ $(document).ready(function () {
             }
             // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
             refreshClassroom();
-        } if(toggleEditing===false) {
+        }
+        if (toggleEditing === false) {
             console.log("editing disabled");
         }
     });
@@ -259,6 +260,7 @@ $(document).ready(function () {
         classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
         createClassroomInDB();
         $('.adminViews').show();
+        $('.helpModal').show();
     });
 
     // Set On Click of Save Button (toggle?)
