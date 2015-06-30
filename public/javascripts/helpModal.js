@@ -1,4 +1,4 @@
-console.log("helpModal.js.ready!");
+//console.log("helpModal.js.ready!");
 function loadModal() {
     $('.helpModal').load('helpModal.html', function () {
         //console.log('helpModal.html is loaded');
@@ -14,7 +14,7 @@ function helpModal() {
     //$("#statusModal").modal({}).draggable();
 
     $('.yellow').click(function () {
-        console.log("yellow Click");
+        //console.log("yellow Click");
         $(".modalQuestionText").show();
         $(this).css("background", "yellow");
         $('.btn-primary').css("background", "yellow");
@@ -29,7 +29,7 @@ function helpModal() {
     });
 
     $('.red').click(function () {
-        console.log("redClick");
+        //console.log("redClick");
         $(".modalQuestionText").show();
         $(this).css("background", "red");
         $('.btn-primary').css("background", "red");
@@ -45,7 +45,7 @@ function helpModal() {
     });
 
     $('.green').click(function () {
-        console.log("greenClick");
+        //console.log("greenClick");
         $(".modalQuestionText").hide();
         $('.btn-primary').css("background", "green");
         $('.btn-primary').css("color", "black");
@@ -67,10 +67,11 @@ function helpModal() {
         help_status.timestamp = new Date;
         console.log(help_status);
         for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++){
-
+            console.log(userCohortNumber);
+            console.log(cohortsArray[userCohortNumber]);
             if(cohortsArray[userCohortNumber].personArray[i].email == userEmail){
                 cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
-                //updateCohortInDB();
+                updateCohortInDB(userCohortNumber);
             }
         }
 
