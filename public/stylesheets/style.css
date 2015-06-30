@@ -276,12 +276,12 @@ span.glyphicon-warning-sign {
 
 .editName{
     float: right;
-    margin: 5px;
+    margin: 2px 5px 2px 5px;
 }
 
 .deleteName{
     float: right;
-    margin: 5px;
+    margin: 2px 5px 2px 5px;
 }
 
 .showList ul li{
@@ -290,14 +290,24 @@ span.glyphicon-warning-sign {
 
 .deleteCohort{
     float: right;
-    margin: 5px;
+    margin: 2px 5px 2px 5px;
 }
 
 .chooseCohort ul li{
     clear: both;
 }
 
-.editCohortNameButton {
+h1{
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.studentList:hover{
+    color: #07AA9E;
+    text-decoration: none;
+}
+
+.editCohortName{
     float: right;
-    margin: 5px;
+    margin: 2px 5px 2px 5px;
 }
