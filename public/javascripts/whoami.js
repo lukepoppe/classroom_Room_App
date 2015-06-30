@@ -45,6 +45,7 @@ function findclassroom(id) {
 }
 
 function hideSignInButton() {
+    console.log(authenticated, admin);
     if (authenticated) {
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
