@@ -257,6 +257,9 @@ span.glyphicon-warning-sign {
     line-height: 30px;
     border: none;
 }
-.topBar{
 
+.classRoomName{
+    border: 5px solid black;
+    width: 400px;
+    text-align: center;
 }
