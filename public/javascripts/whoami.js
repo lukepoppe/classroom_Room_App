@@ -1,3 +1,4 @@
+//find human in a cohort
 function findhuman(email) {
     var cohort;
     var person;
@@ -9,7 +10,7 @@ function findhuman(email) {
                 for (var j = 0; j < cohort.personArray.length; j++) {
                     person = cohort.personArray[j];
                     console.log(person);
-                    if (person.email == email) {
+                    if (person.email.toLowerCase() == email) {
                         findclassroom(classroomid);
                         break;
             }
