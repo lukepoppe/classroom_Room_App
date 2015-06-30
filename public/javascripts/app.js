@@ -26,7 +26,7 @@ function refreshClassroom() {
         console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
-        hideSignInButton();
+
         //draw dropdown based on all cohorts
         draw_dropdown();
 
@@ -37,6 +37,7 @@ function refreshClassroom() {
 
         // assignnames.js
         names();
+        hideSignInButton();
     });
 }
 

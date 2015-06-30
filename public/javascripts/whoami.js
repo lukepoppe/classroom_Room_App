@@ -43,14 +43,17 @@ function findclassroom(id) {
 
 //still need to make this a lil nicer
 function hideSignInButton() {
+    console.log(authenticated, admin);
     if (authenticated) {
+        $('.userNameDom').empty();
+        $('.userImageDom').empty();
         $('.userNameDom').append(userName);
         $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
         $('helpModalButton').removeClass('hidden');
+        $('.label').removeClass('hidden');
         if (admin) {
-            $('.label').removeClass('hidden');
             $('.newClassroomButton').removeClass('hidden');
             $('.lastpipe').removeClass('hidden');
             $('.cohortLink').removeClass('hidden');
