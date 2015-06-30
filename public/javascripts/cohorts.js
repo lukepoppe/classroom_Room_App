@@ -101,9 +101,10 @@ function deleteCohortFromDB(id) {
 
 function submitPerson() {
     cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
-    $('#firstName').empty();
-    $('#lastName').empty();
-    $('#email').empty();
+    drawList();
+    $('#firstName').val("");
+    $('#lastName').val("");
+    $('#email').val("");
     updateCohortInDB();
 }
 
@@ -203,7 +204,5 @@ function cohortPageInit() {
     $('.submitPerson').on("click", function () {
         console.log('submitPerson clicked');
         submitPerson();
-        //$('.showList').show();
-        //$('.showList').append("<li>" + cohortsArray[cohortNumber].personArray[click].firstName + " " + cohortsArray[cohortNumber].personArray[click].lastName + " | " + cohortsArray[cohortNumber].personArray[click].email + "   <button class='deletePerson'>Delete</button></li>");
     });
 }
