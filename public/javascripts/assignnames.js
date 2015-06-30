@@ -1,29 +1,23 @@
 function names() {
     var alldesks = [];
     var shuffled;
-    var classnames = ["Michael",
-        "Casie",
-        "Luke",
-        "Mary",
-        "Vince",
-        "Terry",
-        "Brian",
-        "Kelly",
-        "Tracy",
-        "Chelsea",
-        "Rom",
-        "Erik",
-        "Michelle",
-        "Cody",
-        "Clare",
-        "Aaron",
-        "Steve",
-        "Alicia",
-        "Kaitlin",
-        "Jeanne"];
+    var classnames = [];
 
-    for (var i = 0; i < currentDeskArray.length; i++) {
-        alldesks.push(currentDeskArray[i].position);
+    var cohortid = classroomsArray[classroomNumber].cohort;
+    console.log(cohortid, cohortsArray);
+
+    for (var i = 0; i < cohortsArray.length; i++ ){
+        if (cohortsArray[i]._id == cohortid) {
+            cohortsArray[i].personArray.forEach(function(val){
+                classnames.push(val.firstName)
+            })
+        }
+
+    }
+
+
+    for (var j = 0; j < currentDeskArray.length; j++) {
+        alldesks.push(currentDeskArray[j].position);
     }
 
 
@@ -55,7 +49,7 @@ function names() {
 
             fill_desk(randomname, select);
         }
-        console.log(currentDeskArray);
+
         $(".cohort_list").children().remove();
         init_drag('.label');
     });

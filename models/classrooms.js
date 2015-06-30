@@ -4,7 +4,7 @@ var DeskSchema = require('./desk').model('Desk').schema;
 
 var ClassroomSchema = new Schema({
     deskArray: [DeskSchema],
-    cohort: Number,
+    cohort: String,
     city: String,
     name: String
 });

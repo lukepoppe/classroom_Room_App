@@ -2,8 +2,6 @@ function findhuman(email) {
     var cohort;
     var person;
     var classroomid;
-    console.log(cohortsArray);
-    console.log(classroomsArray);
     if (cohortsArray != undefined) {
         for (var i = 0; i < cohortsArray.length; i++){
             cohort = cohortsArray[i];
