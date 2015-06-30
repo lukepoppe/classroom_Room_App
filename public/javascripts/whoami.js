@@ -48,17 +48,13 @@ function hideSignInButton() {
     if (authenticated) {
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
-        $('.helpModal').show();
+        $('helpModalButton').removeClass('hidden');
         if (admin) {
-            console.log('yes admin');
-            $('.navBar').children('ul').show();
-            $('.adminViews').show();
-        } else {
-            $('.adminViews').hide();
-            $('.newClassroomButton').hide();
-            $('.lastpipe').hide();
-            $('.cohortLink').hide();
-            $('.closeX').hide();
+            $('.newClassroomButton').removeClass('hidden');
+            $('.lastpipe').removeClass('hidden');
+            $('.cohortLink').removeClass('hidden');
+            $('.closeX').removeClass('hidden');
+            $('.adminViews').removeClass('hidden');
         }
     }
 }

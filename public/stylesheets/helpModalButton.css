@@ -16,10 +16,11 @@
     background:#30588e;
 }
 .helpModalButton a {
-    display:block;
-    float:left;
-    width:1%;
-    padding-top:50%;
-    padding-bottom:50%;
-    line-height:1em;
-    margin-top:-0.5em;
+    display: block;
+    float: left;
+    width: 1%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    line-height: 1em;
+    margin-top: -0.5em;
+}
