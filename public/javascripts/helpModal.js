@@ -66,15 +66,20 @@ function helpModal() {
         help_status.question = $('.helpModalTextbox').val();
         help_status.timestamp = new Date;
         console.log(help_status);
-        for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++){
+        for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
             console.log(userCohortNumber);
             console.log(cohortsArray[userCohortNumber]);
-            if(cohortsArray[userCohortNumber].personArray[i].email == userEmail){
+            if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
+
+                // Push old help_status into help_history
+                cohortsArray[userCohortNumber].personArray[i].push(cohortsArray[userCohortNumber].personArray[i].help_status);
+                // Set new help_status in array
                 cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
+                // Update cohort DB
                 updateCohortInDB(userCohortNumber);
+                
             }
         }
-
 
 
         $('#statusModal').modal('hide');

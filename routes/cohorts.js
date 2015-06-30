@@ -22,7 +22,7 @@ router.get('/:id', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
     cohorts.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
         if (err) return next(err);
-        console.log(req.body);
+        //console.log(req.body);
         res.json(data);
     });
 });
