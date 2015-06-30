@@ -103,11 +103,13 @@ function drawList() {
     // On Click of edit and delete buttons
     $('.editName').click(function () {
         var nameNumber = $(this).parent('li').data('number');
-        console.log(nameNumber);
-        console.log(cohortsArray);
-        $('#newPersonName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
+        $('#newPersonFirstName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
+        $('#newPersonLastName').val(cohortsArray[cohortNumber].personArray[nameNumber].lastName);
+        $('#newPersonEmail').val(cohortsArray[cohortNumber].personArray[nameNumber].email);
         $('.confirmCohortEditButton').on('click', function () {
-            cohortsArray[cohortNumber].personArray[nameNumber].name = $('#newCohortName').val();
+            cohortsArray[cohortNumber].personArray[nameNumber].firstName = $('#newPersonFirstName').val();
+            cohortsArray[cohortNumber].personArray[nameNumber].lastName = $('#newPersonLastName').val();
+            cohortsArray[cohortNumber].personArray[nameNumber].email = $('#newPersonEmail').val();
             updateCohortInDB();
         });
     });
