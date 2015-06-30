@@ -3,29 +3,27 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
     var userNameProf = profile.getName();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('profile: ' + profile);
+    //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //console.log('profile: ' + profile);
 
     var userName = profile.getName();
     $('.userNameDom').append(userName);
-    console.log("userNameProf: " + userNameProf);
+    //console.log("userNameProf: " + userNameProf);
 
     var userImage = profile.getImageUrl();
     $('.userImageDom').append('<img src=" ' + userImage + ' "id="userImageDom">');
 
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
+    //console.log('Image URL: ' + profile.getImageUrl());
+    //console.log('Email: ' + profile.getEmail());
 
     hideSignInButton(userNameProf, profile);
     userEmail = profile.getEmail().toLowerCase();
-    //console.log(userEmail);
     findhuman(userEmail);
-
 }
 function hideSignInButton(userNameProf, profile) {
     //if signed out show nothing
-    console.log('prof: ' + profile);
-    console.log('nameCheck: ' + userNameProf);
+    //console.log('prof: ' + profile);
+    //console.log('nameCheck: ' + userNameProf);
 
     if (profile === undefined) {
         $('.g-signin2').show();

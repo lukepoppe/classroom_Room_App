@@ -4,7 +4,7 @@ function names() {
     var classnames = [];
 
     var cohortid = classroomsArray[classroomNumber].cohort;
-    console.log(cohortid, cohortsArray);
+    //console.log(cohortid, cohortsArray);
 
     for (var i = 0; i < cohortsArray.length; i++ ){
         if (cohortsArray[i]._id == cohortid) {

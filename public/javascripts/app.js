@@ -1,6 +1,7 @@
-console.log('app.js is loaded');
+//console.log('app.js is loaded');
 
 // INIT VARS //
+var help_status = {};
 
 // Set Default Cohort and Classrooms to 0 (first in array)
 var cohortNumber = 0;
@@ -23,7 +24,7 @@ getAllClassrooms();
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
     $('.classroom').load('classroom.html', function () {
-        console.log("load was performed");
+        //console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
 
@@ -246,7 +247,7 @@ $(document).ready(function () {
 
     // Set On Click of Classroom Selector Links
     $('.navBar').on('click', '.classroomSelector', function () {
-        console.log('click');
+        //console.log('click');
         classroomNumber = $(this).data('classroom');
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         refreshClassroom();

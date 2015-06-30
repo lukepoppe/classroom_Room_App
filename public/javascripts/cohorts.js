@@ -8,8 +8,12 @@ var cohortID;
 // Get current cohort array from DB
 getAllCohorts();
 
+function paintStatuses(){
+    console.log('paint statii');
+
+};
+
 function getAllCohorts() {
-    console.log('getAllCohorts');
     $.ajax({
         url: '/cohorts/',
         data: {},
@@ -19,7 +23,7 @@ function getAllCohorts() {
             cohortsArray = data;
             currentPersonArray = cohortsArray[cohortNumber].personArray;
             drawList();
-            console.log("get all success");
+            paintStatuses();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);

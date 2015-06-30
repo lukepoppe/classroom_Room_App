@@ -1,74 +1,105 @@
-var help_status = {};
-
 function loadModal() {
     $('.helpModal').load('helpModal.html', function () {
         helpModal();
     });
 }
 
+function greenStatus() {
+    $(".modalQuestionText").hide();
+    $('.btn-primary').css("background", "green");
+    $('.btn-primary').css("color", "black");
+    $(this).css("background", "green");
+    $('.yellow').css("background", "white");
+    $('.red').css("background", "white");
+    $('.modal-header').css("background", "green");
+    $('.helpModalButton').css("background", "green");
+    $('.helpLevel').css("border-color", "green");
+    $('#userImageDom').css("border-color", "green");
+    help_status.flag = "green";
+    help_status.question = "";
+    //$('.classRoomName').css("background", "green");
+}
+
+function yellowStatus() {
+    $(".modalQuestionText").show();
+    $(this).css("background", "yellow");
+    $('.btn-primary').css("background", "yellow");
+    $('.btn-primary').css("color", "black");
+    $('.red').css("background", "white");
+    $('.green').css("background", "white");
+    $('.modal-header').css("background", "yellow");
+    $('.helpModalButton').css("background", "yellow");
+    $('#userImageDom').css("border-color", "yellow");
+    help_status.flag = "yellow";
+    //$('.classRoomName').css("background", "yellow");
+}
+
+function redStatus() {
+    $(".modalQuestionText").show();
+    $(this).css("background", "red");
+    $('.btn-primary').css("background", "red");
+    $('.btn-primary').css("color", "black");
+    $('.yellow').css("background", "white");
+    $('.green').css("background", "white");
+    $('.modal-header').css("background", "red");
+    $('.helpModalButton').css("background", "red");
+    $('.helpLevel').css("border-color", "red");
+    $('#userImageDom').css("border-color", "red");
+    help_status.flag = "red";
+    //$('.classRoomName').css("background", "red");
+}
+
+function checkUserStatus() {
+    for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
+        if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
+            help_status = cohortsArray[userCohortNumber].personArray[i].help_status;
+        }
+    }
+    console.log(help_status);
+    if (help_status.flag == 'red') {
+        redStatus();
+    } else if (help_status.flag == 'yellow') {
+        yellowStatus();
+    } else {
+        greenStatus();
+    }
+}
+
+function changeStatus() {
+    help_status.question = $('.helpModalTextbox').val();
+    help_status.timestamp = new Date;
+    for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
+        if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
+            // Push old help_status into help_history
+            cohortsArray[userCohortNumber].personArray[i].help_history.push(cohortsArray[userCohortNumber].personArray[i].help_status);
+            // Set new help_status in array if there was a help_status before.
+            cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
+            // Update cohort DB
+            updateCohortInDB(userCohortNumber);
+
+        }
+    }
+}
+
 function helpModal() {
     $(".modalQuestionText").hide();
     //$("#statusModal").modal({}).draggable();
 
+
     $('.yellow').click(function () {
-        $(".modalQuestionText").show();
-        $(this).css("background", "yellow");
-        $('.btn-primary').css("background", "yellow");
-        $('.btn-primary').css("color", "black");
-        $('.red').css("background", "white");
-        $('.green').css("background", "white");
-        $('.modal-header').css("background", "yellow");
-        $('.helpModalButton').css("background", "yellow");
-        $('#userImageDom').css("border-color", "yellow");
-        help_status.flag = "yellow";
-        //$('.classRoomName').css("background", "yellow");
+        yellowStatus();
     });
 
     $('.red').click(function () {
-        $(".modalQuestionText").show();
-        $(this).css("background", "red");
-        $('.btn-primary').css("background", "red");
-        $('.btn-primary').css("color", "black");
-        $('.yellow').css("background", "white");
-        $('.green').css("background", "white");
-        $('.modal-header').css("background", "red");
-        $('.helpModalButton').css("background", "red");
-        $('.helpLevel').css("border-color", "red");
-        $('#userImageDom').css("border-color", "red");
-        help_status.flag = "red";
-        //$('.classRoomName').css("background", "red");
+        redStatus();
     });
 
     $('.green').click(function () {
-        $(".modalQuestionText").hide();
-        $('.btn-primary').css("background", "green");
-        $('.btn-primary').css("color", "black");
-        $(this).css("background", "green");
-        $('.yellow').css("background", "white");
-        $('.red').css("background", "white");
-        $('.modal-header').css("background", "green");
-        $('.helpModalButton').css("background", "green");
-        $('.helpLevel').css("border-color", "green");
-        $('#userImageDom').css("border-color", "green");
-        help_status.flag = "green";
-        help_status.question = "";
-        //$('.classRoomName').css("background", "green");
+        greenStatus();
     });
 
     $('.helpModalFooter').on('click', '.btn-primary', function () {
-        help_status.question = $('.helpModalTextbox').val();
-        help_status.timestamp = new Date;
-        for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
-            if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
-                // Push old help_status into help_history
-                cohortsArray[userCohortNumber].personArray[i].push(cohortsArray[userCohortNumber].personArray[i].help_status);
-                // Set new help_status in array if there was a help_status before.
-                cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
-                // Update cohort DB
-                updateCohortInDB(userCohortNumber);
-
-            }
-        }
+        changeStatus();
         $('#statusModal').modal('hide');
     });
 }
