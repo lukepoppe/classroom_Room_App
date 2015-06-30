@@ -19,10 +19,6 @@ function onSignIn(googleUser) {
 
     findhuman(profile.getEmail().toLowerCase());
 
-    hideSignInButton(userNameProf, profile);
-
-
-
 }
 
 // Google Signout

@@ -14,6 +14,7 @@ function findhuman(email) {
                     console.log(person);
                     if (person.email.toLowerCase() == email) {
                         findclassroom(classroomid);
+                        console.log(name);
                         hideSignInButton(name);
                         break;
             }
@@ -44,7 +45,8 @@ function hideSignInButton(name) {
     $('.helpModal').show();
 
         //if admin- show everything
-    if ( name == "Admin" ) {
+    if ( name == "ADMIN" ) {
+        console.log('yes admin');
         $('.navBar').children('ul').show();
         $('.adminViews').show();
     }  else {
