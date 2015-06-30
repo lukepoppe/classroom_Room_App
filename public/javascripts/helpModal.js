@@ -6,8 +6,8 @@ function loadModal() {
 
 function greenStatus() {
     $(".modalQuestionText").hide();
-    $('.btn-primary').css("background", "green");
-    $('.btn-primary').css("color", "black");
+    //$('.btn-primary').css("background", "green");
+    //$('.btn-primary').css("color", "black");
     $(this).css("background", "green");
     $('.yellow').css("background", "white");
     $('.red').css("background", "white");
@@ -23,8 +23,8 @@ function greenStatus() {
 function yellowStatus() {
     $(".modalQuestionText").show();
     $(this).css("background", "yellow");
-    $('.btn-primary').css("background", "yellow");
-    $('.btn-primary').css("color", "black");
+    //$('.btn-primary').css("background", "yellow");
+    //$('.btn-primary').css("color", "black");
     $('.red').css("background", "white");
     $('.green').css("background", "white");
     $('.modal-header').css("background", "yellow");
@@ -37,8 +37,8 @@ function yellowStatus() {
 function redStatus() {
     $(".modalQuestionText").show();
     $(this).css("background", "red");
-    $('.btn-primary').css("background", "red");
-    $('.btn-primary').css("color", "black");
+    //$('.btn-primary').css("background", "red");
+    //$('.btn-primary').css("color", "black");
     $('.yellow').css("background", "white");
     $('.green').css("background", "white");
     $('.modal-header').css("background", "red");
