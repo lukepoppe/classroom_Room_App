@@ -3,16 +3,14 @@ function findhuman(email) {
     var person;
     var classroomid;
     if (cohortsArray != undefined) {
-        for (var i = 0; i < cohortsArray.length; i++){
+        for (var i = 0; i < cohortsArray.length; i++) {
             cohort = cohortsArray[i];
             classroomid = cohort._id;
-            if (cohort.personArray != undefined) {
-                for (var j = 0; j < cohort.personArray.length; j++) {
-                    person = cohort.personArray[i];
-                    if (person.hasOwnProperty('email')) {
-                        if (person.email == email) {
-                            findclassroom(classroomid);
-                        }
+            for (var j = 0; j < cohort.personArray.length; j++) {
+                person = cohort.personArray[i];
+                if (person.hasOwnProperty('email')) {
+                    if (person.email == email) {
+                        findclassroom(classroomid);
                     }
                 }
             }
