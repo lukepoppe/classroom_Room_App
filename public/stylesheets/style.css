@@ -34,6 +34,10 @@ li:hover, a:hover {
 
 }
 
+ul{
+    list-style: none;
+}
+
 .divider {
     position: relative;
     padding-right: 5px;
@@ -143,7 +147,7 @@ span.glyphicon-flag {
 }
 
 a.helpStatusRed {
-color: #930000;
+    color: #930000;
 }
 
 span.glyphicon-warning-sign {
@@ -270,4 +274,30 @@ span.glyphicon-warning-sign {
     float: right;
 }
 
+.editName{
+    float: right;
+    margin: 5px;
+}
 
+.deleteName{
+    float: right;
+    margin: 5px;
+}
+
+.showList ul li{
+    clear: both;
+}
+
+.deleteCohort{
+    float: right;
+    margin: 5px;
+}
+
+.chooseCohort ul li{
+    clear: both;
+}
+
+.editCohortNameButton {
+    float: right;
+    margin: 5px;
+}
