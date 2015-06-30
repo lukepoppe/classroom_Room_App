@@ -101,6 +101,10 @@ function deleteCohortFromDB(id) {
 
 function submitPerson() {
     cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
+    drawList();
+    $('#firstName').val("");
+    $('#lastName').val("");
+    $('#email').val("");
     updateCohortInDB();
 }
 
@@ -113,11 +117,20 @@ function drawList() {
 
     // On Click of Delete Cohort
     $('.deleteCohort').click(function () {
-
         var cohortIdToDelete = ($(this).siblings('a').attr('id'));
         $('.warnOfCohortName').empty().append($(this).siblings('a').text());
         $('.deleteCohortButton').on('click', function () {
             deleteCohortFromDB(cohortIdToDelete);
+        });
+    });
+
+    // On Click of Edit Cohort
+    $('.editCohortName').on('click', function () {
+        //var coh = ($(this).siblings('a').attr('id'));
+        $('#newCohortName').val($(this).siblings('a').text());
+        $('.confirmCohortEditButton').on('click', function () {
+            cohortsArray[cohortNumber].name = $('#newCohortName').val();
+            updateCohortInDB();
         });
     });
 
@@ -162,27 +175,9 @@ function cohortPageInit() {
     $('.cohort_list').empty();
     $('.entryList').hide();
     $('.showList').hide();
-    var click = 0;
+    $('.cohortListDiv').hide();
 
     drawList();
-
-    // Edit Cohort Name On Click
-    $('.editCohortNameButton').on('click', function () {
-        $('#newCohortName').val(cohortsArray[cohortNumber].name);
-        $('.confirmCohortEditButton').on('click', function () {
-            cohortsArray[cohortNumber].name = $('#newCohortName').val();
-            updateCohortInDB();
-        });
-    });
-
-    // Delete Cohort On Click
-    $('.deleteCohortButton').on('click', function () {
-        $('#newCohortName').val(cohortsArray[cohortNumber].name);
-        $('.confirmCohortEditButton').on('click', function () {
-            cohortsArray[cohortNumber].name = $('#newCohortName').val();
-            updateCohortInDB();
-        });
-    });
 
     $('.cohortList').on('click', '.cohortID', function () {
         $('.entryList').show();

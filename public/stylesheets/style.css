@@ -262,13 +262,16 @@ span.glyphicon-warning-sign {
     border: none;
 }
 
-.deletePerson {
-    float: right;
+
+.classRoomName{
+    border: 5px solid black;
+    width: 400px;
+    text-align: center;
 }
 
-.topBar{
 
->>>>>>> 9dda9daf33a4128395a60a17854079428ddbe10d
+.deletePerson {
+    float: right;
 }
 
 .editName{
