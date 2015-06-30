@@ -174,7 +174,7 @@ function drawList() {
 function cohortPageInit() {
     $('.entryList').hide();
     $('.showList').hide();
-    var click = 0;
+    $('.cohortListDiv').hide();
 
     drawList();
 
