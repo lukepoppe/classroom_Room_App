@@ -118,7 +118,7 @@ function drawList() {
     // Draw list of people from cohort
     $('.showList').children('ul').empty();
     for (var i = 0; i < currentPersonArray.length; i++) {
-        $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button><button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
+        $('.showList').children('ul').append("<li data-number='" + i + "'>" + currentPersonArray[i].firstName + "<button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button>   <button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button></li>");
     };
 
     // On Click of Edit Name
@@ -127,7 +127,8 @@ function drawList() {
         $('#newPersonFirstName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
         $('#newPersonLastName').val(cohortsArray[cohortNumber].personArray[nameNumber].lastName);
         $('#newPersonEmail').val(cohortsArray[cohortNumber].personArray[nameNumber].email);
-        $('.confirmCohortEditButton').on('click', function () {
+        $('.confirmPersonEditButton').on('click', function () {
+            console.log('click');
             cohortsArray[cohortNumber].personArray[nameNumber].firstName = $('#newPersonFirstName').val();
             cohortsArray[cohortNumber].personArray[nameNumber].lastName = $('#newPersonLastName').val();
             cohortsArray[cohortNumber].personArray[nameNumber].email = $('#newPersonEmail').val();
@@ -155,6 +156,15 @@ function cohortPageInit() {
 
     // Edit Cohort Name On Click
     $('.editCohortNameButton').on('click', function () {
+        $('#newCohortName').val(cohortsArray[cohortNumber].name);
+        $('.confirmCohortEditButton').on('click', function () {
+            cohortsArray[cohortNumber].name = $('#newCohortName').val();
+            updateCohortInDB();
+        });
+    });
+
+    // Delete Cohort On Click
+    $('.deleteCohortButton').on('click', function () {
         $('#newCohortName').val(cohortsArray[cohortNumber].name);
         $('.confirmCohortEditButton').on('click', function () {
             cohortsArray[cohortNumber].name = $('#newCohortName').val();
