@@ -194,6 +194,7 @@ function drawList() {
 }
 
 function cohortPageInit() {
+    $('.classroomShit').hide();
     $('.cohort_list').empty();
     $('.entryList').hide();
     $('.showList').hide();
