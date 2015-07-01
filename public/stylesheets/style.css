@@ -67,6 +67,7 @@ ul{
     /*display:inline-block;*/
     position: relative;
     display: inline-flex;
+    width: 100%;
 
 
 }

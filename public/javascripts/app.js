@@ -179,7 +179,6 @@ function draw_dropdown() {
 // jQuery, On Clicks //
 
 $(document).ready(function () {
-
     // Status Modal
     loadModal();
 
@@ -189,6 +188,8 @@ $(document).ready(function () {
         classroomsArray[classroomNumber].cohort = $(this).attr("id");
         console.log(classroomsArray, classroomsArray[classroomNumber].cohort);
         updateClassroom(classroomNumber);
+        var cohortTitle = $(this).text();
+        $('.cohortTitle').text(cohortTitle);
     });
 
     // Close Button On Click (Delete Classroom Modal)
