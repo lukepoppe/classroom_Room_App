@@ -36,8 +36,10 @@ function refreshClassroom() {
         paintDesks();
         appendName();
 
+
         // assignnames.js
         names();
+
         hideSignInButton();
     });
 }

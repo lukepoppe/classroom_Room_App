@@ -1,15 +1,17 @@
 function names() {
+
+
     var alldesks = [];
     var shuffled;
     var classnames = [];
 
     var cohortid = classroomsArray[classroomNumber].cohort;
-    //console.log(cohortid, cohortsArray);
+
 
     for (var i = 0; i < cohortsArray.length; i++ ){
         if (cohortsArray[i]._id == cohortid) {
             cohortsArray[i].personArray.forEach(function(val){
-                classnames.push(val.firstName)
+                classnames.push({firstName : val.firstName, id : val._id})
             })
         }
 
@@ -38,7 +40,7 @@ function names() {
         for (var i = 0; i < shuffled.length; i++) {
             var select = alldesks[i];
             var id = $('#' + select);
-            var randomname = shuffled[i];
+            var randomname = shuffled[i].firstName;
 
             if (id.children().length == 0) {
                 id.append('<p class="label"></p>');
@@ -52,6 +54,7 @@ function names() {
         $(".cohort_list").children().remove();
         init_drag('.label');
     });
+
 
     if (admin) {
 
@@ -113,13 +116,13 @@ function names() {
         classnames.forEach(function (value){
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == value) {
-                    $('#' + currentDeskArray[i].position).append('<p class="hidden label">' + value + '</p>');
+                if (currentDeskArray[i].person == value.firstName) {
+                    $('#' + currentDeskArray[i].position).append('<p id="'+ value.id +' class="hidden label">' + value.firstName + '</p>');
                     saved = true;
                 }
             }
             if (saved == false){
-                $('.cohort_list').append('<li class="item">' + value + '</li>');
+                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
             }
         });
         init_drag('.item');
@@ -130,7 +133,7 @@ function names() {
     function appendnames() {
         $(".cohort_list").children().remove();
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li class="item">' + value + '</li>');
+            $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
         });
     }
 

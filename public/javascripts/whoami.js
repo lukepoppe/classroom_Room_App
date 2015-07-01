@@ -23,6 +23,7 @@ function findhuman(email) {
                         break;
             }
         }
+        names();
     }
 }
 
@@ -45,11 +46,6 @@ function findclassroom(id) {
 //still need to make this a lil nicer
 function hideSignInButton() {
 
-    //setting authenticated and admin properties to true so that we can properly test
-    //don't forget to remove this later
-
-    authenticated = true;
-    admin = true;
 
     if (authenticated) {
         $('.userNameDom').empty();
