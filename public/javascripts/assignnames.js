@@ -22,6 +22,7 @@ function names() {
 
     getnames();
 
+
     $('.clearButton').click(function(){
         $('.label').text('');
         appendnames();
@@ -52,56 +53,59 @@ function names() {
         init_drag('.label');
     });
 
-    $(function () {
-        init_drag('.item');
+    if (admin) {
 
-        $('.occupied').droppable({
-            drop: function (event, ui) {
+        $(function () {
+            init_drag('.item');
 
-                var div = $(this);
-                var desk_id = div.attr('id');
-                var name = ui.draggable.html();
+            $('.occupied').droppable({
+                drop: function (event, ui) {
 
-                empty_desk(name);
-                fill_desk(name, desk_id);
+                    var div = $(this);
+                    var desk_id = div.attr('id');
+                    var name = ui.draggable.html();
 
-                if (div.children().length == 0) {
-                    div.append('<p class="label"></p>');
+                    empty_desk(name);
+                    fill_desk(name, desk_id);
+
+                    if (div.children().length == 0) {
+                        div.append('<p class="label"></p>');
+                    }
+
+                    var title = div.find('p');
+                    var text = title.text();
+
+                    if (text != "" && text != name) {
+                        $('.cohort_list').append('<li class="item">' + text + '</li>');
+                        init_drag('.item');
+                    }
+
+                    ui.draggable.remove();
+
+                    if (name == text) {
+                        div.append('<p class="label"></p>');
+                        title = div.find("p");
+                    }
+
+                    init_drag('.label');
+                    title.text(name);
+                },
+                tolerance: "pointer"
+            });
+
+            $(".cohort_list").droppable({
+                accept: ".label",
+                drop: function (event, ui) {
+                    var item = ui.draggable.html();
+                    empty_desk(item);
+                    $(this).append('<li class="item">' + item + '</li>');
+                    init_drag(".item");
+                    ui.draggable.remove();
                 }
-
-                var title = div.find('p');
-                var text = title.text();
-
-                if (text != "" && text != name) {
-                    $('.cohort_list').append('<li class="item">' + text + '</li>');
-                    init_drag('.item');
-                }
-
-                ui.draggable.remove();
-
-                if (name == text) {
-                    div.append('<p class="label"></p>');
-                    title = div.find("p");
-                }
-
-                init_drag('.label');
-                title.text(name);
-            },
-            tolerance: "pointer"
+            })
         });
 
-        $(".cohort_list").droppable({
-            accept: ".label",
-            drop: function (event, ui) {
-                var item = ui.draggable.html();
-                empty_desk(item);
-                $(this).append('<li class="item">' + item + '</li>');
-                init_drag(".item");
-                ui.draggable.remove();
-            }
-        })
-    });
-
+    }
 
     function getnames(){
         var saved;
@@ -110,7 +114,7 @@ function names() {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value) {
-                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value + '</p>');
+                    $('#' + currentDeskArray[i].position).append('<p class="hidden label">' + value + '</p>');
                     saved = true;
                 }
             }
@@ -162,11 +166,13 @@ function names() {
 
 // initialize draggable item
     function init_drag(el) {
-        $(el).draggable({
-            cursor: "move",
-            revert: "invalid",
-            stack: el
-        });
+        if (admin) {
+            $(el).draggable({
+                cursor: "move",
+                revert: "invalid",
+                stack: el
+            });
+        }
     }
 
 //shuffle the array
