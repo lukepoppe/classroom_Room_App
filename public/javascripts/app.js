@@ -171,7 +171,7 @@ function draw_dropdown() {
             var cohortname = cohort.name;
             var cohortid = cohort._id;
             var el = "<li><a id='" + cohortid + "' href='#'>" + cohortname + "</a></li>";
-            $('.dropdown-menu').append(el)
+            $('.dropdown-menu').append(el);
         })
     }
 }
@@ -182,7 +182,6 @@ $(document).ready(function () {
 
     // Status Modal
     loadModal();
-
 
     //click function for dropdown
     //add cohort id to classroom cohort property

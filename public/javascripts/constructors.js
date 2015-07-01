@@ -38,7 +38,10 @@ function Person(firstName, lastName, email, class_role) {
         timestamp: new Date
     };
     this.help_history = [];
-    this.seating_status = {};
+    this.seating_status = {
+        deskId: "",
+        timestamp: new Date
+    };
     this.seating_history = [];
     lastViewedPage = "home";
 }
