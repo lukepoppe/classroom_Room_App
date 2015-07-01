@@ -44,7 +44,13 @@ function findclassroom(id) {
 
 //still need to make this a lil nicer
 function hideSignInButton() {
-    console.log(authenticated, admin);
+
+    //setting authenticated and admin properties to true so that we can properly test
+    //don't forget to remove this later
+
+    authenticated = true;
+    admin = true;
+
     if (authenticated) {
         $('.userNameDom').empty();
         $('.userImageDom').empty();
@@ -52,7 +58,7 @@ function hideSignInButton() {
         $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
-        $('helpModalButton').removeClass('hidden');
+        $('.helpModalButton').removeClass('hidden');
         $('.label').removeClass('hidden');
         if (admin) {
             $('.newClassroomButton').removeClass('hidden');
