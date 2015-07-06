@@ -11,7 +11,7 @@ function names() {
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
             cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id})
+                classnames.push({firstName: val.firstName, id: val._id, status: val.help_history[0]})
             })
         }
     }
@@ -45,7 +45,7 @@ function names() {
 
             id.find('p').text(randomname);
 
-            fill_desk(randomname, select);
+            fill_desk(shuffled[i].id, select);
         }
 
         $(".cohort_list").children().remove();
@@ -64,6 +64,7 @@ function names() {
                     var div = $(this);
                     var desk_id = div.attr('id');
                     var name = ui.draggable.html();
+
 
                     empty_desk(name);
                     fill_desk(name, desk_id);
@@ -113,9 +114,11 @@ function names() {
         classnames.forEach(function (value) {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == value.firstName) {
-                    $('#' + currentDeskArray[i].position).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
-
+                if (currentDeskArray[i].person == value.id) {
+                    var currentdiv = '#' + currentDeskArray[i].position;
+                    $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+                    console.log(value.firstName, value.status.flag);
+                    color_desks(value.status.flag, currentdiv);
                     saved = true;
                 }
             }
@@ -135,6 +138,20 @@ function names() {
         });
     }
 
+
+    function color_desks(flag, position) {
+        switch(flag) {
+            case "green":
+                $(position).css('background-color', '#009933');
+                break;
+            case "yellow":
+                $(position).css('background-color', '#FFFF66');
+                break;
+            case "red":
+                $(position).css('background-color', '#FF0000');
+                break;
+        }
+    }
 
 //clear out person attribute in all desk objects
     function clear_desks() {
