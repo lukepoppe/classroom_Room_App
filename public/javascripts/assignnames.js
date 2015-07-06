@@ -114,7 +114,8 @@ function names() {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value.firstName) {
-                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value.firstName + '</p>');
+                    $('#' + currentDeskArray[i].position).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+
                     saved = true;
                 }
             }
