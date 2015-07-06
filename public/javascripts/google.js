@@ -5,7 +5,8 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     userName = profile.getName();
     userImage = profile.getImageUrl();
-    findhuman(profile.getEmail().toLowerCase());
+    var userEmail = profile.getEmail().toLowerCase();
+    findhuman(userEmail);
     hideSignInButton();
 }
 

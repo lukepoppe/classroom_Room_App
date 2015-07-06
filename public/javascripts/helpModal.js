@@ -49,22 +49,6 @@ function redStatus() {
     //$('.classRoomName').css("background", "red");
 }
 
-function checkUserStatus() {
-    for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
-        if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
-            help_status = cohortsArray[userCohortNumber].personArray[i].help_status;
-        }
-    }
-    console.log(help_status);
-    if (help_status.flag == 'red') {
-        redStatus();
-    } else if (help_status.flag == 'yellow') {
-        yellowStatus();
-    } else {
-        greenStatus();
-    }
-}
-
 function changeStatus() {
     help_status.question = $('.helpModalTextbox').val();
     help_status.timestamp = new Date;

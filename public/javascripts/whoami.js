@@ -16,6 +16,17 @@ function findhuman(email) {
                     if (person.email.toLowerCase() == email) {
                         userCohortNumber = i;
                         findclassroom(classroomid);
+
+                        /* Help Status check */
+                        help_status = cohortsArray[userCohortNumber].personArray[j].help_status;
+                        if (help_status.flag == 'red') {
+                            redStatus();
+                        } else if (help_status.flag == 'yellow') {
+                            yellowStatus();
+                        } else {
+                            greenStatus();
+                        }
+
                         authenticated = true;
                         if (name == "ADMIN") {
                             admin = true;
