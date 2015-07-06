@@ -38,7 +38,6 @@ function refreshClassroom() {
             names();
         }
         $('.cohortTitle').text(cohortsArray[cohortNumber].name);
-        console.log(cohortNumber);
     });
 }
 
