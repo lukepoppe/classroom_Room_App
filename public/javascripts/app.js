@@ -32,12 +32,13 @@ function refreshClassroom() {
         paintDesks();
         appendName();
 
-
         hideSignInButton();
 
         if (authenticated) {
             names();
         }
+        $('.cohortTitle').text(cohortsArray[cohortNumber].name);
+        console.log(cohortNumber);
     });
 }
 

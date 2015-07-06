@@ -15,6 +15,7 @@ function findhuman(email) {
             person = cohort.personArray[j];
             if (person.email.toLowerCase() == email) {
                 userCohortNumber = i;
+                cohortNumber = userCohortNumber;
                 findclassroom(classroomid);
 
                 /* Help Status check */
