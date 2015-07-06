@@ -4,13 +4,11 @@ body {
     font-weight: 900;
 }
 .logoTitle {
-    padding: 0 300px 0 0;
+    /*padding: 0 300px 0 0;*/
 }
 
 a.classroomSelector {
     color: black;
-
-
 }
 
 .block {
@@ -222,8 +220,6 @@ span.glyphicon-warning-sign {
     float:right;
     padding:16px 0 0 25px;
 
-
-
 }
 .userNameDom:hover {
     color:black;
@@ -235,11 +231,15 @@ span.glyphicon-warning-sign {
 
 .userImageDom{
     float:right;
-    padding:5px 0px 0px 75px;
+    /*padding:5px 0px 0px 75px;*/
 }
 
 
 .userProf {
+    width:40%;
+    max-height: 50px;
+    margin-right: 20px;
+    /*min-width: 70%;*/
     /*float: right;*/
     /*border: 3px solid black;*/
     /*/!*border-radius: 7px;*!/*/
@@ -255,7 +255,7 @@ span.glyphicon-warning-sign {
     width: 120px;
     margin-top: 10px;
     text-align: center;
-    margin-left: 200px;
+    /*margin-left: 200px;*/
     background: #4285f4;
     color: white;
     border-radius: 3px;
