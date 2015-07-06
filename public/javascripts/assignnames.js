@@ -99,6 +99,7 @@ function names() {
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
                     empty_desk(item);
+
                     $(this).append('<li class="item">' + item + '</li>');
                     init_drag(".item");
                     ui.draggable.remove();
