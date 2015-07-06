@@ -225,9 +225,13 @@ span.glyphicon-warning-sign {
 
 
 }
-.userNameDom:hover{
+.userNameDom:hover {
     color:black;
 }
+.userImageDom:hover, .userNameDom{
+    color: black;
+}
+
 
 .userImageDom{
     float:right;
