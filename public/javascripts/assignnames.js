@@ -10,6 +10,7 @@ function names() {
 
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
+            cohortNumber = i;
             cohortsArray[i].personArray.forEach(function (val) {
                 classnames.push({firstName: val.firstName, id: val._id})
             })
