@@ -8,15 +8,13 @@ function names() {
     var cohortid = classroomsArray[classroomNumber].cohort;
 
 
-    for (var i = 0; i < cohortsArray.length; i++ ){
+    for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
-            cohortsArray[i].personArray.forEach(function(val){
-                classnames.push({firstName : val.firstName, id : val._id})
+            cohortsArray[i].personArray.forEach(function (val) {
+                classnames.push({firstName: val.firstName, id: val._id})
             })
         }
-
     }
-
 
     for (var j = 0; j < currentDeskArray.length; j++) {
         alldesks.push(currentDeskArray[j].position);
@@ -24,8 +22,7 @@ function names() {
 
     getnames();
 
-
-    $('.clearButton').click(function(){
+    $('.clearButton').click(function () {
         $('.label').text('');
         appendnames();
         clear_desks();
@@ -110,18 +107,18 @@ function names() {
 
     }
 
-    function getnames(){
+    function getnames() {
         var saved;
         $(".cohort_list").children().remove();
-        classnames.forEach(function (value){
+        classnames.forEach(function (value) {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value.firstName) {
-                    $('#' + currentDeskArray[i].position).append('<p id="'+ value.id +' class="hidden label">' + value.firstName + '</p>');
+                    $('#' + currentDeskArray[i].position).append('<p id="' + value.id + ' class="hidden label">' + value.firstName + '</p>');
                     saved = true;
                 }
             }
-            if (saved == false){
+            if (saved == false) {
                 $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
             }
         });
@@ -146,7 +143,7 @@ function names() {
     }
 
     //empty desk on drag event
-    function empty_desk(name){
+    function empty_desk(name) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].person == name) {
                 currentDeskArray[i].person = '';
@@ -164,7 +161,6 @@ function names() {
             }
         }
     }
-
 
 
 // initialize draggable item
