@@ -28,14 +28,17 @@ function refreshClassroom() {
         draw_dropdown();
 
         // Load deskArray from classroomsArray in memory
-        //currentDeskArray = classroomsArray[classroomNumber].deskArray;
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
 
-        // assignnames.js
-        names();
+
 
         hideSignInButton();
+
+        if (authenticated) {
+            names();
+        }
     });
 }
 
