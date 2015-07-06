@@ -35,12 +35,10 @@ function refreshClassroom() {
         //currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
-
-
+        
         // assignnames.js
         names();
 
-        hideSignInButton();
     });
 }
 
