@@ -40,7 +40,7 @@ function names() {
             var randomname = shuffled[i].firstName;
 
             if (id.children().length == 0) {
-                id.append('<p class="label"></p>');
+                id.append('<p id="' + shuffled[i].id +'" class="label"></p>');
             }
 
             id.find('p').text(randomname);
@@ -71,21 +71,21 @@ function names() {
                     fill_desk(drop_id, desk_id);
 
                     if (div.children().length == 0) {
-                        div.append('<p id=" ' + drop_id + 'class="label"></p>');
+                        div.append('<p id=" ' + drop_id + '"class="label"></p>');
                     }
 
                     var title = div.find('p');
                     var text = title.text();
 
                     if (text != "" && text != name) {
-                        $('.cohort_list').append('<li id=" ' + drop_id + 'class="item">' + text + '</li>');
+                        $('.cohort_list').append('<li id=" ' + drop_id + '"class="item">' + text + '</li>');
                         init_drag('.item');
                     }
 
                     ui.draggable.remove();
 
                     if (name == text) {
-                        div.append('<p id=" ' + drop_id + 'class="label"></p>');
+                        div.append('<p id=" ' + drop_id + '"class="label"></p>');
                         title = div.find("p");
                     }
 
@@ -102,7 +102,7 @@ function names() {
                     var item_id = ui.draggable.attr("id");
                     empty_desk(item_id);
 
-                    $(this).append('<li id=" ' + item_id + 'class="item">' + item + '</li>');
+                    $(this).append('<li id=" ' + item_id + '" class="item">' + item + '</li>');
                     init_drag(".item");
                     ui.draggable.remove();
                 }
@@ -120,13 +120,12 @@ function names() {
                 if (currentDeskArray[i].person == value.id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
                     $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
-                    console.log(value.firstName, value.status.flag);
                     color_desks(value.status.flag, currentdiv);
                     saved = true;
                 }
             }
             if (saved == false) {
-                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+                $('.cohort_list').append('<li id=" ' + value.id + ' " class="item">' + value.firstName + '</li>');
             }
         });
         init_drag('.item');
@@ -137,7 +136,7 @@ function names() {
     function appendnames() {
         $(".cohort_list").children().remove();
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+            $('.cohort_list').append('<li id=" ' + value.id + ' "class="item">' + value.firstName + '</li>');
         });
     }
 
@@ -166,7 +165,7 @@ function names() {
     //empty desk on drag event
     function empty_desk(name) {
         for (var i in currentDeskArray) {
-            if (currentDeskArray[i].person == name) {
+            if (currentDeskArray[i].person == name.trim()) {
                 currentDeskArray[i].person = '';
                 break;
             }
@@ -177,7 +176,7 @@ function names() {
     function fill_desk(student, id) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
-                currentDeskArray[i].person = student;
+                currentDeskArray[i].person = student.trim();
                 break;
             }
         }
