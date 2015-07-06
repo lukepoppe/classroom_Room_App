@@ -1,5 +1,5 @@
 function names() {
-    console.log('runs');
+    console.log('names() runs');
 
     var alldesks = [];
     var shuffled;

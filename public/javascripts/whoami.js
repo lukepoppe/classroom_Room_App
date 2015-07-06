@@ -40,7 +40,7 @@ function findclassroom(id) {
             //console.log(i, classroom.cohort, id);
             classroomNumber = i;
             currentDeskArray = classroom.deskArray;
-            refreshClassroom();
+            //refreshClassroom();
             break;
         }
     }

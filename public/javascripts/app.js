@@ -117,6 +117,20 @@ function updateClassroom(number) {
             classroomsArray = data;
             currentDeskArray = classroomsArray[classroomNumber].deskArray;
             refreshClassroom();
+            //console.log("load was performed");
+            // Draw navbar based on # of Classrooms
+            //drawNav();
+            //draw dropdown based on all cohorts
+            //draw_dropdown();
+
+            // Load deskArray from classroomsArray in memory
+            //currentDeskArray = classroomsArray[classroomNumber].deskArray;
+            //paintDesks();
+            //appendName();
+
+            // assignnames.js
+            //names();
+            //hideSignInButton();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
