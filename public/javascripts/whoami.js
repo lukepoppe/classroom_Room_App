@@ -57,7 +57,6 @@ function findclassroom(id) {
 //still need to make this a lil nicer
 function hideSignInButton() {
 
-
     if (authenticated) {
         $('.userNameDom').empty();
         $('.userImageDom').empty();

@@ -54,11 +54,14 @@ function changeStatus() {
     help_status.timestamp = new Date;
     for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
         if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
-            // Push old help_status into help_history
+
+            /* Push old help_status into help_history */
             cohortsArray[userCohortNumber].personArray[i].help_history.push(cohortsArray[userCohortNumber].personArray[i].help_status);
-            // Set new help_status in array if there was a help_status before.
+
+            /* Set new help_status in array if there was a help_status before. */
             cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
-            // Update cohort DB
+
+            /* Update cohort DB */
             updateCohortInDB(userCohortNumber);
 
         }
@@ -68,7 +71,6 @@ function changeStatus() {
 function helpModal() {
     $(".modalQuestionText").hide();
     //$("#statusModal").modal({}).draggable();
-
 
     $('.yellow').click(function () {
         yellowStatus();

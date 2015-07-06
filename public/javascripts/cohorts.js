@@ -10,7 +10,6 @@ getAllCohorts();
 
 function paintStatuses(){
     console.log('paint statii');
-
 };
 
 function getAllCohorts() {
