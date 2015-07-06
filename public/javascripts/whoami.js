@@ -19,13 +19,6 @@ function findhuman(email) {
 
                         /* Help Status check */
                         help_status = cohortsArray[userCohortNumber].personArray[j].help_status;
-                        if (help_status.flag == 'red') {
-                            redStatus();
-                        } else if (help_status.flag == 'yellow') {
-                            yellowStatus();
-                        } else {
-                            greenStatus();
-                        }
 
                         authenticated = true;
                         if (name == "ADMIN") {
@@ -66,6 +59,13 @@ function hideSignInButton() {
         $('.g-signin2').addClass('hidden');
         $('.helpModalButton').removeClass('hidden');
         $('.label').removeClass('hidden');
+        if (help_status.flag == 'red') {
+            redStatus();
+        } else if (help_status.flag == 'yellow') {
+            yellowStatus();
+        } else {
+            greenStatus();
+        }
         if (admin) {
             $('.newClassroomButton').removeClass('hidden');
             $('.lastpipe').removeClass('hidden');
