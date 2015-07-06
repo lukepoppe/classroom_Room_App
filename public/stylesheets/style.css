@@ -72,7 +72,6 @@ ul{
 
 }
 
-
 .navBar {
     /*border:15px solid #07AA9E;*/
     display: block;
@@ -214,10 +213,6 @@ span.glyphicon-warning-sign {
     border: 7px solid #ffffff;
     float:left;
     height: 50px;
-
-
-
-
 }
 .g-signin2{
     float:right;
@@ -231,8 +226,7 @@ span.glyphicon-warning-sign {
 }
 .userImageDom{
     float:right;
-    padding:5 0 0 75px;
-
+    padding:5px 0px 0px 75px;
 }
 
 .userProf {
@@ -321,4 +315,10 @@ h1{
 .cohortID:hover{
     color: #07AA9E;
     text-decoration: none;
+}
+
+.classroomShit{
+    width: 250px;
+    margin-right: 50px;
+    float: left;
 }
