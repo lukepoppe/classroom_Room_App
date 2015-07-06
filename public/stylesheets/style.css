@@ -223,11 +223,17 @@ span.glyphicon-warning-sign {
     padding:16px 0 0 25px;
 
 
+
 }
+.userNameDom:hover{
+    color:black;
+}
+
 .userImageDom{
     float:right;
     padding:5px 0px 0px 75px;
 }
+
 
 .userProf {
     /*float: right;*/
