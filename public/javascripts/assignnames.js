@@ -16,6 +16,8 @@ function names() {
         }
     }
 
+    console.log(classnames);
+
     for (var j = 0; j < currentDeskArray.length; j++) {
         alldesks.push(currentDeskArray[j].position);
     }
@@ -45,7 +47,8 @@ function names() {
 
             id.find('p').text(randomname);
 
-            fill_desk(shuffled[i].id, select);
+
+            fill_desk(shuffled[i].id, select, shuffled[i].status.flag);
         }
 
         $(".cohort_list").children().remove();
@@ -65,27 +68,28 @@ function names() {
                     var desk_id = div.attr('id');
                     var name = ui.draggable.html();
                     var drop_id = ui.draggable.attr('id');
+                    var flag_color = ui.draggable.data("color");
 
 
-                    empty_desk(drop_id);
-                    fill_desk(drop_id, desk_id);
+                    empty_desk(drop_id, desk_id);
+                    fill_desk(drop_id, desk_id, flag_color);
 
                     if (div.children().length == 0) {
-                        div.append('<p id=" ' + drop_id + '"class="label"></p>');
+                        div.append('<p data-color="'+ flag_color +'"id=" ' + drop_id + '"class="label"></p>');
                     }
 
                     var title = div.find('p');
                     var text = title.text();
 
                     if (text != "" && text != name) {
-                        $('.cohort_list').append('<li id=" ' + drop_id + '"class="item">' + text + '</li>');
+                        $('.cohort_list').append('<li data-color="'+ flag_color +'"  id=" ' + drop_id + '"class="item">' + text + '</li>');
                         init_drag('.item');
                     }
 
                     ui.draggable.remove();
 
                     if (name == text) {
-                        div.append('<p id=" ' + drop_id + '"class="label"></p>');
+                        div.append('<p data-color="'+ flag_color +'"id=" ' + drop_id + '"class="label"></p>');
                         title = div.find("p");
                     }
 
@@ -100,9 +104,10 @@ function names() {
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
                     var item_id = ui.draggable.attr("id");
+                    var flag_color = ui.draggable.data("color");
                     empty_desk(item_id);
 
-                    $(this).append('<li id=" ' + item_id + '" class="item">' + item + '</li>');
+                    $(this).append('<li data-color="'+ flag_color +'" id=" ' + item_id + '" class="item">' + item + '</li>');
                     init_drag(".item");
                     ui.draggable.remove();
                 }
@@ -119,13 +124,13 @@ function names() {
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value.id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+                    $(currentdiv).append('<p data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
                     color_desks(value.status.flag, currentdiv);
                     saved = true;
                 }
             }
             if (saved == false) {
-                $('.cohort_list').append('<li id=" ' + value.id + ' " class="item">' + value.firstName + '</li>');
+                $('.cohort_list').append('<li data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="item">' + value.firstName + '</li>');
             }
         });
         init_drag('.item');
@@ -136,12 +141,13 @@ function names() {
     function appendnames() {
         $(".cohort_list").children().remove();
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li id=" ' + value.id + ' "class="item">' + value.firstName + '</li>');
+            $('.cohort_list').append('<li data-color="'+ value.status.flag +'" id=" ' + value.id + ' "class="item">' + value.firstName + '</li>');
         });
     }
 
 
     function color_desks(flag, position) {
+        console.log(flag, position);
         switch(flag) {
             case "green":
                 $(position).css('background-color', '#009933');
@@ -163,7 +169,7 @@ function names() {
     }
 
     //empty desk on drag event
-    function empty_desk(name) {
+    function empty_desk(name, position) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].person == name.trim()) {
                 currentDeskArray[i].person = '';
@@ -173,10 +179,11 @@ function names() {
     }
 
 //add student to the current desk array
-    function fill_desk(student, id) {
+    function fill_desk(student, id, flag) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
                 currentDeskArray[i].person = student.trim();
+                color_desks(flag, '#' + id);
                 break;
             }
         }
