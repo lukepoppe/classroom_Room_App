@@ -46,7 +46,7 @@ function refreshClassroom() {
 
 // Add classroom name to title of classroom.html
 function appendName() {
-    $('.classRoomName').append(classroomsArray[classroomNumber].name);
+    $('.classRoomName').text(classroomsArray[classroomNumber].name);
 }
 
 // Delete Classroom
