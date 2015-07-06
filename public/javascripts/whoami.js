@@ -7,28 +7,28 @@ function findhuman(email) {
     var person;
     var classroomid;
     var name;
-    for (var i = 0; i < cohortsArray.length; i++){
-            cohort = cohortsArray[i];
-            classroomid = cohort._id;
-            name = cohort.name;
-                for (var j = 0; j < cohort.personArray.length; j++) {
-                    person = cohort.personArray[j];
-                    if (person.email.toLowerCase() == email) {
-                        userCohortNumber = i;
-                        findclassroom(classroomid);
+    for (var i = 0; i < cohortsArray.length; i++) {
+        cohort = cohortsArray[i];
+        classroomid = cohort._id;
+        name = cohort.name;
+        for (var j = 0; j < cohort.personArray.length; j++) {
+            person = cohort.personArray[j];
+            if (person.email.toLowerCase() == email) {
+                userCohortNumber = i;
+                findclassroom(classroomid);
 
-                        /* Help Status check */
-                        help_status = cohortsArray[userCohortNumber].personArray[j].help_status;
+                /* Help Status check */
+                help_status = cohortsArray[userCohortNumber].personArray[j].help_status;
 
-                        authenticated = true;
-                        if (name == "ADMIN") {
-                            admin = true;
-                        }
-                        break;
+                authenticated = true;
+                if (name == "ADMIN") {
+                    admin = true;
+                }
+                break;
             }
         }
-        names();
     }
+    //names();
 }
 
 //find classroom for current user
@@ -49,12 +49,11 @@ function findclassroom(id) {
 
 //still need to make this a lil nicer
 function hideSignInButton() {
-
     if (authenticated) {
         $('.userNameDom').empty();
         $('.userImageDom').empty();
         $('.userNameDom').append(userName);
-        $('.userImageDom').append('<img src=" ' +userImage+' "id="userImageDom">');
+        $('.userImageDom').append('<img src=" ' + userImage + ' "id="userImageDom">');
         $('.signOutButton').removeClass('hidden');
         $('.g-signin2').addClass('hidden');
         $('.helpModalButton').removeClass('hidden');

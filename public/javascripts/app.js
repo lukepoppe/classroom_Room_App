@@ -24,7 +24,6 @@ function refreshClassroom() {
         //console.log("load was performed");
         // Draw navbar based on # of Classrooms
         drawNav();
-
         //draw dropdown based on all cohorts
         draw_dropdown();
 
@@ -35,7 +34,7 @@ function refreshClassroom() {
 
         // assignnames.js
         names();
-        
+
         hideSignInButton();
     });
 }
@@ -112,7 +111,9 @@ function updateClassroom(number) {
         success: function (data, textStatus, jqXHR) {
             console.log("updateClassroom success");
             // get new data and update
-            getAllClassrooms();
+            classroomsArray = data;
+            currentDeskArray = classroomsArray[classroomNumber].deskArray;
+            refreshClassroom();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
