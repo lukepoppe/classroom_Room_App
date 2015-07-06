@@ -11,7 +11,7 @@ function names() {
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
             cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id, status: val.help_history[0]})
+                classnames.push({firstName: val.firstName, id: val._id, status: val.help_status})
             })
         }
     }
@@ -64,27 +64,28 @@ function names() {
                     var div = $(this);
                     var desk_id = div.attr('id');
                     var name = ui.draggable.html();
+                    var drop_id = ui.draggable.attr('id');
 
 
-                    empty_desk(name);
-                    fill_desk(name, desk_id);
+                    empty_desk(drop_id);
+                    fill_desk(drop_id, desk_id);
 
                     if (div.children().length == 0) {
-                        div.append('<p class="label"></p>');
+                        div.append('<p id=" ' + drop_id + 'class="label"></p>');
                     }
 
                     var title = div.find('p');
                     var text = title.text();
 
                     if (text != "" && text != name) {
-                        $('.cohort_list').append('<li class="item">' + text + '</li>');
+                        $('.cohort_list').append('<li id=" ' + drop_id + 'class="item">' + text + '</li>');
                         init_drag('.item');
                     }
 
                     ui.draggable.remove();
 
                     if (name == text) {
-                        div.append('<p class="label"></p>');
+                        div.append('<p id=" ' + drop_id + 'class="label"></p>');
                         title = div.find("p");
                     }
 
@@ -98,9 +99,10 @@ function names() {
                 accept: ".label",
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
-                    empty_desk(item);
+                    var item_id = ui.draggable.attr("id");
+                    empty_desk(item_id);
 
-                    $(this).append('<li class="item">' + item + '</li>');
+                    $(this).append('<li id=" ' + item_id + 'class="item">' + item + '</li>');
                     init_drag(".item");
                     ui.draggable.remove();
                 }
