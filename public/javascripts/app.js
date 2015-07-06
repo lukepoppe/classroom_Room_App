@@ -12,9 +12,6 @@ var currentDeskArray, classroomsArray, i;
 // Edit Ability Toggle
 var toggleEditing = false;
 
-// Initialize Arrays of all data (DUMMY data for now, will be from DB)
-getAllClassrooms();
-
 // DUMMY DATA //
 // classroomsArray = [dummyClassroom, dummyClassroom2];
 // var cohortArray = [dummyCohort, dummyCohort2];
@@ -35,10 +32,11 @@ function refreshClassroom() {
         //currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
-        
+
         // assignnames.js
         names();
-
+        
+        hideSignInButton();
     });
 }
 
@@ -90,6 +88,7 @@ function getAllClassrooms() {
             classroomsArray = data;
             currentDeskArray = classroomsArray[classroomNumber].deskArray;
             // update current desk array in memory
+            findhuman(userEmail);
             refreshClassroom();
         },
         error: function (jqXHR, textStatus, errorThrown) {

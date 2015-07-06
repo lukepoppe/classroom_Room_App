@@ -5,8 +5,8 @@ function onSignIn(googleUser) {
     userName = profile.getName();
     userImage = profile.getImageUrl();
     userEmail = profile.getEmail().toLowerCase();
-    findhuman(userEmail);
-    hideSignInButton();
+    // Initialize Arrays of all data (DUMMY data for now, will be from DB)
+    getAllClassrooms();
 }
 
 function signOut() {
