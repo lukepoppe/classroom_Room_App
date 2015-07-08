@@ -1,45 +1,60 @@
 function names() {
 
-    var alldesks = [], classnames = [], shuffled;
-
+    //var alldesks = [];
+    //var classnames = [];
+    var shuffled;
     var cohortid = classroomsArray[classroomNumber].cohort;
 
     /* Loop through cohorts array, find cohort that matches the cohort id which is assigned to classroom
-    * Assign that cohort to GLOBAL VAR cohortNumber
-    * Push each person onto classnames Array.
-    * */
+     * Assign that cohort index to GLOBAL VAR cohortNumber
+     * Push each person onto classnames Array... Why?  */
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
             cohortNumber = i;
-            cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id, status: val.help_status})
-            })
+            console.log(cohortsArray[i].personArray);
+            //cohortsArray[i].personArray.forEach(function (person) {
+            //    classnames.push({firstName: person.firstName, id: person._id, status: person.help_status})
+            //})
         }
     }
 
-    /* Loop through currentDeskArray and push position onto alldesks Array */
-    for (var j = 0; j < currentDeskArray.length; j++) {
-        alldesks.push(currentDeskArray[j].position);
-    }
+    /* Loop through currentDeskArray and push position onto alldesks Array
+     * WHY?? */
+    //for (var j = 0; j < currentDeskArray.length; j++) {
+    //    alldesks.push(currentDeskArray[j].position);
+    //}
+
+    /* Seems that alldesks is a replica of currentDeskArray.position.
+    * classnames is a replica of current cohort person array
+    * */
 
     getnames();
-
+    /* Empty cohort list
+     * Cycle through classnames Array, which contains everyone in this cohort
+     * So for each person, we will then go through the entire desk array searching for them.
+     * Probably more logical just to go through all the desks.
+     * In fact, isn't that already done somewhere else?
+     */
     function getnames() {
         var saved;
         $(".cohort_list").children().remove();
-        classnames.forEach(function (value) {
+
+        console.log(cohortsArray[cohortNumber].personArray);
+        var classnames = cohortsArray[cohortNumber].personArray;
+
+        classnames.forEach(function (thisRoomPerson) {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == value.id) {
+                if (currentDeskArray[i].person == thisRoomPerson.id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
-                    console.log(value.firstName, value.status.flag);
-                    color_desks(value.status.flag, currentdiv);
+                    $(currentdiv).append('<p id=" ' + thisRoomPerson.id + ' " class="label">' + thisRoomPerson.firstName + '</p>');
+                    console.log(thisRoomPerson.firstName, thisRoomPerson.status.flag);
+                    color_desks(thisRoomPerson.status.flag, currentdiv);
                     saved = true;
                 }
             }
             if (saved == false) {
-                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+                $('.cohort_list').append('<li class="item">' + thisRoomPerson.firstName + '</li>');
             }
         });
         init_drag('.item');
@@ -211,8 +226,6 @@ function names() {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     }
-
 }

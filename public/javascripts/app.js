@@ -55,7 +55,11 @@ function deleteClassroom(number) {
 function paintDesks() {
     for (var i = 0; i < currentDeskArray.length; i++) {
         $('#' + currentDeskArray[i].position).toggleClass('occupied');
+        /* Problem is that person is not identified by id.*/
+        console.log(currentDeskArray[i].person);
     }
+    console.log(cohortsArray[cohortNumber].personArray);
+
 }
 
 // DB FUNCTIONS //
