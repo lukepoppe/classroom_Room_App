@@ -6,6 +6,7 @@ function onSignIn(googleUser) {
     APP.userEmail = profile.getEmail().toLowerCase();
 
     APP.user.find(APP.userEmail);
+    APP.user.adminAuth()
 }
 
 function signOut() {

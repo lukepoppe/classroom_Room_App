@@ -26,9 +26,9 @@ function drawList() {
     $('.cohortList').on('click', '.cohortID', function () {
         $('.entryList').show();
         $('.showList').show();
-        cohortNumber = $(this).data('cohortnumber');
+        APP.cohortNumber = $(this).data('cohortnumber');
         //cohortID = $(this).attr('id');
-        currentPersonArray = cohortsArray[cohortNumber].personArray;
+        APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
         drawList();
     });
 
@@ -37,18 +37,18 @@ function drawList() {
         var cohortIdToDelete = ($(this).siblings('a').attr('id'));
         $('.warnOfCohortName').empty().append($(this).siblings('a').text());
         $('.deleteCohortButton').on('click', function () {
-            deleteCohortFromDB(cohortIdToDelete);
+            APP.cohorts.delete(cohortIdToDelete);
         });
     });
 
 // On Click of Edit Cohort
     $('.editCohortName').on('click', function () {
         //var coh = ($(this).siblings('a').attr('id'));
-        cohortNumber = $(this).siblings('a').data('cohortnumber');
+        APP.cohortNumber = $(this).siblings('a').data('cohortnumber');
         $('#newCohortName').val($(this).siblings('a').text());
         $('.confirmCohortEditButton').on('click', function () {
-            cohortsArray[cohortNumber].name = $('#newCohortName').val();
-            updateCohortInDB(cohortNumber);
+            APP.cohortsArray[APP.cohortNumber].name = $('#newCohortName').val();
+            APP.cohorts.update(cohortNumber);
         });
     });
 
@@ -58,7 +58,7 @@ function drawList() {
 // On Click of New Cohort Button
     $('.createCohort').on("click", function () {
         console.log("createCohort clicked");
-        createCohort();
+        APP.cohorts.add();
     });
 
 // Draw title of cohort on right
@@ -74,25 +74,25 @@ function drawList() {
 // On Click of Edit Name
     $('.editName').click(function () {
         var nameNumber = $(this).parent('li').data('number');
-        $('#newPersonFirstName').val(cohortsArray[cohortNumber].personArray[nameNumber].firstName);
-        $('#newPersonLastName').val(cohortsArray[cohortNumber].personArray[nameNumber].lastName);
-        $('#newPersonEmail').val(cohortsArray[cohortNumber].personArray[nameNumber].email);
+        $('#newPersonFirstName').val(APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].firstName);
+        $('#newPersonLastName').val(APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].lastName);
+        $('#newPersonEmail').val(APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].email);
         $('.confirmPersonEditButton').on('click', function () {
             console.log('click');
-            cohortsArray[cohortNumber].personArray[nameNumber].firstName = $('#newPersonFirstName').val();
-            cohortsArray[cohortNumber].personArray[nameNumber].lastName = $('#newPersonLastName').val();
-            cohortsArray[cohortNumber].personArray[nameNumber].email = $('#newPersonEmail').val();
-            updateCohortInDB(cohortNumber);
+            APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].firstName = $('#newPersonFirstName').val();
+            APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].lastName = $('#newPersonLastName').val();
+            APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].email = $('#newPersonEmail').val();
+            APP.cohorts.update(APP.cohortNumber);
         });
     });
 
 // On Click of Delete Name
     $('.deleteName').click(function () {
         var nameNumber = $(this).parent('li').data('number');
-        $('.warnOfPersonName').empty().append(cohortsArray[cohortNumber].personArray[nameNumber].firstName + " " + cohortsArray[cohortNumber].personArray[nameNumber].lastName);
+        $('.warnOfPersonName').empty().append(APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].firstName + " " + APP.cohortsArray[APP.cohortNumber].personArray[nameNumber].lastName);
         $('.deleteNameButton').on('click', function () {
-            cohortsArray[cohortNumber].personArray.splice(nameNumber, 1);
-            updateCohortInDB(cohortNumber);
+            APP.cohortsArray[APP.cohortNumber].personArray.splice(nameNumber, 1);
+            APP.cohorts.update(APP.cohortNumber);
         });
     });
 }

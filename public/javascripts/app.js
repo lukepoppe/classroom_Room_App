@@ -9,8 +9,8 @@ APP.userCohortNumber;
 APP.currentDeskArray = [];
 APP.classroomsArray = [];
 APP.i = 0;
-APP.authenticated = false;
-APP.admin = false;
+APP.authenticated = true;
+APP.admin = true;
 
 /* Edit Desks Toggle */
 APP.toggleEditing = false;

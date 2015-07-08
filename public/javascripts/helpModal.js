@@ -37,8 +37,8 @@ function greenStatus() {
     $('.helpModalButton').css("background", "green");
     $('.helpLevel').css("border-color", "green");
     $('#userImageDom').css("border-color", "green");
-    help_status.flag = "green";
-    help_status.question = "";
+    APP.help_status.flag = "green";
+    APP.help_status.question = "";
     //$('.classRoomName').css("background", "green");
 }
 
@@ -52,7 +52,7 @@ function yellowStatus() {
     $('.modal-header').css("background", "yellow");
     $('.helpModalButton').css("background", "yellow");
     $('#userImageDom').css("border-color", "yellow");
-    help_status.flag = "yellow";
+    APP.help_status.flag = "yellow";
     //$('.classRoomName').css("background", "yellow");
 }
 
@@ -67,24 +67,24 @@ function redStatus() {
     $('.helpModalButton').css("background", "red");
     $('.helpLevel').css("border-color", "red");
     $('#userImageDom').css("border-color", "red");
-    help_status.flag = "red";
+    APP.help_status.flag = "red";
     //$('.classRoomName').css("background", "red");
 }
 
 function changeStatus() {
-    help_status.question = $('.helpModalTextbox').val();
-    help_status.timestamp = new Date;
-    for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
-        if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
+    APP.help_status.question = $('.helpModalTextbox').val();
+    APP.help_status.timestamp = new Date;
+    for (var i = 0; i < APP.cohortsArray[APP.cohortNumber].personArray.length; i++) {
+        if (APP.cohortsArray[APP.cohortNumber].personArray[i].email == APP.userEmail) {
 
             /* Push old help_status into help_history */
-            cohortsArray[userCohortNumber].personArray[i].help_history.push(cohortsArray[userCohortNumber].personArray[i].help_status);
+            APP.cohortsArray[APP.cohortNumber].personArray[i].help_history.push(APP.cohortsArray[APP.cohortNumber].personArray[i].help_status);
 
             /* Set new help_status in array if there was a help_status before. */
-            cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
+            APP.cohortsArray[APP.cohortNumber].personArray[i].help_status = help_status;
 
             /* Update cohort DB */
-            updateCohortInDB(userCohortNumber);
+            APP.cohorts.update(APP.cohortNumber);
 
         }
     }

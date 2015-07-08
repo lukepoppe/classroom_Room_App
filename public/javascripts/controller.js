@@ -7,13 +7,13 @@ $(document).ready(function () {
     // Status Modal
     loadModal();
 
-    //click function for dropdown
-    //add cohort id to classroom cohort property
+    /* Draws the cohort dropdown contents on click */
     $('.dropdown').on('click', '.dropdown-menu li a', function () {
+        // Id of the thing you click on is the cohort id. That gets assigned to the classroom, then sent to API.
         APP.classroomsArray[APP.classroomNumber].cohort = $(this).attr("id");
         APP.classrooms.update(APP.classroomNumber);
-        var cohortTitle = $(this).text();
-        $('.cohortTitle').text(cohortTitle);
+        /* The large text naming the chort gets updated.*/
+        $('.cohortTitle').text($(this).text());
     });
     // Close Button On Click (Delete Classroom Modal)
     $('.navBar').on('click', '.closeX', function () {
