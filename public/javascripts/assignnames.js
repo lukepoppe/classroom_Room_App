@@ -1,5 +1,4 @@
 function names() {
-    console.log('names() runs');
 
     var alldesks, classnames = [];
     var shuffled;
@@ -9,6 +8,7 @@ function names() {
 
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
+            cohortNumber = i;
             cohortsArray[i].personArray.forEach(function (val) {
                 classnames.push({firstName: val.firstName, id: val._id, status: val.help_history[0]})
             })

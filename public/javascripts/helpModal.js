@@ -70,7 +70,7 @@ function changeStatus() {
 
 function helpModal() {
     $(".modalQuestionText").hide();
-    //$("#statusModal").modal({}).draggable();
+    $("#statusModal").draggable();
 
     $('.yellow').click(function () {
         yellowStatus();
