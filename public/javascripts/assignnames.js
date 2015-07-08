@@ -1,25 +1,50 @@
 function names() {
 
-    var alldesks, classnames = [];
-    var shuffled;
+    var alldesks = [], classnames = [], shuffled;
 
     var cohortid = classroomsArray[classroomNumber].cohort;
 
-
+    /* Loop through cohorts array, find cohort that matches the cohort id which is assigned to classroom
+    * Assign that cohort to GLOBAL VAR cohortNumber
+    * Push each person onto classnames Array.
+    * */
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
             cohortNumber = i;
             cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id, status: val.help_history[0]})
+                classnames.push({firstName: val.firstName, id: val._id, status: val.help_status})
             })
         }
     }
 
+    /* Loop through currentDeskArray and push position onto alldesks Array */
     for (var j = 0; j < currentDeskArray.length; j++) {
         alldesks.push(currentDeskArray[j].position);
     }
 
     getnames();
+
+    function getnames() {
+        var saved;
+        $(".cohort_list").children().remove();
+        classnames.forEach(function (value) {
+            saved = false;
+            for (var i = 0; i < currentDeskArray.length; i++) {
+                if (currentDeskArray[i].person == value.id) {
+                    var currentdiv = '#' + currentDeskArray[i].position;
+                    $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+                    console.log(value.firstName, value.status.flag);
+                    color_desks(value.status.flag, currentdiv);
+                    saved = true;
+                }
+            }
+            if (saved == false) {
+                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+            }
+        });
+        init_drag('.item');
+        init_drag('.label');
+    }
 
     $('.clearButton').click(function () {
         $('.label').text('');
@@ -106,28 +131,6 @@ function names() {
             })
         });
 
-    }
-
-    function getnames() {
-        var saved;
-        $(".cohort_list").children().remove();
-        classnames.forEach(function (value) {
-            saved = false;
-            for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == value.id) {
-                    var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
-                    console.log(value.firstName, value.status.flag);
-                    color_desks(value.status.flag, currentdiv);
-                    saved = true;
-                }
-            }
-            if (saved == false) {
-                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
-            }
-        });
-        init_drag('.item');
-        init_drag('.label');
     }
 
     //add cohort names to list
