@@ -1,9 +1,8 @@
 function names() {
     console.log('names() runs');
 
-    var alldesks = [];
+    var alldesks, classnames = [];
     var shuffled;
-    var classnames = [];
 
     var cohortid = classroomsArray[classroomNumber].cohort;
 
@@ -141,7 +140,7 @@ function names() {
 
 
     function color_desks(flag, position) {
-        switch(flag) {
+        switch (flag) {
             case "green":
                 $(position).css('background-color', '#009933');
                 break;
