@@ -49,10 +49,10 @@ function names() {
                  * append <p> tag to that desk div*/
                 //console.log(thisRoomPerson);
                 if (currentDeskArray[i].person == thisRoomPerson._id) {
-                    var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p data-id="' + thisRoomPerson._id + '" class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
+                    var currentDiv = '#' + currentDeskArray[i].position;
+                    $(currentDiv).append('<p data-id="' + thisRoomPerson._id + '" class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
                     console.log(thisRoomPerson.firstName, thisRoomPerson.help_status.flag);
-                    color_desks(thisRoomPerson.help_status.flag, currentdiv);
+                    color_desks(thisRoomPerson.help_status.flag, currentDiv);
                     saved = true;
                 }
             }
@@ -105,55 +105,59 @@ function names() {
             $('.occupied').droppable({
                 drop: function (event, ui) {
 
+                    /* Get attributes of dragged and dropped items */
                     var targetDiv = $(this);
                     var desk_id = targetDiv.attr('id');
                     var personId = ui.draggable.data('id');
+                    var name = ui.draggable.text();
 
                     /* Take person out of old deskArray, put in new deskArray */
-                    //empty_desk(personId);
+                    empty_desk(personId);
                     fill_desk(personId, desk_id);
 
-                    //if (targetDiv.children().length == 0) {
-                    //    targetDiv.append('<p class="label"></p>');
-                    //}
-
-                    var title = targetDiv.find('p');
-                    var text = title.text();
-                    console.log(text);
-
-                    /* Draw Cohort List to be dragged */
-                    if (text != "" && text != name) {
-                        $('.cohort_list').append('<li class="item">' + text + '</li>');
-                        init_drag('.unassignedPerson');
+                    /* If target div is empty, append an empty label */
+                    if (targetDiv.children().length == 0) {
+                        targetDiv.append('<p class="assignedPerson" data-id="' + personId + '"></p>');
                     }
+
+                    /* Find the empty label in the target div */
+                    var targetLabel = targetDiv.find('p');
+                    //var text = title.data('id');
+
+                    /* IF RETURNING TO COHORT LIST */
+                    //if (text != "" && text != name) {
+                    //    $('.cohort_list').append('<li class="unassignedPerson">' + text + '</li>');
+                    //    init_drag('.unassignedPerson');
+                    //}
 
                     ui.draggable.remove();
 
-                    if (name == text) {
-                        targetDiv.append('<p class="label"></p>');
-                        title = targetDiv.find("p");
-                    }
+                    /* IF dropping on desk where name already was ? */
+                    //if (name == text) {
+                    //    targetDiv.append('<p class="assignedPerson"></p>');
+                    //    title = targetDiv.find("p");
+                    //}
 
-                    init_drag('.label');
-                    title.text(name);
+                    init_drag('.assignedPerson');
+                    /* Write the name on the target label */
+                    targetLabel.text(name);
                 },
                 tolerance: "pointer"
             });
 
             $(".cohort_list").droppable({
-                accept: ".label",
+                accept: ".assignedPerson",
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
 
                     empty_desk(item);
 
-                    $(this).append('<li class="item">' + item + '</li>');
-                    init_drag(".item");
+                    $(this).append('<li class="unassignedPerson">' + item + '</li>');
+                    init_drag(".unassignedPerson");
                     ui.draggable.remove();
                 }
             })
         });
-
     }
 
     //add cohort names to list
@@ -161,10 +165,9 @@ function names() {
         $(".cohort_list").children().remove();
         console.log(classnames);
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+            $('.cohort_list').append('<li class="unassignedPerson">' + value.firstName + '</li>');
         });
     }
-
 
     function color_desks(flag, position) {
         switch (flag) {
@@ -180,24 +183,24 @@ function names() {
         }
     }
 
-//clear out person attribute in all desk objects
+    //clear out person attribute in all desk objects
     function clear_desks() {
-        for (var i in currentDeskArray) {
+        for (var i = 0; i < currentDeskArray.length; i++) {
             currentDeskArray[i].person = '';
         }
     }
 
     //empty desk on drag event
-    function empty_desk(id) {
-        for (var i in currentDeskArray) {
-            if (currentDeskArray[i].person == id) {
+    function empty_desk(personId) {
+        for (var i = 0; i < currentDeskArray.length; i++) {
+            if (currentDeskArray[i].person == personId) {
                 currentDeskArray[i].person = '';
                 break;
             }
         }
     }
 
-//add student to the current desk array
+    //add student to the current desk array
     function fill_desk(personId, deskId) {
         for (var i = 0; i < currentDeskArray.length; i++) {
             if (currentDeskArray[i].position == deskId) {
@@ -208,7 +211,7 @@ function names() {
     }
 
 
-// initialize draggable item
+    // initialize draggable item
     function init_drag(el) {
         if (admin) {
             $(el).draggable({
