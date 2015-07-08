@@ -51,8 +51,8 @@ function names() {
                 if (currentDeskArray[i].person == thisRoomPerson._id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
                     $(currentdiv).append('<p data-id="' + thisRoomPerson._id + '" class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
-                    console.log(thisRoomPerson.firstName, thisRoomPerson.status.flag);
-                    color_desks(thisRoomPerson.status.flag, currentdiv);
+                    console.log(thisRoomPerson.firstName, thisRoomPerson.help_status.flag);
+                    color_desks(thisRoomPerson.help_status.flag, currentdiv);
                     saved = true;
                 }
             }
@@ -110,12 +110,12 @@ function names() {
                     var personId = ui.draggable.data('id');
 
                     /* Take person out of old deskArray, put in new deskArray */
-                    empty_desk(personId);
-                    fill_desk(name, desk_id);
+                    //empty_desk(personId);
+                    fill_desk(personId, desk_id);
 
-                    if (targetDiv.children().length == 0) {
-                        targetDiv.append('<p class="label"></p>');
-                    }
+                    //if (targetDiv.children().length == 0) {
+                    //    targetDiv.append('<p class="label"></p>');
+                    //}
 
                     var title = targetDiv.find('p');
                     var text = title.text();
@@ -190,7 +190,6 @@ function names() {
     //empty desk on drag event
     function empty_desk(id) {
         for (var i in currentDeskArray) {
-            console.log(i);
             if (currentDeskArray[i].person == id) {
                 currentDeskArray[i].person = '';
                 break;
@@ -199,10 +198,10 @@ function names() {
     }
 
 //add student to the current desk array
-    function fill_desk(student, id) {
-        for (var i in currentDeskArray) {
-            if (currentDeskArray[i].position == id) {
-                currentDeskArray[i].person = student;
+    function fill_desk(personId, deskId) {
+        for (var i = 0; i < currentDeskArray.length; i++) {
+            if (currentDeskArray[i].position == deskId) {
+                currentDeskArray[i].person = personId;
                 break;
             }
         }
