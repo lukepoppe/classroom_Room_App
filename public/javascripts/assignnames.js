@@ -1,7 +1,7 @@
 function names() {
 
-    //var alldesks = [];
-    //var classnames = [];
+    var alldesks = [];
+    var classnames = [];
     var shuffled;
     var cohortid = classroomsArray[classroomNumber].cohort;
 
@@ -11,7 +11,7 @@ function names() {
     for (var i = 0; i < cohortsArray.length; i++) {
         if (cohortsArray[i]._id == cohortid) {
             cohortNumber = i;
-            console.log(cohortsArray[i].personArray);
+            //console.log(cohortsArray[i].personArray);
             //cohortsArray[i].personArray.forEach(function (person) {
             //    classnames.push({firstName: person.firstName, id: person._id, status: person.help_status})
             //})
@@ -25,8 +25,8 @@ function names() {
     //}
 
     /* Seems that alldesks is a replica of currentDeskArray.position.
-    * classnames is a replica of current cohort person array
-    * */
+     * classnames is a replica of current cohort person array
+     * */
 
     getnames();
     /* Empty cohort list
@@ -36,40 +36,45 @@ function names() {
      * In fact, isn't that already done somewhere else?
      */
     function getnames() {
-        var saved;
+        var savedToDesk;
         $(".cohort_list").children().remove();
 
         console.log(cohortsArray[cohortNumber].personArray);
-        var classnames = cohortsArray[cohortNumber].personArray;
+        classnames = cohortsArray[cohortNumber].personArray;
 
         classnames.forEach(function (thisRoomPerson) {
-            saved = false;
+            savedToDesk = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == thisRoomPerson.id) {
+                /* If person is found in currentDeskArray,
+                 * append <p> tag to that desk div*/
+                //console.log(thisRoomPerson);
+                if (currentDeskArray[i].person == thisRoomPerson._id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p id=" ' + thisRoomPerson.id + ' " class="label">' + thisRoomPerson.firstName + '</p>');
+                    $(currentdiv).append('<p data-id="' + thisRoomPerson._id + '" class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
                     console.log(thisRoomPerson.firstName, thisRoomPerson.status.flag);
                     color_desks(thisRoomPerson.status.flag, currentdiv);
                     saved = true;
                 }
             }
-            if (saved == false) {
-                $('.cohort_list').append('<li class="item">' + thisRoomPerson.firstName + '</li>');
+            /* Draw the list of cohort people yet to be dragged into desks */
+            if (savedToDesk == false) {
+                $('.cohort_list').append('<li class="unassignedPerson person" data-id="' + thisRoomPerson._id + '">' + thisRoomPerson.firstName + '</li>');
             }
         });
-        init_drag('.item');
-        init_drag('.label');
+        /* Make both assigned and unassigned names draggable */
+        init_drag('.unassignedPerson');
+        init_drag('.assignedPerson');
     }
 
     $('.clearButton').click(function () {
-        $('.label').text('');
+        $('.assignedPerson').text('');
         appendnames();
         clear_desks();
-        init_drag('.item');
+        init_drag('.unassignedPerson');
     });
 
     $(".randomizeButton").click(function () {
-        $('.label').text('');
+        $('.assignedPerson').text('');
         clear_desks();
         shuffled = shuffle(classnames);
         alldesks = shuffle(alldesks);
@@ -79,7 +84,7 @@ function names() {
             var randomname = shuffled[i].firstName;
 
             if (id.children().length == 0) {
-                id.append('<p class="label"></p>');
+                id.append('<p class="assignedPerson"></p>');
             }
 
             id.find('p').text(randomname);
@@ -88,43 +93,45 @@ function names() {
         }
 
         $(".cohort_list").children().remove();
-        init_drag('.label');
+        init_drag('.assignedPerson');
     });
 
 
     if (admin) {
 
         $(function () {
-            init_drag('.item');
+            init_drag('.unassignedPerson');
 
             $('.occupied').droppable({
                 drop: function (event, ui) {
 
-                    var div = $(this);
-                    var desk_id = div.attr('id');
-                    var name = ui.draggable.html();
+                    var targetDiv = $(this);
+                    var desk_id = targetDiv.attr('id');
+                    var personId = ui.draggable.data('id');
 
-
-                    empty_desk(name);
+                    /* Take person out of old deskArray, put in new deskArray */
+                    empty_desk(personId);
                     fill_desk(name, desk_id);
 
-                    if (div.children().length == 0) {
-                        div.append('<p class="label"></p>');
+                    if (targetDiv.children().length == 0) {
+                        targetDiv.append('<p class="label"></p>');
                     }
 
-                    var title = div.find('p');
+                    var title = targetDiv.find('p');
                     var text = title.text();
+                    console.log(text);
 
+                    /* Draw Cohort List to be dragged */
                     if (text != "" && text != name) {
                         $('.cohort_list').append('<li class="item">' + text + '</li>');
-                        init_drag('.item');
+                        init_drag('.unassignedPerson');
                     }
 
                     ui.draggable.remove();
 
                     if (name == text) {
-                        div.append('<p class="label"></p>');
-                        title = div.find("p");
+                        targetDiv.append('<p class="label"></p>');
+                        title = targetDiv.find("p");
                     }
 
                     init_drag('.label');
@@ -137,6 +144,7 @@ function names() {
                 accept: ".label",
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
+
                     empty_desk(item);
 
                     $(this).append('<li class="item">' + item + '</li>');
@@ -151,6 +159,7 @@ function names() {
     //add cohort names to list
     function appendnames() {
         $(".cohort_list").children().remove();
+        console.log(classnames);
         classnames.forEach(function (value) {
             $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
         });
@@ -179,9 +188,10 @@ function names() {
     }
 
     //empty desk on drag event
-    function empty_desk(name) {
+    function empty_desk(id) {
         for (var i in currentDeskArray) {
-            if (currentDeskArray[i].person == name) {
+            console.log(i);
+            if (currentDeskArray[i].person == id) {
                 currentDeskArray[i].person = '';
                 break;
             }
