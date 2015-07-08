@@ -3,83 +3,83 @@ APP.classrooms.get();
 APP.cohorts.get();
 
 $(document).ready(function () {
+
     // Status Modal
     loadModal();
+
     //click function for dropdown
     //add cohort id to classroom cohort property
     $('.dropdown').on('click', '.dropdown-menu li a', function () {
-        classroomsArray[classroomNumber].cohort = $(this).attr("id");
-        console.log(classroomsArray, classroomsArray[classroomNumber].cohort);
-        updateClassroom(classroomNumber);
+        APP.classroomsArray[APP.classroomNumber].cohort = $(this).attr("id");
+        APP.classrooms.update(APP.classroomNumber);
         var cohortTitle = $(this).text();
         $('.cohortTitle').text(cohortTitle);
     });
     // Close Button On Click (Delete Classroom Modal)
     $('.navBar').on('click', '.closeX', function () {
         var classroomNumberToDelete = $(this).data('classroom');
-        $('.warnOfClassName').empty().append(classroomsArray[classroomNumberToDelete].name);
+        $('.warnOfClassName').empty().append(APP.classroomsArray[classroomNumberToDelete].name);
         $('.deleteButton').on('click', function () {
-            console.log(classroomNumberToDelete);
-            deleteClassroomFromDB(classroomNumberToDelete);
+            APP.classrooms.delete(classroomNumberToDelete);
         })
     });
     // Edit Classroom Name On Click
     $('.editClassroomNameButton').on('click', function () {
-        $('#newClassName').val(classroomsArray[classroomNumber].name);
+        $('#newClassName').val(APP.classroomsArray[APP.classroomNumber].name);
         $('.confirmEditButton').on('click', function () {
-            classroomsArray[classroomNumber].name = $('#newClassName').val();
-            updateClassroom(classroomNumber);
+            APP.classroomsArray[APP.classroomNumber].name = $('#newClassName').val();
+            APP.classrooms.update(APP.classroomNumber);
         });
     });
     // Checkbox
     $('.onoffswitch-label').click(function () {
         $(this).parent().toggleClass('onoffswitch-checked');
         if ($(this).parent().hasClass('onoffswitch-checked')) {
-            toggleEditing = false;
+            APP.toggleEditing = false;
         } else {
-            toggleEditing = true;
+            APP.toggleEditing = true;
         }
     });
     // Set On Click of Grid Blocks
     $('.classroom').on('click', '.block', function () {
         console.log('click');
         // IF editing is enabled
-        if (toggleEditing === true) {
+        if (APP.toggleEditing === true) {
             var clickedPosition = $(this).attr('id');
 
             if ($(this).hasClass('occupied')) {
                 // Erase a desk from client-side array
-                currentDeskArray = currentDeskArray.filter(function (obj) {
+                APP.currentDeskArray = currentDeskArray.filter(function (obj) {
                     return obj.position !== clickedPosition;
                 });
             } else {
                 // Create a desk with .block ID as position attribute.
-                currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
+                APP.currentDeskArray.push(new Desk(APP.currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
             // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
-            refreshClassroom();
+            APP.DOM.classroom();
         }
-        if (toggleEditing === false) {
+        if (APP.toggleEditing === false) {
             console.log("editing disabled");
         }
     });
     // Set On Click of Classroom Selector Links
     $('.navBar').on('click', '.classroomSelector', function () {
         $('.classroomShit').show();
-        classroomNumber = $(this).data('classroom');
-        currentDeskArray = classroomsArray[classroomNumber].deskArray;
-        refreshClassroom();
+        APP.classroomNumber = $(this).data('classroom');
+        APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
+        APP.DOM.classroom();
         $('.adminViews').show();
         $('.cohortListDiv').show();
     });
     // Set On Click of Plus Button (Create New Classroom)
     $('.navBar').on('click', '.newClassroomButton', function () {
-        classroomNumber = classroomsArray.length;
-        classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
-        createClassroomInDB();
+        APP.classroomNumber = APP.classroomsArray.length;
+        APP.classroomsArray.push(new Classroom(APP.cohortNumber, "Bloomington", "defaultName"));
+        APP.classrooms.add();
     });
     // Set On Click of Save Button (toggle?)
     $('.saveButton').on('click', function () {
-        updateClassroom(classroomNumber);
+        APP.classrooms.update(APP.classroomNumber);
     });
 });

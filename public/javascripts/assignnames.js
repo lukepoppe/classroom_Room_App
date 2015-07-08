@@ -4,9 +4,9 @@ function names() {
 
     /* Loop through cohorts array, find cohort that matches the cohort id which is assigned to classroom
      * Assign that cohort index to GLOBAL VAR cohortNumber */
-    for (var i = 0; i < cohortsArray.length; i++) {
-        if (cohortsArray[i]._id == classroomsArray[classroomNumber].cohort) {
-            cohortNumber = i;
+    for (var i = 0; i < APP.cohortsArray.length; i++) {
+        if (APP.cohortsArray[i]._id == APP.classroomsArray[APP.classroomNumber].cohort) {
+            APP.cohortNumber = i;
         }
     }
 

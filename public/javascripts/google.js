@@ -1,11 +1,11 @@
-//var userName, userImage, userEmail;
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    userName = profile.getName();
-    userImage = profile.getImageUrl();
-    userEmail = profile.getEmail().toLowerCase();
-    APP.user.find(userEmail);
+    APP.userName = profile.getName();
+    APP.userImage = profile.getImageUrl();
+    APP.userEmail = profile.getEmail().toLowerCase();
+
+    APP.user.find(APP.userEmail);
 }
 
 function signOut() {
