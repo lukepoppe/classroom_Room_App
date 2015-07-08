@@ -1,20 +1,12 @@
 function names() {
 
-    var alldesks = [];
-    var classnames = [];
     var shuffled;
-    var cohortid = classroomsArray[classroomNumber].cohort;
 
     /* Loop through cohorts array, find cohort that matches the cohort id which is assigned to classroom
-     * Assign that cohort index to GLOBAL VAR cohortNumber
-     * Push each person onto classnames Array... Why?  */
+     * Assign that cohort index to GLOBAL VAR cohortNumber */
     for (var i = 0; i < cohortsArray.length; i++) {
-        if (cohortsArray[i]._id == cohortid) {
+        if (cohortsArray[i]._id == classroomsArray[classroomNumber].cohort) {
             cohortNumber = i;
-            //console.log(cohortsArray[i].personArray);
-            //cohortsArray[i].personArray.forEach(function (person) {
-            //    classnames.push({firstName: person.firstName, id: person._id, status: person.help_status})
-            //})
         }
     }
 
@@ -36,31 +28,29 @@ function names() {
      * In fact, isn't that already done somewhere else?
      */
     function getnames() {
-        var savedToDesk;
         $(".cohort_list").children().remove();
+        //var savedToDesk;
 
-        console.log(cohortsArray[cohortNumber].personArray);
-        classnames = cohortsArray[cohortNumber].personArray;
+        //classnames = cohortsArray[cohortNumber].personArray;
 
-        classnames.forEach(function (thisRoomPerson) {
-            savedToDesk = false;
-            for (var i = 0; i < currentDeskArray.length; i++) {
-                /* If person is found in currentDeskArray,
-                 * append <p> tag to that desk div*/
-                //console.log(thisRoomPerson);
-                if (currentDeskArray[i].person == thisRoomPerson._id) {
-                    var currentDiv = '#' + currentDeskArray[i].position;
-                    $(currentDiv).append('<p data-id="' + thisRoomPerson._id + '" class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
-                    console.log(thisRoomPerson.firstName, thisRoomPerson.help_status.flag);
-                    color_desks(thisRoomPerson.help_status.flag, currentDiv);
-                    saved = true;
-                }
-            }
-            /* Draw the list of cohort people yet to be dragged into desks */
-            if (savedToDesk == false) {
-                $('.cohort_list').append('<li class="unassignedPerson person" data-id="' + thisRoomPerson._id + '">' + thisRoomPerson.firstName + '</li>');
-            }
-        });
+        //classnames.forEach(function (thisRoomPerson) {
+        //    savedToDesk = false;
+        //    for (var i = 0; i < currentDeskArray.length; i++) {
+        //        /* If person is found in currentDeskArray,
+        //         * append <p> tag to that desk div*/
+        //        if (currentDeskArray[i].person == thisRoomPerson._id) {
+        //            var currentDiv = '#' + currentDeskArray[i].position;
+        //            $(currentDiv).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
+        //            //console.log(thisRoomPerson.firstName, thisRoomPerson.help_status.flag);
+        //            //color_desks(thisRoomPerson.help_status.flag, currentDiv);
+        //            saved = true;
+        //        }
+        //    }
+        //    /* Draw the list of cohort people yet to be dragged into desks */
+        //    if (savedToDesk == false) {
+        //        $('.cohort_list').append('<li class="unassignedPerson person" data-id="' + thisRoomPerson._id + '">' + thisRoomPerson.firstName + '</li>');
+        //    }
+        //});
         /* Make both assigned and unassigned names draggable */
         init_drag('.unassignedPerson');
         init_drag('.assignedPerson');
@@ -76,10 +66,10 @@ function names() {
     $(".randomizeButton").click(function () {
         $('.assignedPerson').text('');
         clear_desks();
-        shuffled = shuffle(classnames);
-        alldesks = shuffle(alldesks);
+        shuffled = shuffle(cohortsArray[cohortNumber].personArray);
+        currentDeskArray = shuffle(currentDeskArray);
         for (var i = 0; i < shuffled.length; i++) {
-            var select = alldesks[i];
+            var select = currentDeskArray[i];
             var id = $('#' + select);
             var randomname = shuffled[i].firstName;
 
@@ -141,6 +131,7 @@ function names() {
                     init_drag('.assignedPerson');
                     /* Write the name on the target label */
                     targetLabel.text(name);
+
                 },
                 tolerance: "pointer"
             });
@@ -163,24 +154,9 @@ function names() {
     //add cohort names to list
     function appendnames() {
         $(".cohort_list").children().remove();
-        console.log(classnames);
-        classnames.forEach(function (value) {
+        cohortsArray[cohortNumber].personArray.forEach(function (value) {
             $('.cohort_list').append('<li class="unassignedPerson">' + value.firstName + '</li>');
         });
-    }
-
-    function color_desks(flag, position) {
-        switch (flag) {
-            case "green":
-                $(position).css('background-color', '#009933');
-                break;
-            case "yellow":
-                $(position).css('background-color', '#FFFF66');
-                break;
-            case "red":
-                $(position).css('background-color', '#FF0000');
-                break;
-        }
     }
 
     //clear out person attribute in all desk objects

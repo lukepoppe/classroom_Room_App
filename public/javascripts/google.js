@@ -1,12 +1,11 @@
-var userName, userImage, userEmail;
+//var userName, userImage, userEmail;
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     userName = profile.getName();
     userImage = profile.getImageUrl();
     userEmail = profile.getEmail().toLowerCase();
-    // Initialize Arrays of all data (DUMMY data for now, will be from DB)
-    getAllClassrooms();
+    APP.user.find(userEmail);
 }
 
 function signOut() {

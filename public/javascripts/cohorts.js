@@ -1,37 +1,14 @@
 //console.log('cohorts.js is loaded');
 
 // INIT VARS //
-var cohortNumber = 0;
-var cohortsArray, currentPersonArray;
-var cohortID;
+//var cohortNumber = 0;
+//var cohortsArray, currentPersonArray;
+//var cohortID;
 
-// Get current cohort array from DB
-getAllCohorts();
 
-function paintStatuses(){
+function paintStatuses() {
     console.log('paint statii');
 };
-
-function getAllCohorts() {
-    $.ajax({
-        url: '/cohorts/',
-        data: {},
-        method: 'get',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            cohortsArray = data;
-            currentPersonArray = cohortsArray[cohortNumber].personArray;
-            drawList();
-            paintStatuses();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-        complete: function (jqXHR, textStatus) {
-            console.log("getAllCohorts() Ajax GET Complete:", textStatus);
-        }
-    });
-}
 
 function createCohortInDB() {
     console.log("createCohortInDB");
@@ -114,16 +91,17 @@ function submitPerson() {
 function drawList() {
     // Redraw list of cohorts on left
     $('.cohortList').empty();
-    for (var i = 0; i < cohortsArray.length; i++) {
+    for (var i = 0; i < APP.cohortsArray.length; i++) {
         $('.cohortList').append("<li class='cohortListClass'><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button><button class='editCohortName btn btn-primary' data-target='#editCohortName' data-toggle='modal'>Edit Name</button></li>");
-    };
+    }
+    ;
 
     // On Click of cohort list
     $('.cohortList').on('click', '.cohortID', function () {
         $('.entryList').show();
         $('.showList').show();
         cohortNumber = $(this).data('cohortnumber');
-        cohortID = $(this).attr('id');
+        //cohortID = $(this).attr('id');
         currentPersonArray = cohortsArray[cohortNumber].personArray;
         drawList();
     });
@@ -164,7 +142,8 @@ function drawList() {
     $('.showList').children('ul').empty();
     for (var i = 0; i < currentPersonArray.length; i++) {
         $('.showList').children('ul').append("<li class='studentList' data-number='" + i + "'>" + currentPersonArray[i].firstName + " " + currentPersonArray[i].lastName + " | " + currentPersonArray[i].email + "    <button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button><button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button></li>");
-    };
+    }
+    ;
 
     // On Click of Edit Name
     $('.editName').click(function () {
@@ -186,7 +165,7 @@ function drawList() {
         var nameNumber = $(this).parent('li').data('number');
         $('.warnOfPersonName').empty().append(cohortsArray[cohortNumber].personArray[nameNumber].firstName + " " + cohortsArray[cohortNumber].personArray[nameNumber].lastName);
         $('.deleteNameButton').on('click', function () {
-            cohortsArray[cohortNumber].personArray.splice(nameNumber,1);
+            cohortsArray[cohortNumber].personArray.splice(nameNumber, 1);
             updateCohortInDB(cohortNumber);
         });
     });

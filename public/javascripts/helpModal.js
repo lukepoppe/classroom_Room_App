@@ -4,6 +4,28 @@ function loadModal() {
     });
 }
 
+function helpModal() {
+    $(".modalQuestionText").hide();
+    $("#statusModal").draggable();
+
+    $('.yellow').click(function () {
+        yellowStatus();
+    });
+
+    $('.red').click(function () {
+        redStatus();
+    });
+
+    $('.green').click(function () {
+        greenStatus();
+    });
+
+    $('.helpModalFooter').on('click', '.btn-primary', function () {
+        changeStatus();
+        $('#statusModal').modal('hide');
+    });
+}
+
 function greenStatus() {
     $(".modalQuestionText").hide();
     //$('.btn-primary').css("background", "green");
@@ -66,26 +88,4 @@ function changeStatus() {
 
         }
     }
-}
-
-function helpModal() {
-    $(".modalQuestionText").hide();
-    $("#statusModal").draggable();
-
-    $('.yellow').click(function () {
-        yellowStatus();
-    });
-
-    $('.red').click(function () {
-        redStatus();
-    });
-
-    $('.green').click(function () {
-        greenStatus();
-    });
-
-    $('.helpModalFooter').on('click', '.btn-primary', function () {
-        changeStatus();
-        $('#statusModal').modal('hide');
-    });
 }
