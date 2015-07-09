@@ -75,7 +75,6 @@ function changeStatus() {
     /* get status message and timestamp*/
     APP.user.help_status.question = $('.helpModalTextbox').val();
     APP.user.help_status.timestamp = new Date;
-    console.log('runs1');
 
     /* THIS IS DUPLICATION OF FINDHUMAN, so don't do it. Find cohort there.*/
 

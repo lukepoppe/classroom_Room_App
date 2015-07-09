@@ -7,8 +7,8 @@ APP.user = {
         if (APP.user.authenticated) {
             $('.userNameDom').empty();
             $('.userImageDom').empty();
-            $('.userNameDom').append(APP.userName);
-            $('.userImageDom').append('<img src=" ' + APP.userImage + ' "id="userImageDom">');
+            $('.userNameDom').append(APP.user.name);
+            $('.userImageDom').append('<img src=" ' + APP.user.image + ' "id="userImageDom">');
             $('.signOutButton').removeClass('hidden');
             $('.g-signin2').addClass('hidden');
             $('.helpModalButton').removeClass('hidden');
@@ -247,9 +247,6 @@ APP.user = {
         /* LOOP THROUGH COHORTS ARRAY */
         for (var i = 0; i < APP.cohortsArray.length; i++) {
 
-            //classroomid = cohort._id;
-            //name = cohort.name;
-
             /* LOOP THROUGH PEOPLE IN EACH COHORT*/
 
             for (var j = 0; j < APP.cohortsArray[i].personArray.length; j++) {
@@ -258,6 +255,7 @@ APP.user = {
                     console.log(APP.cohortsArray[i].personArray[j]);
 
                     APP.user.cohort = i;
+                    APP.user.cohortId = APP.cohortsArray[i]._id;
 
                     /* Help Status check */
                     APP.user.help_status = APP.cohortsArray[i].personArray[j].help_status;
@@ -272,15 +270,17 @@ APP.user = {
         }
 
         /* Find Classroom User is in */
-        //for (var i = 0; i < APP.classroomsArray.length; i++) {
-        //    if (APP.classroomsArray[i].cohort == id) {
-        //        //console.log(i, classroom.cohort, id);
-        //        APP.classroomNumber = i;
-        //        APP.currentDeskArray = classroom.deskArray;
-        //        //refreshClassroom();
-        //        break;
-        //    }
-        //}
-        //
+        for (var i = 0; i < APP.classroomsArray.length; i++) {
+            if (APP.classroomsArray[i].cohort == APP.user.cohortId) {
+
+                /* Set user's classroom */
+                APP.user.classroom = i;
+
+                /* Set classroom in view */
+                APP.classroomNumber = i;
+                APP.currentDeskArray = APP.classroomsArray[i].deskArray;
+                break;
+            }
+        }
     }
 };
