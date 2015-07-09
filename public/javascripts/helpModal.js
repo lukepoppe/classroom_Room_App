@@ -20,7 +20,7 @@ function helpModal() {
         greenStatus();
     });
 
-    $('.helpModalFooter').on('click', '.btn-primary', function () {
+    $('.helpModalFooter').off('click').on('click', '.btn-primary', function () {
         APP.user.changeStatus();
         $('#statusModal').modal('hide');
     });
