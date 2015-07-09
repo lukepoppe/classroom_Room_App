@@ -1,5 +1,25 @@
-//// Get class and cohorts array from DB, then paint desks.
+/* Order of things:
+ * 1. Get data / login to get user data
+ * 2. Find YOUR user/cohort
+ * 3. draw DOM
+ * 4. Hide stuff depending on authentication
+ */
 
+/* MAKE GOOGLE A PROMISE, EXECUTE ALL STUFF THAT NEEDS USER AFTER THAT! */
+
+///* Google signin, then authenticate */
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+
+    APP.user.name = profile.getName();
+    APP.user.image = profile.getImageUrl();
+    APP.user.email = profile.getEmail().toLowerCase();
+
+    APP.user.authenticate();
+    APP.user.find(APP.userEmail);
+}
+
+/* Get class and cohorts array from DB, then paint desks.*/
 var promise1 = APP.classrooms.get();
 promise1.done(function (data) {
     console.log(data);
@@ -11,17 +31,15 @@ promise1.done(function (data) {
         console.log(data);
         APP.cohortsArray = data;
         APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
-        //drawList();
 
-        APP.DOM.classroom();
+        /* Draw the DOM */
+        APP.DOM.init();
+        //drawList();
     });
 
 });
 
 $(document).ready(function () {
-
-    // Status Modal
-    loadModal();
 
     /* Draws the cohort dropdown contents on click */
     $('.dropdown').on('click', '.dropdown-menu li a', function () {
@@ -73,7 +91,7 @@ $(document).ready(function () {
                 APP.currentDeskArray.push(new Desk(APP.currentDeskArray.length, clickedPosition, "", classroomNumber));
             }
             // Refresh Classroom with new data. Why this doesn't repaint desks? not sure..
-            APP.DOM.classroom();
+            APP.DOM.refresh();
         }
         if (APP.toggleEditing === false) {
             console.log("editing disabled");
@@ -84,7 +102,7 @@ $(document).ready(function () {
         $('.classroomShit').show();
         APP.classroomNumber = $(this).data('classroom');
         APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
-        APP.DOM.classroom();
+        APP.DOM.refresh();
         $('.adminViews').show();
         $('.cohortListDiv').show();
     });

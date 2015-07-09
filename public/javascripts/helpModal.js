@@ -72,20 +72,32 @@ function redStatus() {
 }
 
 function changeStatus() {
+    /* get status message and timestamp*/
     APP.help_status.question = $('.helpModalTextbox').val();
     APP.help_status.timestamp = new Date;
-    for (var i = 0; i < APP.cohortsArray[APP.cohortNumber].personArray.length; i++) {
-        if (APP.cohortsArray[APP.cohortNumber].personArray[i].email == APP.userEmail) {
+    console.log('runs1');
 
-            /* Push old help_status into help_history */
-            APP.cohortsArray[APP.cohortNumber].personArray[i].help_history.push(APP.cohortsArray[APP.cohortNumber].personArray[i].help_status);
+    /* THIS IS DUPLICATION OF FINDHUMAN, so don't do it. Find cohort there.*/
 
-            /* Set new help_status in array if there was a help_status before. */
-            APP.cohortsArray[APP.cohortNumber].personArray[i].help_status = help_status;
-
-            /* Update cohort DB */
-            APP.cohorts.update(APP.cohortNumber);
-
-        }
-    }
+    ///* Loop through array of people, find the matching email.
+    // * Mistake: must search all people, not just the current cohort.*/
+    //for (var i = 0; i < APP.cohortsArray[i].length; i++) {
+    //    for (var j = 0; j < APP.cohortsArray[i].personArray[j].length; j++) {
+    //
+    //        if (APP.cohortsArray[i].personArray[j].email == APP.userEmail) {
+    //            console.log('runs');
+    //
+    //            /* Push old help_status into help_history */
+    //            APP.cohortsArray[APP.cohortNumber].personArray[i].help_history.push(APP.cohortsArray[APP.cohortNumber].personArray[i].help_status);
+    //
+    //            /* Set new help_status in array if there was a help_status before. */
+    //            APP.cohortsArray[APP.cohortNumber].personArray[i].help_status = help_status;
+    //
+    //            /* Update cohort DB */
+    //            APP.cohorts.update(APP.cohortNumber);
+    //
+    //        }
+    //
+    //    }
+    //}
 }

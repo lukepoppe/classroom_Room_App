@@ -70,7 +70,7 @@ APP.classrooms = {
                 // get new data and update
                 APP.classroomsArray = data;
                 APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
-                APP.DOM.classroom();
+                APP.DOM.refresh();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

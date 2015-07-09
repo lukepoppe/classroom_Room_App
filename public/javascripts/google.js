@@ -1,14 +1,4 @@
 
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    APP.userName = profile.getName();
-    APP.userImage = profile.getImageUrl();
-    APP.userEmail = profile.getEmail().toLowerCase();
-
-    APP.user.find(APP.userEmail);
-    APP.user.adminAuth()
-}
-
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {

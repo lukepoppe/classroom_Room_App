@@ -1,29 +1,6 @@
-
 /* DOM DRAWING Services */
 
 APP.DOM = {
-    classroom: function () {
-        /* Load Fresh Classroom Template. */
-        $('.classroom').load('classroom.html', function () {
-            /* If logged in, find your room and cohort */
-            //if (APP.authenticated) {
-            //    APP.user.adminAuth();
-            //}
-            /* Draw NAVBAR */
-            APP.DOM.navbar();
-            /* Draw COHORT DROPDOWN */
-            APP.DOM.dropdown();
-            /* Store currently selected desk array in currentDeskArray */
-            APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
-            /* Classroom Name Draw (Teacher) */
-            $('.classRoomName').text(APP.classroomsArray[APP.classroomNumber].name);
-            /* Hide stuff depending on logged in or admin*/
-            //APP.user.adminAuth();
-            //$('.cohortTitle').text(APP.cohortsArray[APP.cohortNumber].name);
-            /*Color desks that are desks, also draw statuses and people in desks */
-            APP.DOM.colorDesks();
-        });
-    },
     colorDesks: function () {
 
         //switch (flag) {
@@ -47,7 +24,7 @@ APP.DOM = {
 
                 /* If person is found in currentDeskArray, append <p> tag to that desk div*/
                 if (APP.currentDeskArray[i].person == thisRoomPerson._id) {
-                    console.log(thisRoomPerson);
+                    //console.log(thisRoomPerson);
                     var div = '#' + APP.currentDeskArray[i].position;
                     $(div).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
                     APP.DOM.colorDesks(thisRoomPerson.help_status.flag, div);
@@ -67,8 +44,8 @@ APP.DOM = {
 
             /* If a person is assigned to a desk, color it based on attribute */
             if (APP.currentDeskArray[i].person) {
-                console.log(APP.currentDeskArray[i].person);
-                console.log(div.children('p').data('flag'));
+                //console.log(APP.currentDeskArray[i].person);
+                //console.log(div.children('p').data('flag'));
             }
         }
     },
@@ -82,6 +59,14 @@ APP.DOM = {
                 $('.dropdown-menu').append(el);
             })
         }
+    },
+    init: function () {
+        /* Only run this one-time on page load */
+
+        /* Load Status Modal */
+        loadModal();
+        /* Draw NAVBAR */
+        APP.DOM.navbar();
     },
     navbar: function () {
         navBar = "";
@@ -101,6 +86,24 @@ APP.DOM = {
             //$('.helpModal').hide();
             $('.adminViews').hide();
         });
-    }
+    },
+    refresh: function () {
+        /* Refresh the DOM */
+        $('.classroom').load('classroom.html', function () {
+
+            /* Draw NAVBAR */
+            APP.DOM.navbar();
+            /* Draw COHORT DROPDOWN */
+            APP.DOM.dropdown();
+            /* Store currently selected desk array in currentDeskArray */
+            APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
+            /* Classroom Name Draw (Teacher) */
+            $('.classRoomName').text(APP.classroomsArray[APP.classroomNumber].name);
+            //$('.cohortTitle').text(APP.cohortsArray[APP.cohortNumber].name);
+            /*Color desks that are desks, also draw statuses and people in desks */
+            APP.DOM.colorDesks();
+        });
+    },
+
 };
 
