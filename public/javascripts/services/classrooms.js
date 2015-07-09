@@ -1,4 +1,3 @@
-
 /* Classroom API */
 APP.classrooms = {
     add: function () {
@@ -40,7 +39,7 @@ APP.classrooms = {
         });
     },
     get: function () {
-        $.ajax({
+        return $.ajax({
             url: '/classrooms/',
             data: {},
             method: 'get',

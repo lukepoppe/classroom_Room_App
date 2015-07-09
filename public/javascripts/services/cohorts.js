@@ -40,15 +40,13 @@ APP.cohorts = {
         });
     },
     get: function () {
-        $.ajax({
+        return $.ajax({
             url: '/cohorts/',
             data: {},
             method: 'get',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                APP.cohortsArray = data;
-                APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
-                //drawList();
+                return data;
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

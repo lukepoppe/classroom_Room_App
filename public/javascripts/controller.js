@@ -1,15 +1,28 @@
-// Get class and cohorts array from DB
-var promise1 = Promise.resolve(APP.classrooms.get());
-promise1.then(function (data) {
+//// Get class and cohorts array from DB
+//var promise1 = Promise.resolve(function(resolve, reject){
+//    APP.classroomsArray = APP.classrooms.get();
+//    if(APP.classroomsArray){
+//        resolve(APP.classroomsArray);
+//    }else{
+//        reject(Error('you broke'));
+//    }
+//});
+var promise1 = APP.classrooms.get();
+promise1.done(function (data) {
     console.log(data);
     APP.classroomsArray = data;
-    //APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
-    //console.log(APP.classroomsArray[APP.classroomNumber].deskArray);
-    console.log(APP.classroomsArray);
-    var promise2 = Promise.resolve(APP.cohorts.get());
-    promise2.then(function (response) {
+    APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
+
+    var promise2 = APP.cohorts.get();
+    promise2.done(function (data) {
+        console.log(data);
+        APP.cohortsArray = data;
+        APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
+        //drawList();
+
         APP.DOM.classroom();
-    })
+    });
+
 });
 
 $(document).ready(function () {
