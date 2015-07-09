@@ -63,7 +63,6 @@ APP.cohorts = {
             method: 'put',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                // get new data and update
                 APP.cohorts.get();
             },
             error: function (jqXHR, textStatus, errorThrown) {
