@@ -22,6 +22,7 @@ function onSignIn(googleUser) {
         var promise2 = APP.cohorts.get();
         promise2.done(function (data) {
             console.log(data);
+
             APP.cohortsArray = data;
             APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
 
@@ -31,8 +32,10 @@ function onSignIn(googleUser) {
             /* 3. Draw DOM */
             APP.DOM.init();
 
-            /* 4. Hide stuff depending on admin or not. */
-            APP.user.authenticate();
+            $(document).ready(function () {
+                /* 4. Hide stuff depending on admin or not. */
+                APP.user.authenticate();
+            });
         });
     });
 

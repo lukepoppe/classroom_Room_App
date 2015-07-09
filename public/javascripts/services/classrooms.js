@@ -46,8 +46,6 @@ APP.classrooms = {
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 return data;
-                //APP.user.find(userEmail);
-                //APP.DOM.classroom();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

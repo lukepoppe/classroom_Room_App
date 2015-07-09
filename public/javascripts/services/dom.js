@@ -67,7 +67,7 @@ APP.DOM = {
         loadModal();
 
         APP.DOM.refresh();
-        
+
         $(document).ready(function () {
 
             /* Draws the cohort dropdown contents on click */
@@ -168,20 +168,31 @@ APP.DOM = {
         });
     },
     refresh: function () {
-        /* Refresh the DOM */
+        /* Draw NAVBAR */
+        APP.DOM.navbar();
+        /* Draw COHORT DROPDOWN */
+        APP.DOM.dropdown();
+        /* Cohort title draw */
+        $('.cohortTitle').text(APP.cohortsArray[APP.cohortNumber].name);
+
+        /* AJAX LOAD OF CLASSROOM GRID */
         $('.classroom').load('classroom.html', function () {
 
-            /* Draw NAVBAR */
-            APP.DOM.navbar();
-            /* Draw COHORT DROPDOWN */
-            APP.DOM.dropdown();
             /* Classroom Name Draw (Teacher) */
             $('.classRoomName').text(APP.classroomsArray[APP.classroomNumber].name);
-            /* Cohort title draw */
-            $('.cohortTitle').text(APP.cohortsArray[APP.cohortNumber].name);
             /*Color desks that are desks, also draw statuses and people in desks */
             APP.DOM.colorDesks();
         });
+    },
+    statusColor: function () {
+        if (APP.user.help_status.flag == 'red') {
+            redStatus();
+        } else if (APP.user.help_status.flag == 'yellow') {
+            yellowStatus();
+        } else {
+            greenStatus();
+        }
+
     }
 };
 

@@ -21,7 +21,7 @@ function helpModal() {
     });
 
     $('.helpModalFooter').on('click', '.btn-primary', function () {
-        changeStatus();
+        APP.user.changeStatus();
         $('#statusModal').modal('hide');
     });
 }
@@ -34,7 +34,6 @@ function greenStatus() {
     $('.yellow').css("background", "white");
     $('.red').css("background", "white");
     $('.modal-header').css("background", "green");
-    $('.helpModalButton').css("background", "green");
     $('.helpLevel').css("border-color", "green");
     $('#userImageDom').css("border-color", "green");
     APP.user.help_status.flag = "green";
@@ -50,7 +49,6 @@ function yellowStatus() {
     $('.red').css("background", "white");
     $('.green').css("background", "white");
     $('.modal-header').css("background", "yellow");
-    $('.helpModalButton').css("background", "yellow");
     $('#userImageDom').css("border-color", "yellow");
     APP.user.help_status.flag = "yellow";
     //$('.classRoomName').css("background", "yellow");
@@ -64,39 +62,8 @@ function redStatus() {
     $('.yellow').css("background", "white");
     $('.green').css("background", "white");
     $('.modal-header').css("background", "red");
-    $('.helpModalButton').css("background", "red");
     $('.helpLevel').css("border-color", "red");
     $('#userImageDom').css("border-color", "red");
     APP.user.help_status.flag = "red";
     //$('.classRoomName').css("background", "red");
-}
-
-function changeStatus() {
-    /* get status message and timestamp*/
-    APP.user.help_status.question = $('.helpModalTextbox').val();
-    APP.user.help_status.timestamp = new Date;
-
-    /* THIS IS DUPLICATION OF FINDHUMAN, so don't do it. Find cohort there.*/
-
-    ///* Loop through array of people, find the matching email.
-    // * Mistake: must search all people, not just the current cohort.*/
-    //for (var i = 0; i < APP.cohortsArray[i].length; i++) {
-    //    for (var j = 0; j < APP.cohortsArray[i].personArray[j].length; j++) {
-    //
-    //        if (APP.cohortsArray[i].personArray[j].email == APP.userEmail) {
-    //            console.log('runs');
-    //
-    //            /* Push old help_status into help_history */
-    //            APP.cohortsArray[APP.cohortNumber].personArray[i].help_history.push(APP.cohortsArray[APP.cohortNumber].personArray[i].help_status);
-    //
-    //            /* Set new help_status in array if there was a help_status before. */
-    //            APP.cohortsArray[APP.cohortNumber].personArray[i].help_status = help_status;
-    //
-    //            /* Update cohort DB */
-    //            APP.cohorts.update(APP.cohortNumber);
-    //
-    //        }
-    //
-    //    }
-    //}
 }
