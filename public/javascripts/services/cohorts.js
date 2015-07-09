@@ -48,7 +48,7 @@ APP.cohorts = {
             success: function (data, textStatus, jqXHR) {
                 APP.cohortsArray = data;
                 APP.currentPersonArray = APP.cohortsArray[APP.cohortNumber].personArray;
-                drawList();
+                //drawList();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

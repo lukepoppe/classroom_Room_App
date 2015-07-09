@@ -46,10 +46,9 @@ APP.classrooms = {
             method: 'get',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                APP.classroomsArray = data;
-                APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
+                return data;
                 //APP.user.find(userEmail);
-                APP.DOM.classroom();
+                //APP.DOM.classroom();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

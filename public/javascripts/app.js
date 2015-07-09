@@ -5,7 +5,7 @@ var APP = APP || {};
 APP.help_status = {};
 APP.cohortNumber = 0;
 APP.classroomNumber = 0;
-APP.userCohortNumber;
+APP.userCohortNumber = 0;
 APP.currentDeskArray = [];
 APP.classroomsArray = [];
 APP.i = 0;

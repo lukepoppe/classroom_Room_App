@@ -1,6 +1,16 @@
 // Get class and cohorts array from DB
-APP.classrooms.get();
-APP.cohorts.get();
+var promise1 = Promise.resolve(APP.classrooms.get());
+promise1.then(function (data) {
+    console.log(data);
+    APP.classroomsArray = data;
+    //APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
+    //console.log(APP.classroomsArray[APP.classroomNumber].deskArray);
+    console.log(APP.classroomsArray);
+    var promise2 = Promise.resolve(APP.cohorts.get());
+    promise2.then(function (response) {
+        APP.DOM.classroom();
+    })
+});
 
 $(document).ready(function () {
 

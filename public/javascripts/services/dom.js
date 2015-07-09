@@ -6,9 +6,9 @@ APP.DOM = {
         /* Load Fresh Classroom Template. */
         $('.classroom').load('classroom.html', function () {
             /* If logged in, find your room and cohort */
-            if (APP.authenticated) {
-                APP.user.adminAuth();
-            }
+            //if (APP.authenticated) {
+            //    APP.user.adminAuth();
+            //}
             /* Draw NAVBAR */
             APP.DOM.navbar();
             /* Draw COHORT DROPDOWN */
@@ -18,7 +18,7 @@ APP.DOM = {
             /* Classroom Name Draw (Teacher) */
             $('.classRoomName').text(APP.classroomsArray[APP.classroomNumber].name);
             /* Hide stuff depending on logged in or admin*/
-            APP.user.adminAuth();
+            //APP.user.adminAuth();
             //$('.cohortTitle').text(APP.cohortsArray[APP.cohortNumber].name);
             /*Color desks that are desks, also draw statuses and people in desks */
             APP.DOM.colorDesks();
