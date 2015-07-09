@@ -37,8 +37,8 @@ function greenStatus() {
     $('.helpModalButton').css("background", "green");
     $('.helpLevel').css("border-color", "green");
     $('#userImageDom').css("border-color", "green");
-    APP.help_status.flag = "green";
-    APP.help_status.question = "";
+    APP.user.help_status.flag = "green";
+    APP.user.help_status.question = "";
     //$('.classRoomName').css("background", "green");
 }
 
@@ -52,7 +52,7 @@ function yellowStatus() {
     $('.modal-header').css("background", "yellow");
     $('.helpModalButton').css("background", "yellow");
     $('#userImageDom').css("border-color", "yellow");
-    APP.help_status.flag = "yellow";
+    APP.user.help_status.flag = "yellow";
     //$('.classRoomName').css("background", "yellow");
 }
 
@@ -67,14 +67,14 @@ function redStatus() {
     $('.helpModalButton').css("background", "red");
     $('.helpLevel').css("border-color", "red");
     $('#userImageDom').css("border-color", "red");
-    APP.help_status.flag = "red";
+    APP.user.help_status.flag = "red";
     //$('.classRoomName').css("background", "red");
 }
 
 function changeStatus() {
     /* get status message and timestamp*/
-    APP.help_status.question = $('.helpModalTextbox').val();
-    APP.help_status.timestamp = new Date;
+    APP.user.help_status.question = $('.helpModalTextbox').val();
+    APP.user.help_status.timestamp = new Date;
     console.log('runs1');
 
     /* THIS IS DUPLICATION OF FINDHUMAN, so don't do it. Find cohort there.*/

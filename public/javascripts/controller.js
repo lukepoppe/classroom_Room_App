@@ -16,7 +16,7 @@ function onSignIn(googleUser) {
     APP.user.email = profile.getEmail().toLowerCase();
 
     APP.user.authenticate();
-    APP.user.find(APP.userEmail);
+    APP.user.find(APP.user.email);
 }
 
 /* Get class and cohorts array from DB, then paint desks.*/

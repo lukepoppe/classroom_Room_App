@@ -4,7 +4,7 @@ APP.user = {
     authenticate: function () {
 
         /* UNHIDE stuff based on user authentication */
-        if (APP.authenticated) {
+        if (APP.user.authenticated) {
             $('.userNameDom').empty();
             $('.userImageDom').empty();
             $('.userNameDom').append(APP.userName);
@@ -13,14 +13,14 @@ APP.user = {
             $('.g-signin2').addClass('hidden');
             $('.helpModalButton').removeClass('hidden');
             $('.label').removeClass('hidden');
-            if (APP.help_status.flag == 'red') {
+            if (APP.user.help_status.flag == 'red') {
                 redStatus();
-            } else if (APP.help_status.flag == 'yellow') {
+            } else if (APP.user.help_status.flag == 'yellow') {
                 yellowStatus();
             } else {
                 greenStatus();
             }
-            if (APP.admin) {
+            if (APP.user.admin) {
                 $('.newClassroomButton').removeClass('hidden');
                 $('.lastpipe').removeClass('hidden');
                 $('.cohortLink').removeClass('hidden');
@@ -236,44 +236,51 @@ APP.user = {
 //            return array;
 //        }
     },
-    find: function (email) {
+    find: function (userEmail) {
 
-        /* Find Classroom User is in */
-            for (var i = 0; i < APP.classroomsArray.length; i++) {
-                classroom = APP.classroomsArray[i];
-                if (classroom.cohort == id) {
-                    //console.log(i, classroom.cohort, id);
-                    APP.classroomNumber = i;
-                    APP.currentDeskArray = classroom.deskArray;
-                    //refreshClassroom();
-                    break;
-                }
-            }
+        /* INPUT : USER'S EMAIL
+         * OUTPUT: USER'S COHORT AND CLASSROOM
+         */
 
-        var cohort;
-        var person;
-        var classroomid;
-        var name;
+        /* FIND USER'S COHORT */
+
+        /* LOOP THROUGH COHORTS ARRAY */
         for (var i = 0; i < APP.cohortsArray.length; i++) {
-            cohort = APP.cohortsArray[i];
-            classroomid = cohort._id;
-            name = cohort.name;
-            for (var j = 0; j < cohort.personArray.length; j++) {
-                person = cohort.personArray[j];
-                if (person.email.toLowerCase() == email) {
-                    APP.cohortNumber = i;
-                    findClassroom(classroomid);
+
+            //classroomid = cohort._id;
+            //name = cohort.name;
+
+            /* LOOP THROUGH PEOPLE IN EACH COHORT*/
+
+            for (var j = 0; j < APP.cohortsArray[i].personArray.length; j++) {
+
+                if (APP.cohortsArray[i].personArray[j].email.toLowerCase() == userEmail) {
+                    console.log(APP.cohortsArray[i].personArray[j]);
+
+                    APP.user.cohort = i;
 
                     /* Help Status check */
-                    help_status = APP.cohortsArray[APP.cohortNumber].personArray[j].help_status;
+                    APP.user.help_status = APP.cohortsArray[i].personArray[j].help_status;
 
-                    authenticated = true;
-                    if (name == "ADMIN") {
-                        admin = true;
+                    APP.user.authenticated = true;
+                    if (APP.cohortsArray[i].name == "ADMIN") {
+                        APP.user.admin = true;
                     }
                     break;
                 }
             }
         }
+
+        /* Find Classroom User is in */
+        //for (var i = 0; i < APP.classroomsArray.length; i++) {
+        //    if (APP.classroomsArray[i].cohort == id) {
+        //        //console.log(i, classroom.cohort, id);
+        //        APP.classroomNumber = i;
+        //        APP.currentDeskArray = classroom.deskArray;
+        //        //refreshClassroom();
+        //        break;
+        //    }
+        //}
+        //
     }
 };
