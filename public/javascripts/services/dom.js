@@ -182,6 +182,8 @@ APP.DOM = {
             $('.classRoomName').text(APP.classroomsArray[APP.classroomNumber].name);
             /*Color desks that are desks, also draw statuses and people in desks */
             APP.DOM.colorDesks();
+            /* HIDE STUFF BASED ON USER ADMIN OR NOT */
+            APP.user.authenticate();
         });
     },
     statusColor: function () {

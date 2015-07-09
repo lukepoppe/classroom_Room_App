@@ -31,11 +31,7 @@ function onSignIn(googleUser) {
 
             /* 3. Draw DOM */
             APP.DOM.init();
-
-            $(document).ready(function () {
-                /* 4. Hide stuff depending on admin or not. */
-                APP.user.authenticate();
-            });
+            /* 4. Hide stuff depending on admin or not happens inside of refresh/init (APP.user.authenticate)*/
         });
     });
 
