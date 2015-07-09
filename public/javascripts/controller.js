@@ -1,12 +1,5 @@
-//// Get class and cohorts array from DB
-//var promise1 = Promise.resolve(function(resolve, reject){
-//    APP.classroomsArray = APP.classrooms.get();
-//    if(APP.classroomsArray){
-//        resolve(APP.classroomsArray);
-//    }else{
-//        reject(Error('you broke'));
-//    }
-//});
+//// Get class and cohorts array from DB, then paint desks.
+
 var promise1 = APP.classrooms.get();
 promise1.done(function (data) {
     console.log(data);

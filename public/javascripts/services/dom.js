@@ -47,6 +47,7 @@ APP.DOM = {
 
                 /* If person is found in currentDeskArray, append <p> tag to that desk div*/
                 if (APP.currentDeskArray[i].person == thisRoomPerson._id) {
+                    console.log(thisRoomPerson);
                     var div = '#' + APP.currentDeskArray[i].position;
                     $(div).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
                     APP.DOM.colorDesks(thisRoomPerson.help_status.flag, div);
