@@ -97,18 +97,3 @@ function drawList() {
     });
 }
 
-function cohortPageInit() {
-    $('.classroomShit').hide();
-    $('.cohort_list').empty();
-    $('.entryList').hide();
-    $('.showList').hide();
-    $('.cohortListDiv').hide();
-
-    drawList();
-
-    $('.submitPerson').on("click", function () {
-        console.log('submitPerson clicked');
-        submitPerson();
-        $('.showList').show();
-    });
-}
