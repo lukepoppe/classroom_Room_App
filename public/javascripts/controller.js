@@ -40,13 +40,18 @@ function onSignIn(googleUser) {
             promise3.done(function (data) {
                 APP.classTemplate = data;
                 APP.DOM.refreshCallback(APP.classTemplate);
-                APP.DOM.onClicks();
+                var promise4 = APP.DOM.adminViews();
+                promise4.done(function (data) {
+                    APP.adminTemplate = data;
+                    APP.DOM.adminCallback(APP.adminTemplate);
+                    APP.DOM.onClicks();
+                    //APP.user.authenticate();
+        /* 4. Hide stuff depending on admin or not happens inside of refresh/init (APP.user.authenticate)*/
+                });
 
             });
 
         });
-
-        /* 4. Hide stuff depending on admin or not happens inside of refresh/init (APP.user.authenticate)*/
     });
     //});
 }

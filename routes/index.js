@@ -7,6 +7,11 @@ router.get('/classroom.html', function (req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/classroom.html'))
 });
 
+/* GET classroom template. */
+router.get('/adminViews.html', function (req, res, next) {
+    res.sendFile(path.resolve(__dirname, '../views/adminViews.html'))
+});
+
 router.get('/helpModal.html', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, '../views/helpModal.html'))
 });

@@ -1,6 +1,15 @@
 /* DOM DRAWING Services */
 
 APP.DOM = {
+    adminViews: function () {
+        /* AJAX LOAD OF adminViews */
+        return $.get('adminViews.html', function (data) {
+            return data;
+        });
+    },
+    adminCallback: function (page) {
+        $('.sidebar').empty().append(page);
+    },
     assignPeople: function () {
 
         var shuffled;
@@ -29,8 +38,6 @@ APP.DOM = {
                 if (APP.currentDeskArray[i].person == thisRoomPerson._id) {
                     var currentDiv = '#' + APP.currentDeskArray[i].position;
                     $(currentDiv).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
-                    //console.log(thisRoomPerson.firstName, thisRoomPerson.help_status.flag);
-                    //color_desks(thisRoomPerson.help_status.flag, currentDiv);
                     saved = true;
                 }
             }
@@ -40,10 +47,84 @@ APP.DOM = {
             }
         });
 
-        ///* Make both assigned and unassigned names draggable */
-        //init_drag('.unassignedPerson');
-        //init_drag('.assignedPerson');
-        //
+        /* Make both assigned and unassigned names draggable */
+        // initialize draggable item
+        function init_drag(el) {
+            if (APP.admin) {
+                $(el).draggable({
+                    cursor: "move",
+                    revert: "invalid",
+                    stack: el
+                });
+            }
+        }
+
+        init_drag('.unassignedPerson');
+        init_drag('.assignedPerson');
+
+        if (APP.user.admin) {
+            $(function () {
+                init_drag('.unassignedPerson');
+
+                $('.occupied').droppable({
+                    drop: function (event, ui) {
+
+                        /* Get attributes of dragged and dropped items */
+                        var targetDiv = $(this);
+                        var desk_id = targetDiv.attr('id');
+                        var personId = ui.draggable.data('id');
+                        var name = ui.draggable.text();
+
+                        /* Take person out of old deskArray, put in new deskArray */
+                        empty_desk(personId);
+                        fill_desk(personId, desk_id);
+
+                        /* If target div is empty, append an empty label */
+                        if (targetDiv.children().length == 0) {
+                            targetDiv.append('<p class="assignedPerson" data-id="' + personId + '"></p>');
+                        }
+
+                        /* Find the empty label in the target div */
+                        var targetLabel = targetDiv.find('p');
+                        var text = title.data('id');
+
+                        /* IF RETURNING TO COHORT LIST */
+                        if (text != "" && text != name) {
+                            $('.cohort_list').append('<li class="unassignedPerson">' + text + '</li>');
+                            init_drag('.unassignedPerson');
+                        }
+
+                        ui.draggable.remove();
+
+                        /* IF dropping on desk where name already was ? */
+                        if (name == text) {
+                            targetDiv.append('<p class="assignedPerson"></p>');
+                            title = targetDiv.find("p");
+                        }
+
+                        init_drag('.assignedPerson');
+                        /* Write the name on the target label */
+                        targetLabel.text(name);
+
+                    },
+                    tolerance: "pointer"
+                });
+
+                $(".cohort_list").droppable({
+                    accept: ".assignedPerson",
+                    drop: function (event, ui) {
+                        var item = ui.draggable.html();
+
+                        empty_desk(item);
+
+                        $(this).append('<li class="unassignedPerson">' + item + '</li>');
+                        init_drag(".unassignedPerson");
+                        ui.draggable.remove();
+                    }
+                })
+            });
+        }
+
         //$('.clearButton').click(function () {
         //    $('.assignedPerson').text('');
         //    appendnames();
@@ -75,69 +156,7 @@ APP.DOM = {
         //});
         //
         //
-        //if (APP.admin) {
-        //    console.log('here');
-        //    $(function () {
-        //        init_drag('.unassignedPerson');
-        //
-        //        $('.occupied').droppable({
-        //            drop: function (event, ui) {
-        //
-        //                /* Get attributes of dragged and dropped items */
-        //                var targetDiv = $(this);
-        //                var desk_id = targetDiv.attr('id');
-        //                var personId = ui.draggable.data('id');
-        //                var name = ui.draggable.text();
-        //
-        //                /* Take person out of old deskArray, put in new deskArray */
-        //                empty_desk(personId);
-        //                fill_desk(personId, desk_id);
-        //
-        //                /* If target div is empty, append an empty label */
-        //                if (targetDiv.children().length == 0) {
-        //                    targetDiv.append('<p class="assignedPerson" data-id="' + personId + '"></p>');
-        //                }
-        //
-        //                /* Find the empty label in the target div */
-        //                var targetLabel = targetDiv.find('p');
-        //                //var text = title.data('id');
-        //
-        //                /* IF RETURNING TO COHORT LIST */
-        //                //if (text != "" && text != name) {
-        //                //    $('.cohort_list').append('<li class="unassignedPerson">' + text + '</li>');
-        //                //    init_drag('.unassignedPerson');
-        //                //}
-        //
-        //                ui.draggable.remove();
-        //
-        //                /* IF dropping on desk where name already was ? */
-        //                //if (name == text) {
-        //                //    targetDiv.append('<p class="assignedPerson"></p>');
-        //                //    title = targetDiv.find("p");
-        //                //}
-        //
-        //                init_drag('.assignedPerson');
-        //                /* Write the name on the target label */
-        //                targetLabel.text(name);
-        //
-        //            },
-        //            tolerance: "pointer"
-        //        });
-        //
-        //        $(".cohort_list").droppable({
-        //            accept: ".assignedPerson",
-        //            drop: function (event, ui) {
-        //                var item = ui.draggable.html();
-        //
-        //                empty_desk(item);
-        //
-        //                $(this).append('<li class="unassignedPerson">' + item + '</li>');
-        //                init_drag(".unassignedPerson");
-        //                ui.draggable.remove();
-        //            }
-        //        })
-        //    });
-        //}
+
         //
         ////add cohort names to list
         //function appendnames() {
@@ -175,16 +194,6 @@ APP.DOM = {
         //}
         //
         //
-        //// initialize draggable item
-        //function init_drag(el) {
-        //    if (APP.admin) {
-        //        $(el).draggable({
-        //            cursor: "move",
-        //            revert: "invalid",
-        //            stack: el
-        //        });
-        //    }
-        //}
 
         ////shuffle the array
         //function shuffle(array) {
@@ -206,7 +215,7 @@ APP.DOM = {
         //}
     },
     cohortPage: function () {
-        $('.classroomShit').hide();
+        $('.sidebar').hide();
         $('.cohort_list').empty();
         $('.entryList').hide();
         $('.showList').hide();
@@ -315,26 +324,6 @@ APP.DOM = {
         var div;
         var savedToDesk;
 
-        /* Draw people names both on desks and in cohort list */
-        //APP.cohortsArray[APP.cohortNumber].personArray.forEach(function (thisRoomPerson) {
-        //    savedToDesk = false;
-        //    for (var i = 0; i < APP.currentDeskArray.length; i++) {
-        //
-        //        /* If person is found in currentDeskArray, append <p> tag to that desk div*/
-        //        if (APP.currentDeskArray[i].person == thisRoomPerson._id) {
-        //            //console.log(thisRoomPerson);
-        //            var div = '#' + APP.currentDeskArray[i].position;
-        //            $(div).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
-        //            APP.DOM.colorDesks(thisRoomPerson.help_status.flag, div);
-        //            saved = true;
-        //        }
-        //    }
-        //    /* Draw the list of cohort people yet to be dragged into desks */
-        //    if (savedToDesk == false) {
-        //        $('.cohort_list').append('<li class="unassignedPerson person" data-id="' + thisRoomPerson._id + '">' + thisRoomPerson.firstName + '</li>');
-        //    }
-        //});
-
         /* Draw a desk if there should be one there */
         for (var i = 0; i < APP.currentDeskArray.length; i++) {
 
@@ -359,6 +348,26 @@ APP.DOM = {
                 }
             }
         }
+
+        /* Draw people names both on desks and in cohort list */
+        APP.cohortsArray[APP.cohortNumber].personArray.forEach(function (thisRoomPerson) {
+            savedToDesk = false;
+            for (var i = 0; i < APP.currentDeskArray.length; i++) {
+                /* If person is found in currentDeskArray, append <p> tag to that desk div*/
+                if (APP.currentDeskArray[i].person == thisRoomPerson._id) {
+                    //console.log(thisRoomPerson);
+                    var div = '#' + APP.currentDeskArray[i].position;
+                    $(div).append('<p data-id="' + thisRoomPerson._id + '" data-flag="' + thisRoomPerson.help_status.flag + '"class="assignedPerson person">' + thisRoomPerson.firstName + '</p>');
+                    APP.DOM.colorDesks(thisRoomPerson.help_status.flag, div);
+                    saved = true;
+                }
+            }
+            /* Draw the list of cohort people yet to be dragged into desks */
+            if (savedToDesk == false) {
+                $('.cohort_list').append('<li class="unassignedPerson person" data-id="' + thisRoomPerson._id + '">' + thisRoomPerson.firstName + '</li>');
+            }
+        });
+
     },
     dropdown: function () {
         $('.dropdown-menu').children().empty();
@@ -397,7 +406,7 @@ APP.DOM = {
         });
         // Set On Click of Classroom Selector Links
         $('.classroomSelector').off('click').on('click', function () {
-            $('.classroomShit').show();
+            $('.sidebar').show();
             APP.classroomNumber = $(this).data('classroom');
             APP.currentDeskArray = APP.classroomsArray[APP.classroomNumber].deskArray;
             APP.DOM.refreshCallback(APP.classTemplate);
@@ -412,7 +421,7 @@ APP.DOM = {
         });
 
     },
-    onClicks: function(){
+    onClicks: function () {
 
         /* Draws the cohort dropdown contents on click */
         $('.dropdown').off('click').on('click', '.dropdown-menu li a', function () {
@@ -497,6 +506,9 @@ APP.DOM = {
         APP.user.authenticate();
         /*Color desks that are desks, also draw statuses and people in desks */
         APP.DOM.colorDesks();
+
+        /* Gives ability to move people in and out of desks */
+        APP.DOM.assignPeople();
     },
     statusColor: function () {
         if (APP.user.help_status.flag == 'red') {

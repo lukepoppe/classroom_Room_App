@@ -23,10 +23,7 @@ APP.user = {
                 $('.lastpipe').removeClass('hidden');
                 $('.cohortLink').removeClass('hidden');
                 $('.closeX').removeClass('hidden');
-                $('.classroomShit').removeClass('hidden');
-
-                /* Gives ability to move people in and out of desks */
-                APP.DOM.assignPeople();
+                $('.sidebar').removeClass('hidden');
             }
         } else {
             /* If user is not in our DB, sign them out with message */
