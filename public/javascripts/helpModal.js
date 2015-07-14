@@ -87,5 +87,6 @@ function helpModal() {
     $('.helpModalFooter').on('click', '.btn-primary', function () {
         changeStatus();
         $('#statusModal').modal('hide');
+        $("#div1").css('background-color', help_status.flag);
     });
 }

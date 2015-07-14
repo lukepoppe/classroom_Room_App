@@ -160,6 +160,7 @@ function names() {
                 break;
             }
         }
+        console.log("poop! " + id, student);
     }
 
 
