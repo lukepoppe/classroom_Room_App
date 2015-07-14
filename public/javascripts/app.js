@@ -233,9 +233,9 @@ $(document).ready(function () {
 
             if ($(this).hasClass('occupied')) {
                 // Erase a desk from client-side array
-                currentDeskArray = currentDeskArray.filter(function (obj) {
-                    return obj.position !== clickedPosition;
-                });
+                for (var i = 0; i < currentDeskArray.length; i++) {
+                    currentDeskArray[i].position == clickedPosition ? currentDeskArray.splice(i, 1) : null;
+                }
             } else {
                 // Create a desk with .block ID as position attribute.
                 currentDeskArray.push(new Desk(currentDeskArray.length, clickedPosition, "", classroomNumber));
