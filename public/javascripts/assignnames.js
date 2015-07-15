@@ -71,7 +71,7 @@ function names() {
                     var flag_color = ui.draggable.data("color");
 
 
-                    empty_desk(drop_id, desk_id);
+                    empty_desk(drop_id, div);
                     fill_desk(drop_id, desk_id, flag_color);
 
                     if (div.children().length == 0) {
@@ -166,6 +166,7 @@ function names() {
         for (var i in currentDeskArray) {
             currentDeskArray[i].person = '';
         }
+        $('.occupied').css('background-color', '#1CA99E');
     }
 
     //empty desk on drag event
@@ -173,6 +174,7 @@ function names() {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].person == name.trim()) {
                 currentDeskArray[i].person = '';
+                refreshClassroom();
                 break;
             }
         }
