@@ -12,6 +12,7 @@ var currentDeskArray, classroomsArray, i;
 // Edit Ability Toggle
 var toggleEditing = false;
 
+
 // DUMMY DATA //
 // classroomsArray = [dummyClassroom, dummyClassroom2];
 // var cohortArray = [dummyCohort, dummyCohort2];
@@ -180,6 +181,10 @@ function draw_dropdown() {
 // jQuery, On Clicks //
 
 $(document).ready(function () {
+
+    //
+    getAllClassrooms();
+
     // Status Modal
     loadModal();
 
