@@ -66,6 +66,7 @@ function changeStatus() {
 
         }
     }
+    refreshClassroom();
 }
 
 function helpModal() {
