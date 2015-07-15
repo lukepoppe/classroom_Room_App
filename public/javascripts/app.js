@@ -31,7 +31,6 @@ function refreshClassroom() {
         currentDeskArray = classroomsArray[classroomNumber].deskArray;
         paintDesks();
         appendName();
-
         hideSignInButton();
 
         if (authenticated) {
@@ -232,6 +231,7 @@ $(document).ready(function () {
             var clickedPosition = $(this).attr('id');
 
             if ($(this).hasClass('occupied')) {
+
                 // Erase a desk from client-side array
                 for (var i = 0; i < currentDeskArray.length; i++) {
                     currentDeskArray[i].position == clickedPosition ? currentDeskArray.splice(i, 1) : null;

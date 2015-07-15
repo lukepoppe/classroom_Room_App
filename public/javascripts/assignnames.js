@@ -11,10 +11,12 @@ function names() {
         if (cohortsArray[i]._id == cohortid) {
             cohortNumber = i;
             cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id})
+                classnames.push({firstName: val.firstName, id: val._id, status: val.help_status})
             })
         }
     }
+
+    console.log(classnames);
 
     for (var j = 0; j < currentDeskArray.length; j++) {
         alldesks.push(currentDeskArray[j].position);
@@ -40,12 +42,13 @@ function names() {
             var randomname = shuffled[i].firstName;
 
             if (id.children().length == 0) {
-                id.append('<p class="label"></p>');
+                id.append('<p id="' + shuffled[i].id +'" class="label"></p>');
             }
 
             id.find('p').text(randomname);
 
-            fill_desk(randomname, select);
+
+            fill_desk(shuffled[i].id, select, shuffled[i].status.flag);
         }
 
         $(".cohort_list").children().remove();
@@ -64,26 +67,29 @@ function names() {
                     var div = $(this);
                     var desk_id = div.attr('id');
                     var name = ui.draggable.html();
+                    var drop_id = ui.draggable.attr('id');
+                    var flag_color = ui.draggable.data("color");
 
-                    empty_desk(name);
-                    fill_desk(name, desk_id);
+
+                    empty_desk(drop_id, div);
+                    fill_desk(drop_id, desk_id, flag_color);
 
                     if (div.children().length == 0) {
-                        div.append('<p class="label"></p>');
+                        div.append('<p data-color="'+ flag_color +'"id=" ' + drop_id + '"class="label"></p>');
                     }
 
                     var title = div.find('p');
                     var text = title.text();
 
                     if (text != "" && text != name) {
-                        $('.cohort_list').append('<li class="item">' + text + '</li>');
+                        $('.cohort_list').append('<li data-color="'+ flag_color +'"  id=" ' + drop_id + '"class="item">' + text + '</li>');
                         init_drag('.item');
                     }
 
                     ui.draggable.remove();
 
                     if (name == text) {
-                        div.append('<p class="label"></p>');
+                        div.append('<p data-color="'+ flag_color +'"id=" ' + drop_id + '"class="label"></p>');
                         title = div.find("p");
                     }
 
@@ -97,8 +103,11 @@ function names() {
                 accept: ".label",
                 drop: function (event, ui) {
                     var item = ui.draggable.html();
-                    empty_desk(item);
-                    $(this).append('<li class="item">' + item + '</li>');
+                    var item_id = ui.draggable.attr("id");
+                    var flag_color = ui.draggable.data("color");
+                    empty_desk(item_id);
+
+                    $(this).append('<li data-color="'+ flag_color +'" id=" ' + item_id + '" class="item">' + item + '</li>');
                     init_drag(".item");
                     ui.draggable.remove();
                 }
@@ -113,13 +122,15 @@ function names() {
         classnames.forEach(function (value) {
             saved = false;
             for (var i = 0; i < currentDeskArray.length; i++) {
-                if (currentDeskArray[i].person == value.firstName) {
-                    $('#' + currentDeskArray[i].position).append('<p class="label">' + value.firstName + '</p>');
+                if (currentDeskArray[i].person == value.id) {
+                    var currentdiv = '#' + currentDeskArray[i].position;
+                    $(currentdiv).append('<p data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+                    color_desks(value.status.flag, currentdiv);
                     saved = true;
                 }
             }
             if (saved == false) {
-                $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+                $('.cohort_list').append('<li data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="item">' + value.firstName + '</li>');
             }
         });
         init_drag('.item');
@@ -130,33 +141,51 @@ function names() {
     function appendnames() {
         $(".cohort_list").children().remove();
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li class="item">' + value.firstName + '</li>');
+            $('.cohort_list').append('<li data-color="'+ value.status.flag +'" id=" ' + value.id + ' "class="item">' + value.firstName + '</li>');
         });
     }
 
+
+    function color_desks(flag, position) {
+        console.log(flag, position);
+        switch(flag) {
+            case "green":
+                $(position).css('background-color', '#009933');
+                break;
+            case "yellow":
+                $(position).css('background-color', '#FFFF66');
+                break;
+            case "red":
+                $(position).css('background-color', '#FF0000');
+                break;
+        }
+    }
 
 //clear out person attribute in all desk objects
     function clear_desks() {
         for (var i in currentDeskArray) {
             currentDeskArray[i].person = '';
         }
+        $('.occupied').css('background-color', '#1CA99E');
     }
 
     //empty desk on drag event
-    function empty_desk(name) {
+    function empty_desk(name, position) {
         for (var i in currentDeskArray) {
-            if (currentDeskArray[i].person == name) {
+            if (currentDeskArray[i].person == name.trim()) {
                 currentDeskArray[i].person = '';
+                refreshClassroom();
                 break;
             }
         }
     }
 
 //add student to the current desk array
-    function fill_desk(student, id) {
+    function fill_desk(student, id, flag) {
         for (var i in currentDeskArray) {
             if (currentDeskArray[i].position == id) {
-                currentDeskArray[i].person = student;
+                currentDeskArray[i].person = student.trim();
+                color_desks(flag, '#' + id);
                 break;
             }
         }
