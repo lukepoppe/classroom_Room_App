@@ -18,6 +18,7 @@ function signOut() {
 
 $('.signOutButton').on('click', function () {
     signOut();
+    location.reload();
     $('.g-signin2').removeClass('hidden');
     $('.signOutButton').addClass('hidden');
     $('.userNameDom').empty();

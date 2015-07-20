@@ -51,6 +51,8 @@ function redStatus() {
 
 function changeStatus() {
     help_status.question = $('.helpModalTextbox').val();
+    console.log(help_status.question);
+
     help_status.timestamp = new Date;
     for (var i = 0; i < cohortsArray[userCohortNumber].personArray.length; i++) {
         if (cohortsArray[userCohortNumber].personArray[i].email == userEmail) {
@@ -59,7 +61,9 @@ function changeStatus() {
             cohortsArray[userCohortNumber].personArray[i].help_history.push(cohortsArray[userCohortNumber].personArray[i].help_status);
 
             /* Set new help_status in array if there was a help_status before. */
-            cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
+            cohortsArray[userCohortNumber].personArray[i].help_status = help_sta
+            thisDiv = cohortsArray[userCohortNumber].personArray[i].help_status;
+            console.log("thisDiv", thisDiv);
 
             /* Update cohort DB */
             updateCohortInDB(userCohortNumber);
