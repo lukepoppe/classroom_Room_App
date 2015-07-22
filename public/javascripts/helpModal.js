@@ -61,9 +61,12 @@ function changeStatus() {
             cohortsArray[userCohortNumber].personArray[i].help_history.push(cohortsArray[userCohortNumber].personArray[i].help_status);
 
             /* Set new help_status in array if there was a help_status before. */
-            cohortsArray[userCohortNumber].personArray[i].help_status = help_sta
+            cohortsArray[userCohortNumber].personArray[i].help_status = help_status;
             thisDiv = cohortsArray[userCohortNumber].personArray[i].help_status;
-            console.log("thisDiv", thisDiv);
+            console.log(cohortsArray[userCohortNumber].personArray[i]);
+            console.log("thisDiv AAAAAAAAAHHHHHHHH", thisDiv.question);
+
+            $("#div13").append(thisDiv.question);
 
             /* Update cohort DB */
             updateCohortInDB(userCohortNumber);

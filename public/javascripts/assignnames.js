@@ -16,7 +16,31 @@ function names() {
         }
     }
 
-    console.log(classnames);
+
+    for (var j = 0; j < classnames.length; j++) {
+        for (var i = 0; i < currentDeskArray.length; i++) {
+            if (classnames[j].id == currentDeskArray[i].person) {
+                console.log("classname question " + classnames[j].status.question + " and currentDeskArrayid " + currentDeskArray[i].position)
+                $("#" + currentDeskArray[i].position).append(classnames[j].status.question);
+            }
+        }
+    }
+
+
+
+    console.log("class names " , classnames);
+
+    console.log("currentDeskArray " , currentDeskArray);
+
+    //for(var i = 0; i < classnames.length; i++) {
+    //    var blah = classnames[i].status.question;
+    //    //var seat = classnames[i].
+    //    if(blah == ""){
+    //        blah = "blah";
+    //    }
+    //    console.log(blah);
+    //}
+
 
     for (var j = 0; j < currentDeskArray.length; j++) {
         alldesks.push(currentDeskArray[j].position);
