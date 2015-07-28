@@ -1,5 +1,4 @@
 body {
-    padding: 20px;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
     font-weight: 900;
 }
@@ -45,20 +44,25 @@ ul{
 }
 
 
-.logo {
-    display: inline-block;
-    height: 55px;
-    width: 55px;
-    margin-bottom: 10px;
+.logo{
+    height:50px;
+    display:inline-block;
+    text-align:center;
+    padding: 10px 20px 10px 50px;
+}
 
+.logo-link{
+    padding-top:10px;
+    display:block;
 }
 
 /*/////header/////*/
 
 .headBar {
-    border: 5px solid #07AA9E;
+    /*border: 5px solid #07AA9E;*/
+    background-color: black;
     /*border-radius: 10px;*/
-    padding: 5px 20px 0px 10px;
+    padding: 5px 20px 10px 10px;
     /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
@@ -66,15 +70,17 @@ ul{
     position: relative;
     display: inline-flex;
     width: 100%;
-
-
 }
 
 .navBar {
     /*border:15px solid #07AA9E;*/
     display: block;
-    padding: 2px 20px 33px 20px;
-    background-color: #07AA9E;
+    border-bottom: 1px solid black;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-bottom: 10px;
     /*border-radius: 15px;*/
     /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
@@ -82,19 +88,21 @@ ul{
 }
 
 .classRoomName {
-    /*text-align: center;*/
-    font-size: 46px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 40px;
 
 }
 
 .navBar li {
     list-style: none;
-    float: left;
+    text-align: center;
+    display: inline;
     /*position: relative ;*/
     /*display: inline-block;*/
     /*border: solid 2px white;*/
     /*background-color: #07AA9E;*/
-
 }
 
 .container {
@@ -209,36 +217,35 @@ span.glyphicon-warning-sign {
 #userImageDom{
     border-radius: 50%;
     border: 7px solid #ffffff;
-    float:left;
+    float:right;
     height: 50px;
 }
 .g-signin2{
     float:right;
-    padding:10px 0 0 0px;
+    padding:10px 0px 0px 0px;
 }
 .userNameDom{
     float:right;
     padding:16px 0 0 25px;
-
 }
+
 .userNameDom:hover {
-    color:black;
-}
-.userImageDom:hover, .userNameDom{
-    color: black;
+    color: white;
 }
 
+.userImageDom:hover, .userNameDom{
+    color: white;
+}
 
 .userImageDom{
     float:right;
     /*padding:5px 0px 0px 75px;*/
 }
 
-
 .userProf {
-    width:40%;
     max-height: 50px;
     margin-right: 20px;
+    float: right;
     /*min-width: 70%;*/
     /*float: right;*/
     /*border: 3px solid black;*/
@@ -266,7 +273,6 @@ span.glyphicon-warning-sign {
     line-height: 30px;
     border: none;
 }
-
 
 .classRoomName{
     border: 5px solid black;
