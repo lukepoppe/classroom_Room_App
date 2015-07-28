@@ -20,12 +20,38 @@ function names() {
     for (var j = 0; j < classnames.length; j++) {
         for (var i = 0; i < currentDeskArray.length; i++) {
             if (classnames[j].id == currentDeskArray[i].person) {
-                console.log("classname question " + classnames[j].status.question + " and currentDeskArrayid " + currentDeskArray[i].position)
-                $("#" + currentDeskArray[i].position).append(classnames[j].status.question);
+                console.log("classname question " + classnames[j].status.question + " and currentDeskArrayid " + currentDeskArray[i].position);
+                if(classnames[j].status.question !== "") {
+                    var question = classnames[j].status.question;
+                    $("#" + currentDeskArray[i].position).html("<button class='clickable' id='clickable'>?</button>");
+                    $(this).on("click", function(){
+                        alert(question);
+                    })
+                }
             }
         }
     }
 
+    //("<button type='button' class='btn btn-info btn-lg' data toggle='modal' data-target='#myModal'>Open Modal</button>" +
+    //"<div class='modal fade' id='myModal' role='dialog'>" +
+    //"<div class='modal-dialog'>" +
+    //"<div class='modal-content'>" +
+    //"<div class='modal-header'>" +
+    //"<button type='button' class='close' data-dismiss='modal'>&times;</button>" +
+    //"<h4 class='modal-title'>Modal Header</h4>" +
+    //"</div>" +
+    //"<div class='modal-body'>" +
+    //"<p>Some Text in the Modal</p>" +
+    //"</div>" +
+    //"<div class='modal-footer'>" +
+    //"<button type='button' class='btn btn-default' data-dismiss='modal'>CLOSE</button>" +
+    //"</div>" +
+    //"</div>" +
+    //"</div>" +
+    //"</div>" +
+    //"</div>")
+
+   // (classnames[j].status.question);
 
 
     console.log("class names " , classnames);
