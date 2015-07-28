@@ -23,8 +23,8 @@ function names() {
                 console.log("classname question " + classnames[j].status.question + " and currentDeskArrayid " + currentDeskArray[i].position);
                 if(classnames[j].status.question !== "") {
                     var question = classnames[j].status.question;
-                    $("#" + currentDeskArray[i].position).html("<button class='clickable' id='clickable'>?</button>");
-                    $(this).on("click", function(){
+                    $("#" + currentDeskArray[i].position).html("<button class='what"+i+"'>?</button>");
+                    $(".what"+i).on("click", function(){
                         alert(question);
                     })
                 }
