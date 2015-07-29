@@ -150,9 +150,9 @@ function createClassroomInDB() {
 function drawNav() {
     navBar = "";
     for (i = 0; i < classroomsArray.length; i++) {
-        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><br/><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'><button>delete</button></a></li><br/>";
+        navBar += "<li class='classroomLeft'>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><br/><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'><button>delete</button></a></li><br/>";
     }
-    navBar += "<li><a href='#' class='newClassroomButton hidden'><button>New Classroom</button></a></li><br/><li class='adminViews'><a href='#' class='cohortLink hidden'><button>Cohorts</button></a></li>";
+    navBar += "<li><a href='#' class='newClassroomButton hidden'><button>New Classroom</button></a></li>";
     $('.navBar').children('ul').empty().append(navBar);
 
     // Cohorts on Click

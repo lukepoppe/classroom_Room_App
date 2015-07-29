@@ -171,20 +171,33 @@
     <!-- End Bootstrap Edit Person Name Modal -->
     <header>
         <div class="headBar">
-            <a href="/"><img class="logo" src="/images/logo-prime-horizontal.svg"/></a>
-            <a href="#" class="userProf" data-toggle="modal" data-target="#statusModal">
-                <div class="userNameDom"></div>
-                <div class="userImageDom"></div>
-            </a>
-            <button type="signOutButton" class="signOutButton hidden">Sign Out</button>
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <div class="col-md-offset-1">
+
+            </div>
+                <a href="/"><img class="logo" src="/images/logo-prime-horizontal.svg"/></a>
+                <a href="#" class="userProf" data-toggle="modal" data-target="#statusModal">
+                    <div class="userNameDom"></div>
+                    <div class="userImageDom"></div>
+                </a>
+                <button type="signOutButton" class="signOutButton hidden">Sign Out</button>
+                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            </div>
         </div>
             <div class="classRoomName"></div>
     </header>
 
     <br>
 
-    <div class="navBar">
+    <div class="navBar col-sm-offset-1">
+        <br/>
+        <h1>Classrooms</h1>
+        <hr/>
+        <div class="editClassroomNameButton">
+            <button class="editClassroomNameButton btn btn-primary" data-toggle='modal'
+                    data-target="#editClassroomName">
+                Edit Classroom Name
+            </button>
+        </div>
         <ul>
         </ul>
     </div>
@@ -193,45 +206,17 @@
     <div class="helpModal"></div>
 
     <div class="container-fluid mainArea">
-        <div class="row col-sm-offset-2">
+        <div class="col-sm-offset-3">
             <div class="classroom"></div>
-            <div class="col-md-offset-1 col-md-2 well classroomShit hidden">
+            <div class="col-md-1 col-sm-offset-1 classroomShit hidden">
                 <div class="adminViews">
-                    <div class="saveButton">
-                        <button class="btn btn-success">Save</button>
-                    </div>
-
-                    <div class="editClassroomNameButton">
-                        <button class="editClassroomNameButton btn btn-primary" data-toggle='modal'
-                                data-target="#editClassroomName">
-                            Edit Classroom Name
-                        </button>
-                    </div>
-
-                    <div class="randomizeButton">
-                        <button class="randomizeButton btn btn-warning">Randomize</button>
-                    </div>
-                    <br>
-
-                    <div class="clearButton">
-                        <button class="clearButton btn btn-danger">Clear</button>
-                    </div>
-                    <br>
-
-                    <div class="onoffswitch onoffswitch-checked">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                               checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                    <br>
-
+                    <h1>Cohorts</h1>
+                    <hr/>
+                    <a href='#' class='cohortLink hidden'><button>Create/Edit</button></a>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Assign a Cohort
+                            Assign
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -240,12 +225,35 @@
                 </div>
 
                 <div class="cohortListDiv">
+                    <h4 class="current">Current Cohort:</h4>
                     <h2 class="cohortTitle"></h2>
                     <ul class="cohort_list"></ul>
                 </div>
             </div>
         </div>
     </div>
+
+<br/>
+
+<div class="col-sm-offset-4 col-sm-4">
+    <div class="onoffswitch onoffswitch-checked">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+               checked>
+        <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+    <div class="randomizeButton">
+        <button class="randomizeButton btn btn-warning">Randomize</button>
+    </div>
+    <div class="clearButton">
+        <button class="clearButton btn btn-danger">Clear</button>
+    </div>
+    <div class="saveButton">
+        <button class="btn btn-success">Save</button>
+    </div>
+</div>
 
     <!--SCRIPTS-->
 

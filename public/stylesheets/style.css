@@ -12,6 +12,7 @@ a.classroomSelector {
 
 .block {
     border: solid black 1px;
+    border-radius: 5px;
     height: 60px;
     display: inline-block;
 }
@@ -151,13 +152,16 @@ span.glyphicon-warning-sign {
 }
 
 .dropdown{
-    position: relative;.
+    position: relative;
+    padding-top: 22px;
 }
 
-
-
+.current{
+    padding-top: 50px;
+}
 .cohort_list {
     padding-top: 2em;
+    float: left;
 }
 
 
@@ -196,8 +200,48 @@ span.glyphicon-warning-sign {
 
 }
 
-.saveButton, .editClassroomNameButton {
-    margin-bottom: 10px;
+.editClassroomNameButton {
+    clear: both;
+    vertical-align: top;
+    margin-bottom: 20px;
+
+}
+
+.saveButton{
+    display: inline-block;
+    clear: both;
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
+}
+
+.onoffswitch{
+    display: inline-block;
+    clear: both;
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
+}
+
+.onoffswitch-inner{
+    height: 32px;
+    background-color: #1CA99E;
+}
+
+.onoffswitch-switch{
+    height: 34px;
+}
+
+.clearButton{
+    display: inline-block;
+    clear: both;
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
+}
+
+.randomizeButton{
+    display: inline-block;
+    clear: both;
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
 }
 
 /*///////user info///////////*/
@@ -267,7 +311,7 @@ span.glyphicon-warning-sign {
     text-align: center;
     color: white;
     font-size: 40px;
-    background-color: black;
+    background-color: #1CA99E;
     width: 100%;
 }
 
