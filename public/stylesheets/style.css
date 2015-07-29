@@ -43,12 +43,11 @@ ul{
     color: black;
 }
 
-
 .logo{
     height:50px;
     display:inline-block;
     text-align:center;
-    padding: 10px 20px 10px 50px;
+    padding: 10px 20px 10px 30px;
 }
 
 .logo-link{
@@ -70,35 +69,25 @@ ul{
     position: relative;
     display: inline-flex;
     width: 100%;
+    text-align: center;
 }
 
 .navBar {
     /*border:15px solid #07AA9E;*/
     display: block;
-    border-bottom: 1px solid black;
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    float: left;
     text-align: center;
-    padding-bottom: 10px;
     /*border-radius: 15px;*/
     /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
     /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
 }
 
-.classRoomName {
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 40px;
-
-}
-
 .navBar li {
     list-style: none;
-    text-align: center;
-    display: inline;
+    text-align: left;
+    display: block;
     /*position: relative ;*/
     /*display: inline-block;*/
     /*border: solid 2px white;*/
@@ -275,11 +264,12 @@ span.glyphicon-warning-sign {
 }
 
 .classRoomName{
-    border: 5px solid black;
-    width: 400px;
     text-align: center;
+    color: white;
+    font-size: 40px;
+    background-color: black;
+    width: 100%;
 }
-
 
 .deletePerson {
     float: right;

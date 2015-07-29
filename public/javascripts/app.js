@@ -21,6 +21,7 @@ var toggleEditing = false;
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
+    $(".classRoomName").show();
     $('.classroom').load('classroom.html', function () {
         //console.log("load was performed");
         // Draw navbar based on # of Classrooms
@@ -149,13 +150,14 @@ function createClassroomInDB() {
 function drawNav() {
     navBar = "";
     for (i = 0; i < classroomsArray.length; i++) {
-        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>" + " X</a><span class='divider'>|</span></li>";
+        navBar += "<li>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><br/><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'><button>delete</button></a></li><br/>";
     }
-    navBar += "<li><a href='#' class='newClassroomButton hidden'>+</a><span class='divider lastpipe hidden'>|</span></li><li class='adminViews'><a href='#' class='cohortLink hidden'>Cohorts</a></li>";
+    navBar += "<li><a href='#' class='newClassroomButton hidden'><button>New Classroom</button></a></li><br/><li class='adminViews'><a href='#' class='cohortLink hidden'><button>Cohorts</button></a></li>";
     $('.navBar').children('ul').empty().append(navBar);
 
     // Cohorts on Click
     $('.cohortLink').click(function () {
+        $(".classRoomName").hide();
         console.log("cohort link click");
         $('.classroom').load("people/cohorts.html", function () {
             console.log("cohort load");
