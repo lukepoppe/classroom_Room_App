@@ -27,7 +27,7 @@ a.classroomSelector {
 }
 
 li:hover, a:hover {
-    color: white;
+    color: #6b7676;
     text-decoration: none;
 
 }
@@ -125,30 +125,30 @@ ul{
 }
 
 a.helpStatusGreen {
-    color: #00c900;
+    color: #30B261;
 }
 
 span.glyphicon-ok {
     font-size: 1.5em;
-    color: #00ca00;
+    color: #30B261;
 }
 
 a.helpStatusYellow {
-    color: #cdb600;
+    color: #FFE461;
 }
 
 span.glyphicon-flag {
     font-size: 1.5em;
-    color: #cdb600;
+    color: #FFE461;
 }
 
 a.helpStatusRed {
-    color: #930000;
+    color: #B2483E;
 }
 
 span.glyphicon-warning-sign {
     font-size: 1.5em;
-    color: #930000;
+    color: #B2483E;
 }
 
 .dropdown{
@@ -211,14 +211,14 @@ span.glyphicon-warning-sign {
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 21px 0px 21px;
 }
 
 .onoffswitch{
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 21px 0px 21px;
 }
 
 .onoffswitch-inner{
@@ -234,14 +234,14 @@ span.glyphicon-warning-sign {
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 21px 0px 21px;
 }
 
 .randomizeButton{
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 21px 0px 21px;
 }
 
 /*///////user info///////////*/
@@ -249,10 +249,11 @@ span.glyphicon-warning-sign {
 
 #userImageDom{
     border-radius: 50%;
-    border: 7px solid #ffffff;
+    border: 1px solid #ffffff;
     float:right;
     height: 50px;
 }
+
 .g-signin2{
     float:right;
     padding:10px 0px 0px 0px;
@@ -371,3 +372,8 @@ h1{
     width: 250px;
     float: left;
 }
+
+
+.label{
+    color: black;
+}}

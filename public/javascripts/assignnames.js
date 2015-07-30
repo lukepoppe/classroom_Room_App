@@ -82,6 +82,9 @@ function names() {
     });
 
     $(".randomizeButton").click(function () {
+        for (var i = 0; i < currentDeskArray.length; i++) {
+            $("#" + currentDeskArray[i].position).children().remove();
+        }
         $('.label').text('');
         clear_desks();
         shuffled = shuffle(classnames);
@@ -213,6 +216,9 @@ function names() {
 
 //clear out person attribute in all desk objects
     function clear_desks() {
+        for (var i = 0; i < currentDeskArray.length; i++) {
+            $("#" + currentDeskArray[i].position).children().remove();
+        }
         for (var i in currentDeskArray) {
             currentDeskArray[i].person = '';
         }
