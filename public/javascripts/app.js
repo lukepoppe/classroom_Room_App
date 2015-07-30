@@ -158,6 +158,7 @@ function drawNav() {
     // Cohorts on Click
     $('.cohortLink').click(function () {
         $(".classRoomName").hide();
+        $(".hideMe").hide();
         console.log("cohort link click");
         $('.classroom').load("people/cohorts.html", function () {
             console.log("cohort load");

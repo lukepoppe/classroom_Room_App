@@ -66,6 +66,8 @@ function hideSignInButton() {
             greenStatus();
         }
         if (admin) {
+            $('.hideMe').removeClass('hidden');
+            $(".editClassroomNameButton").removeClass('hidden');
             $('.newClassroomButton').removeClass('hidden');
             $('.lastpipe').removeClass('hidden');
             $('.cohortLink').removeClass('hidden');
@@ -98,17 +100,17 @@ function hideSignInButton() {
 
 
 
-function color_desks(flag, position) {
-    console.log(flag, position);
-    switch(flag) {
-        case "green":
-            $(position).css('background-color', '#009933');
-            break;
-        case "yellow":
-            $(position).css('background-color', '#FFFF66');
-            break;
-        case "red":
-            $(position).css('background-color', '#FF0000');
-            break;
-    }
-}
+//function color_desks(flag, position) {
+//    console.log(flag, position);
+//    switch(flag) {
+//        case "green":
+//            $(position).css('background-color', '#009933');
+//            break;
+//        case "yellow":
+//            $(position).css('background-color', '#FFFF66');
+//            break;
+//        case "red":
+//            $(position).css('background-color', '#FF0000');
+//            break;
+//    }
+//}

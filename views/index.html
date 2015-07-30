@@ -188,16 +188,13 @@
 
     <br>
 
-    <div class="navBar col-sm-offset-1">
+    <div class="navBar col-sm-offset-1 hideMe">
         <br/>
-        <h1>Classrooms</h1>
+        <a href="/"><h1 class="showClassroomH1">Classrooms</h1></a>
         <hr/>
-        <div class="editClassroomNameButton">
-            <button class="editClassroomNameButton btn btn-primary" data-toggle='modal'
-                    data-target="#editClassroomName">
+            <button class="editClassroomNameButton btn btn-primary hidden" data-toggle='modal' data-target="#editClassroomName">
                 Edit Classroom Name
             </button>
-        </div>
         <ul>
         </ul>
     </div>
@@ -216,7 +213,7 @@
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Assign
+                            Assign A Cohort
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -235,7 +232,7 @@
 
 <br/>
 
-<div class="col-sm-offset-4 col-sm-4">
+<div class="hideMe col-sm-offset-4 col-sm-4 hidden">
     <div class="onoffswitch onoffswitch-checked">
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
                checked>
