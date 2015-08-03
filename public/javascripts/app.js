@@ -21,6 +21,7 @@ var toggleEditing = false;
 
 // Load Fresh Classroom Template Function, callback colors the desks.
 function refreshClassroom() {
+    $('.adminList').empty();
     $(".classRoomName").show();
     $('.classroom').load('classroom.html', function () {
         //console.log("load was performed");
@@ -171,12 +172,26 @@ function drawNav() {
 
 function draw_dropdown() {
     $('.dropdown-menu').children().empty();
+
     if (cohortsArray != undefined) {
         cohortsArray.forEach(function (cohort) {
             var cohortname = cohort.name;
             var cohortid = cohort._id;
-            var el = "<li><a id='" + cohortid + "' href='#'>" + cohortname + "</a></li>";
-            $('.dropdown-menu').append(el);
+            if(cohortname != "ADMIN") {
+                var el = "<li><a id='" + cohortid + "' href='#'>" + cohortname + "</a></li>";
+                $('.dropdown-menu').append(el);
+            }
+            if(cohortname == "ADMIN"){
+                for(var i = 0; i < cohortsArray[1].personArray.length; i++) {
+                    console.log("ADMIN BOO!" + cohortsArray[1].personArray[i].firstName);
+                    //$('.adminList').append("<div class='btn btn-primary checkMate' value='"+ cohortsArray[1].personArray[i].firstName +"'> "+ cohortsArray[1].personArray[i].firstName +"</div><br/>");
+                }
+                //$('.checkMate').on('click', function(){
+                //    var shit = $(this).attr('value');
+                //    console.log(shit);
+                //    $('.adminsFinal').append("<div class='btn btn-primary removeMate' value='"+ shit +"'>"+ shit +"</div>")
+                //});
+            }
         })
     }
 }
@@ -184,6 +199,7 @@ function draw_dropdown() {
 // jQuery, On Clicks //
 
 $(document).ready(function () {
+
 
     //
     getAllClassrooms();

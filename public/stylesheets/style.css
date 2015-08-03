@@ -376,4 +376,26 @@ h1{
 
 .label{
     color: black;
-}}
+}
+
+.adminList li{
+    list-style: none;
+}
+
+.adminList{
+    vertical-align: bottom;
+}
+
+.checkMate{
+    margin-top: 5px;
+}
+
+.adminsFinal{
+    text-align: center;
+}
+
+.hideMe{
+    clear: both;
+    display: inline-block;
+    margin-top: 0px;
+}

@@ -103,11 +103,13 @@ function deleteCohortFromDB(id) {
 
 
 function submitPerson() {
-    cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), "student"));
+    cohortsArray[cohortNumber].personArray.push(new Person($('#firstName').val(), $('#lastName').val(), $('#email').val(), $('#admin').val()));
     drawList();
     $('#firstName').val("");
     $('#lastName').val("");
     $('#email').val("");
+    $('#admin').val("");
+    console.log($('#admin').val(""));
     updateCohortInDB(cohortNumber);
 }
 
