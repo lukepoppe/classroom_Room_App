@@ -1,5 +1,5 @@
 body {
-    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: Interstate, Helvetica, Arial, sans-serif;
     font-weight: 900;
 }
 .logoTitle {
@@ -15,6 +15,7 @@ a.classroomSelector {
     border-radius: 5px;
     height: 60px;
     display: inline-block;
+    cursor: pointer;
 }
 
 .block:hover {
@@ -34,6 +35,7 @@ li:hover, a:hover {
 
 ul{
     list-style: none;
+    cursor: pointer;
 }
 
 .divider {
@@ -161,7 +163,6 @@ span.glyphicon-warning-sign {
 }
 .cohort_list {
     padding-top: 2em;
-    float: left;
 }
 
 
@@ -370,12 +371,15 @@ h1{
 
 .classroomShit{
     width: 250px;
-    float: left;
+    float: right;
 }
 
 
 .label{
     color: black;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
 }
 
 .adminList li{
@@ -395,7 +399,5 @@ h1{
 }
 
 .hideMe{
-    clear: both;
-    display: inline-block;
-    margin-top: 0px;
+    overflow: hidden;
 }

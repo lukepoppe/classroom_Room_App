@@ -152,9 +152,8 @@ function drawNav() {
     navBar = "";
     for (i = 0; i < classroomsArray.length; i++) {
         navBar += "<li class='classroomLeft'>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><br/><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'><button>delete</button></a></li><br/>";
-    }
-    navBar += "<li><a href='#' class='newClassroomButton hidden'><button>New Classroom</button></a></li>";
-    $('.navBar').children('ul').empty().append(navBar);
+    };
+        $('.navBar').children('ul').empty().append(navBar);
 
     // Cohorts on Click
     $('.cohortLink').click(function () {
@@ -181,17 +180,17 @@ function draw_dropdown() {
                 var el = "<li><a id='" + cohortid + "' href='#'>" + cohortname + "</a></li>";
                 $('.dropdown-menu').append(el);
             }
-            if(cohortname == "ADMIN"){
-                for(var i = 0; i < cohortsArray[1].personArray.length; i++) {
-                    console.log("ADMIN BOO!" + cohortsArray[1].personArray[i].firstName);
-                    //$('.adminList').append("<div class='btn btn-primary checkMate' value='"+ cohortsArray[1].personArray[i].firstName +"'> "+ cohortsArray[1].personArray[i].firstName +"</div><br/>");
-                }
-                //$('.checkMate').on('click', function(){
-                //    var shit = $(this).attr('value');
-                //    console.log(shit);
-                //    $('.adminsFinal').append("<div class='btn btn-primary removeMate' value='"+ shit +"'>"+ shit +"</div>")
-                //});
-            }
+            //if(cohortname == "ADMIN"){
+            //    for(var i = 0; i < cohortsArray[1].personArray.length; i++) {
+            //        console.log("ADMIN BOO!" + cohortsArray[1].personArray[i].firstName);
+            //        //$('.adminList').append("<div class='btn btn-primary checkMate' value='"+ cohortsArray[1].personArray[i].firstName +"'> "+ cohortsArray[1].personArray[i].firstName +"</div><br/>");
+            //    }
+            //    //$('.checkMate').on('click', function(){
+            //    //    var shit = $(this).attr('value');
+            //    //    console.log(shit);
+            //    //    $('.adminsFinal').append("<div class='btn btn-primary removeMate' value='"+ shit +"'>"+ shit +"</div>")
+            //    //});
+            //}
         })
     }
 }
@@ -283,7 +282,7 @@ $(document).ready(function () {
     });
 
     // Set On Click of Plus Button (Create New Classroom)
-    $('.navBar').on('click', '.newClassroomButton', function () {
+    $('.newClassroomButton').on('click', function () {
         classroomNumber = classroomsArray.length;
         classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
         createClassroomInDB();

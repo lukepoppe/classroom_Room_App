@@ -75,42 +75,27 @@ function hideSignInButton() {
             $('.classroomShit').removeClass('hidden');
         }
     } else {
+        $('.newClassroomButton').hide();
+        $('.classroomShit').hide();
+        $(".hideMe").hide();
+        $('.g-signin2').removeClass('hidden');
+        $('.signOutButton').addClass('hidden');
+        $('.userNameDom').empty();
+        $('.userImageDom').empty();
+        $('.label').hide();
         signOut();
-        for (var i = 0; i < currentDeskArray.length; i++) {
-            var currentdiv = '#' + currentDeskArray[i].position;
-            console.log(currentdiv);
-            if($(currentdiv).hasClass('occupied')){
-                $(this).append("BLAAAAAH!");
-            }
-        }
-
-
-        $('.helpModalButton').removeClass('hidden');
-        $('.label').removeClass('hidden');
-        if (help_status.flag == 'red') {
-            redStatus();
-        } else if (help_status.flag == 'yellow') {
-            yellowStatus();
-        } else {
-            greenStatus();
-        }
+        //
+        //
+        //
+        //$('.showClassroomH1').hide();
+        //$('.helpModalButton').removeClass('hidden');
+        //$('.label').removeClass('hidden');
+        //if (help_status.flag == 'red') {
+        //    redStatus();
+        //} else if (help_status.flag == 'yellow') {
+        //    yellowStatus();
+        //} else {
+        //    greenStatus();
+        //}
     }
 }
-
-
-
-
-//function color_desks(flag, position) {
-//    console.log(flag, position);
-//    switch(flag) {
-//        case "green":
-//            $(position).css('background-color', '#009933');
-//            break;
-//        case "yellow":
-//            $(position).css('background-color', '#FFFF66');
-//            break;
-//        case "red":
-//            $(position).css('background-color', '#FF0000');
-//            break;
-//    }
-//}
