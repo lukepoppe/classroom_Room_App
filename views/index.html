@@ -173,8 +173,6 @@
     <header>
         <div class="headBar">
             <div class="col-md-offset-1">
-
-            </div>
                 <a href="/"><img class="logo" src="/images/logo-prime-horizontal.svg"/></a>
                 <a href="#" class="userProf" data-toggle="modal" data-target="#statusModal">
                     <div class="userNameDom"></div>
@@ -184,22 +182,47 @@
                 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
             </div>
         </div>
-            <div class="classRoomName"></div>
+            <div class="classRoomName">
+                <h1 class = "nameGoesHere"></h1>
+            </div>
     </header>
-    <br>
+    <br/>
 
-    <div class="navBar col-sm-offset-1 hideMe">
+    <div class = 'container-fluid'>
+        <div class="editButtons">
+            <div class="onoffswitch onoffswitch-checked">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                       checked>
+                <label class="onoffswitch-label" for="myonoffswitch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
+            <button class="randomizeButton btn btn-warning">Randomize</button>
+            <button class="clearButton btn btn-danger">Clear</button>
+            <button class="saveButton btn btn-success">Save</button>
+        </div>
+    </div>
+<div class = "wrap">
+    <div class="navBar1 col-sm-offset-1 hidden">
         <br/>
-        <a href="/"><h1 class="showClassroomH1">Classrooms</h1></a>
+        <h2 class="showClassroomH1">Classrooms</h2>
         <hr/>
-            <button class="editClassroomNameButton btn btn-primary hidden" data-toggle='modal' data-target="#editClassroomName">
-                Edit Classroom Name
-            </button>
-        <br/>
+        <ul>
+        </ul>
+    </div>
+    <div class="navBar col-sm-offset-1 hideMe">
+        <h2 class="showClassroomH1">Classrooms</h2>
+        <button class="editClassroomNameButton btn hidden" data-toggle='modal' data-target="#editClassroomName">
+            Edit Classroom Name
+        </button>
+        <hr/>
         <ul>
         </ul>
         <button class="newClassroomButton">New Classroom</button>
     </div>
+</div>
+
     <br>
 
     <div class="helpModal"></div>
@@ -207,11 +230,14 @@
     <div class="container-fluid mainArea">
         <div class="col-sm-offset-3">
             <div class="classroom"></div>
-            <div class="col-md-1 col-sm-offset-1 classroomShit hidden">
-                <div class="adminViews">
-                    <h1>Cohorts</h1>
+            <div class="col-sm-offset-1 col-sm-2 classroomShit hidden">
+                <div class="cohortListDiv">
+                    <h2 class="current">Current Cohort</h2>
+                    <a href='#' class='cohortLink'><button class="editClassroomNameButton btn hidden">Create New/Edit Current</button></a>
                     <hr/>
-                    <a href='#' class='cohortLink hidden'><button>Create/Edit</button></a>
+                    <h3 class="cohortTitle"></h3>
+                </div>
+                <div class="adminViews">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -222,38 +248,10 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="cohortListDiv">
-                    <h4 class="current">Current Cohort:</h4>
-                    <h2 class="cohortTitle"></h2>
-                    <ul class="cohort_list"></ul>
-                </div>
+                <ul class="cohort_list"></ul>
             </div>
         </div>
     </div>
-
-<br/>
-
-<div class="hideMe col-sm-offset-4 col-sm-4 hidden">
-    <div class="onoffswitch onoffswitch-checked">
-        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-               checked>
-        <label class="onoffswitch-label" for="myonoffswitch">
-            <span class="onoffswitch-inner"></span>
-            <span class="onoffswitch-switch"></span>
-        </label>
-    </div>
-    <div class="randomizeButton">
-        <button class="randomizeButton btn btn-warning">Randomize</button>
-    </div>
-    <div class="clearButton">
-        <button class="clearButton btn btn-danger">Clear</button>
-    </div>
-    <div class="saveButton">
-        <button class="btn btn-success">Save</button>
-    </div>
-</div>
-
     <!--SCRIPTS-->
 
     <script src="/vendor/jquery/jquery.min.js"></script>

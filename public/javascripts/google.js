@@ -18,12 +18,12 @@ function signOut() {
 
 $('.signOutButton').on('click', function () {
     signOut();
-    //location.reload();
-    $('.classroomShit').hide();
-    $(".hideMe").hide();
-    $('.g-signin2').removeClass('hidden');
-    $('.signOutButton').addClass('hidden');
-    $('.userNameDom').empty();
-    $('.userImageDom').empty();
-    $('.label').hide();
+    location.reload();
+    //$('.classroomShit').hide();
+    //$(".hideMe").hide();
+    //$('.g-signin2').removeClass('hidden');
+    //$('.signOutButton').addClass('hidden');
+    //$('.userNameDom').empty();
+    //$('.userImageDom').empty();
+    //$('.label').hide();
 });

@@ -11,7 +11,7 @@ function names() {
         if (cohortsArray[i]._id == cohortid) {
             cohortNumber = i;
             cohortsArray[i].personArray.forEach(function (val) {
-                classnames.push({firstName: val.firstName, id: val._id, status: val.help_status})
+                classnames.push({firstName: val.firstName, lastName: val.lastName, id: val._id, status: val.help_status})
             })
         }
     }
@@ -92,7 +92,7 @@ function names() {
         for (var i = 0; i < shuffled.length; i++) {
             var select = alldesks[i];
             var id = $('#' + select);
-            var randomname = shuffled[i].firstName;
+            var randomname = shuffled[i].firstName + " " + shuffled[i].lastName;
 
             if (id.children().length == 0) {
                 id.append('<p id="' + shuffled[i].id +'" class="label"></p>');
@@ -177,13 +177,14 @@ function names() {
             for (var i = 0; i < currentDeskArray.length; i++) {
                 if (currentDeskArray[i].person == value.id) {
                     var currentdiv = '#' + currentDeskArray[i].position;
-                    $(currentdiv).append('<p data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="label">' + value.firstName + '</p>');
+                    console.log(currentDeskArray);
+                    $(currentdiv).append('<p data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="label">' + value.firstName + ' ' + value.lastName + '</p>');
                     color_desks(value.status.flag, currentdiv);
                     saved = true;
                 }
             }
             if (saved == false) {
-                $('.cohort_list').append('<li data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="item">' + value.firstName + '</li>');
+                $('.cohort_list').append('<li data-color="'+ value.status.flag +'"id=" ' + value.id + ' " class="item">' + value.firstName + ' '  + value.lastName + '</li>');
             }
         });
         init_drag('.item');
@@ -194,7 +195,7 @@ function names() {
     function appendnames() {
         $(".cohort_list").children().remove();
         classnames.forEach(function (value) {
-            $('.cohort_list').append('<li data-color="'+ value.status.flag +'" id=" ' + value.id + ' "class="item">' + value.firstName + '</li>');
+            $('.cohort_list').append('<li data-color="'+ value.status.flag +'" id=" ' + value.id + ' "class="item">' + value.firstName + ' ' + value.lastName + '</li>');
         });
     }
 

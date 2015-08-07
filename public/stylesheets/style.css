@@ -13,7 +13,7 @@ a.classroomSelector {
 .block {
     border: solid black 1px;
     border-radius: 5px;
-    height: 60px;
+    height: 50px;
     display: inline-block;
     cursor: pointer;
 }
@@ -50,7 +50,7 @@ ul{
     height:50px;
     display:inline-block;
     text-align:center;
-    padding: 10px 20px 10px 30px;
+    padding: 10px 20px 10px 0px;
 }
 
 .logo-link{
@@ -87,6 +87,18 @@ ul{
     /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
 }
 
+.navBar1 {
+    /*border:15px solid #07AA9E;*/
+    display: block;
+    text-align: center;
+    float: left;
+    text-align: center;
+    /*border-radius: 15px;*/
+    /*-webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*-moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+    /*box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);*/
+}
+
 .navBar li {
     list-style: none;
     text-align: left;
@@ -97,12 +109,22 @@ ul{
     /*background-color: #07AA9E;*/
 }
 
+
+.navBar1 li {
+    list-style: none;
+    text-align: left;
+    display: block;
+    /*position: relative ;*/
+    /*display: inline-block;*/
+    /*border: solid 2px white;*/
+    /*background-color: #07AA9E;*/
+}
+
+
 .container {
     padding: 0;
-    border: 4px solid #07AA9E;
+    border: 4px solid black;
     /*border-radius: 7px;*/
-
-
     background-color: #e8e8e8;
 
 
@@ -158,9 +180,6 @@ span.glyphicon-warning-sign {
     padding-top: 22px;
 }
 
-.current{
-    padding-top: 50px;
-}
 .cohort_list {
     padding-top: 2em;
 }
@@ -202,24 +221,31 @@ span.glyphicon-warning-sign {
 }
 
 .editClassroomNameButton {
+    padding: 2px 4px 2px 4px;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
     clear: both;
-    vertical-align: top;
-    margin-bottom: 20px;
+    color: black;
+}
 
+.nameGoesHere{
+    margin: 0px;
+    padding: 0px;
 }
 
 .saveButton{
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 21px 0px 21px;
+    margin: 0px 0px 0px 10px;
 }
 
 .onoffswitch{
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 21px 0px 21px;
+    margin: 0px 10px 0px 0px;
 }
 
 .onoffswitch-inner{
@@ -235,14 +261,14 @@ span.glyphicon-warning-sign {
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 21px 0px 21px;
+    margin: 0px 10px 0px 10px;
 }
 
 .randomizeButton{
     display: inline-block;
     clear: both;
     vertical-align: top;
-    margin: 0px 21px 0px 21px;
+    margin: 0px 10px 0px 10px;
 }
 
 /*///////user info///////////*/
@@ -257,7 +283,7 @@ span.glyphicon-warning-sign {
 
 .g-signin2{
     float:right;
-    padding:10px 0px 0px 0px;
+    padding:10px 10px 0px 0px;
 }
 .userNameDom{
     float:right;
@@ -274,6 +300,7 @@ span.glyphicon-warning-sign {
 
 .userImageDom{
     float:right;
+    padding-left: 20px;
     /*padding:5px 0px 0px 75px;*/
 }
 
@@ -370,8 +397,6 @@ h1{
 }
 
 .classroomShit{
-    width: 250px;
-    float: right;
 }
 
 
@@ -379,7 +404,7 @@ h1{
     color: black;
     text-align: center;
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .adminList li{
@@ -399,5 +424,15 @@ h1{
 }
 
 .hideMe{
-    overflow: hidden;
+    display: block;
+}
+
+.editButtons{
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cohortListDiv, .adminViews{
+    text-align: center;
 }

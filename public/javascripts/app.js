@@ -45,7 +45,7 @@ function refreshClassroom() {
 
 // Add classroom name to title of classroom.html
 function appendName() {
-    $('.classRoomName').text(classroomsArray[classroomNumber].name);
+    $('.nameGoesHere').text(classroomsArray[classroomNumber].name);
 }
 
 // Delete Classroom
@@ -150,13 +150,17 @@ function createClassroomInDB() {
 
 function drawNav() {
     navBar = "";
+    navBar1 = "";
     for (i = 0; i < classroomsArray.length; i++) {
-        navBar += "<li class='classroomLeft'>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'>" + classroomsArray[i].name + "</a><br/><a href='#' class='closeX hidden' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'><button>delete</button></a></li><br/>";
+        navBar += "<li class='classroomLeft'>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'><button>" + classroomsArray[i].name + "</button></a><br/><a href='#' class='closeX' id='closeDelete' data-toggle='modal' data-target='#confirm-delete' data-classroom='" + i + "'>delete</a></li><br/>";
+        navBar1 += "<li class='classroomLeft'>" + "<a href='#' class='classroomSelector' data-classroom='" + i + "'><button>" + classroomsArray[i].name + "</button></li><br/>";
     };
         $('.navBar').children('ul').empty().append(navBar);
+        $('.navBar1').children('ul').empty().append(navBar1);
 
     // Cohorts on Click
     $('.cohortLink').click(function () {
+        $(".editButtons").hide();
         $(".classRoomName").hide();
         $(".hideMe").hide();
         console.log("cohort link click");
@@ -281,6 +285,15 @@ $(document).ready(function () {
         $('.cohortListDiv').show();
     });
 
+    $('.navBar1').on('click', '.classroomSelector', function () {
+        $('.classroomShit').show();
+        classroomNumber = $(this).data('classroom');
+        currentDeskArray = classroomsArray[classroomNumber].deskArray;
+        refreshClassroom();
+        $('.adminViews').show();
+        $('.cohortListDiv').show();
+    });
+
     // Set On Click of Plus Button (Create New Classroom)
     $('.newClassroomButton').on('click', function () {
         classroomNumber = classroomsArray.length;
@@ -290,7 +303,6 @@ $(document).ready(function () {
 
     // Set On Click of Save Button (toggle?)
     $('.saveButton').on('click', function () {
-        updateClassroom(classroomNumber);
     });
 
 });

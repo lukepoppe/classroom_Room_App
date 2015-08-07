@@ -58,6 +58,14 @@ function hideSignInButton() {
         $('.g-signin2').addClass('hidden');
         $('.helpModalButton').removeClass('hidden');
         $('.label').removeClass('hidden');
+        $('.hideMe').removeClass('hidden');
+        $('.newClassroomButton').removeClass('hidden');
+        $('.lastpipe').removeClass('hidden');
+        $('.classroomShit').removeClass('hidden');
+        $('.navBar').addClass('hidden');
+        $('.navBar1').removeClass('hidden');
+        $('.adminViews').addClass('hidden');
+        $('.editButtons').addClass('hidden');
         if (help_status.flag == 'red') {
             redStatus();
         } else if (help_status.flag == 'yellow') {
@@ -65,37 +73,41 @@ function hideSignInButton() {
         } else {
             greenStatus();
         }
+
         if (admin) {
-            $('.hideMe').removeClass('hidden');
-            $(".editClassroomNameButton").removeClass('hidden');
-            $('.newClassroomButton').removeClass('hidden');
-            $('.lastpipe').removeClass('hidden');
-            $('.cohortLink').removeClass('hidden');
-            $('.closeX').removeClass('hidden');
-            $('.classroomShit').removeClass('hidden');
+            $('.editClassroomNameButton').removeClass('hidden');
+            $('.adminViews').removeClass('hidden');
+            $('.editButtons').removeClass('hidden');
+            $('.navBar1').addClass('hidden');
+            $('.navBar').removeClass('hidden');
         }
+
     } else {
-        $('.newClassroomButton').hide();
-        $('.classroomShit').hide();
-        $(".hideMe").hide();
-        $('.g-signin2').removeClass('hidden');
-        $('.signOutButton').addClass('hidden');
-        $('.userNameDom').empty();
-        $('.userImageDom').empty();
-        $('.label').hide();
-        signOut();
-        //
-        //
-        //
-        //$('.showClassroomH1').hide();
-        //$('.helpModalButton').removeClass('hidden');
-        //$('.label').removeClass('hidden');
-        //if (help_status.flag == 'red') {
-        //    redStatus();
-        //} else if (help_status.flag == 'yellow') {
-        //    yellowStatus();
-        //} else {
-        //    greenStatus();
-        //}
+        //signOut();
+        //$('.adminViews').hide();
+        //$('.editButtons').hide();
+        //$('.navBar').addClass('hidden');
+        //$('.newClassroomButton').hide();
+        //$('.classroomShit').hide();
+        //$(".hideMe").hide();
+        //$('.g-signin2').removeClass('hidden');
+        //$('.signOutButton').addClass('hidden');
+        //$('.userNameDom').empty();
+        //$('.userImageDom').empty();
+        //$('.label').hide();
     }
 }
+
+//
+//
+//
+//$('.showClassroomH1').hide();
+//$('.helpModalButton').removeClass('hidden');
+//$('.label').removeClass('hidden');
+//if (help_status.flag == 'red') {
+//    redStatus();
+//} else if (help_status.flag == 'yellow') {
+//    yellowStatus();
+//} else {
+//    greenStatus();
+//}
