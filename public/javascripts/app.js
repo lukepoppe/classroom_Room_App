@@ -39,6 +39,7 @@ function refreshClassroom() {
         if (authenticated) {
             names();
         }
+
         $('.cohortTitle').text(cohortsArray[cohortNumber].name);
     });
 }
@@ -92,13 +93,13 @@ function getAllClassrooms() {
             currentDeskArray = classroomsArray[classroomNumber].deskArray;
             // update current desk array in memory
             findhuman(userEmail);
-            refreshClassroom();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
         },
         complete: function (jqXHR, textStatus) {
             console.log("getAllClassroom() Ajax GET Complete:", textStatus);
+            refreshClassroom();
         }
     });
 }

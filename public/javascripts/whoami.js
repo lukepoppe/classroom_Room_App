@@ -84,17 +84,24 @@ function hideSignInButton() {
 
     } else {
         //signOut();
-        //$('.adminViews').hide();
-        //$('.editButtons').hide();
-        //$('.navBar').addClass('hidden');
-        //$('.newClassroomButton').hide();
-        //$('.classroomShit').hide();
-        //$(".hideMe").hide();
-        //$('.g-signin2').removeClass('hidden');
-        //$('.signOutButton').addClass('hidden');
-        //$('.userNameDom').empty();
-        //$('.userImageDom').empty();
-        //$('.label').hide();
+        $('.helpModalButton').removeClass('hidden');
+        $('.label').removeClass('hidden');
+        $('.hideMe').removeClass('hidden');
+        $('.newClassroomButton').removeClass('hidden');
+        $('.lastpipe').removeClass('hidden');
+        $('.classroomShit').removeClass('hidden');
+        $('.navBar').addClass('hidden');
+        $('.navBar1').removeClass('hidden');
+        $('.adminViews').addClass('hidden');
+        $('.editButtons').addClass('hidden');
+        if (help_status.flag == 'red') {
+            redStatus();
+        } else if (help_status.flag == 'yellow') {
+            yellowStatus();
+        } else {
+            greenStatus();
+        }
+
     }
 }
 

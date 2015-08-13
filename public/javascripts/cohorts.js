@@ -2,13 +2,15 @@
 
 // INIT VARS //
 var cohortNumber = 0;
-var cohortsArray, currentPersonArray;
+var cohortsArray = [];
+var currentPersonArray = [];
 var cohortID;
+var nameNumber;
 
 // Get current cohort array from DB
 getAllCohorts();
 
-function paintStatuses(){
+function paintStatuses() {
     console.log('paint statii');
 };
 
@@ -118,7 +120,8 @@ function drawList() {
     $('.cohortList').empty();
     for (var i = 0; i < cohortsArray.length; i++) {
         $('.cohortList').append("<li class='cohortListClass'><a href='#' class ='cohortID' id ='" + cohortsArray[i]._id + "' data-cohortnumber=" + i + ">" + cohortsArray[i].name + "</a><button class='btn btn-danger deleteCohort' data-target='#deleteCohort' data-toggle='modal'>Delete</button><button class='editCohortName btn btn-primary' data-target='#editCohortName' data-toggle='modal'>Edit Name</button></li>");
-    };
+    }
+    ;
 
     // On Click of cohort list
     $('.cohortList').on('click', '.cohortID', function () {
@@ -166,7 +169,8 @@ function drawList() {
     $('.showList').children('ul').empty();
     for (var i = 0; i < currentPersonArray.length; i++) {
         $('.showList').children('ul').append("<li class='studentList' data-number='" + i + "'>" + currentPersonArray[i].firstName + " " + currentPersonArray[i].lastName + " | " + currentPersonArray[i].email + "    <button class='btn btn-danger deleteName' data-target='#deletePerson' data-toggle='modal'>Delete</button><button class='editName btn btn-primary' data-target='#editPersonName' data-toggle='modal'>Edit</button></li>");
-    };
+    }
+    ;
 
     // On Click of Edit Name
     $('.editName').click(function () {
@@ -185,14 +189,41 @@ function drawList() {
 
     // On Click of Delete Name
     $('.deleteName').click(function () {
-        var nameNumber = $(this).parent('li').data('number');
-        $('.warnOfPersonName').empty().append(cohortsArray[cohortNumber].personArray[nameNumber].firstName + " " + cohortsArray[cohortNumber].personArray[nameNumber].lastName);
-        $('.deleteNameButton').on('click', function () {
-            cohortsArray[cohortNumber].personArray.splice(nameNumber,1);
-            updateCohortInDB(cohortNumber);
-        });
+        console.log('.deleteName Clicked');
+        nameNumber = "";
+        nameNumber = $(this).parent('li').data('number');
+        console.log("this is nameNumber", nameNumber);
+
+        $('.warnOfPersonName').text(cohortsArray[cohortNumber].personArray[nameNumber].firstName
+        + " " +
+        cohortsArray[cohortNumber].personArray[nameNumber].lastName);
+        console.log("this is nameNumber2 ", nameNumber);
+
     });
+
+
 }
+
+$('#deletePerson').on('click','.cancelNow', function () {
+    console.log("this is cancelNow ", nameNumber);
+    nameNumber = "";
+});
+
+$('#deletePerson').on('click', '.deleteNameButton',function () {
+    console.log("this is nameNumber3 ", nameNumber);
+    //seems like the number of times the .deleteName is pressed is how many times the splice executes
+    var i = 0;
+    deleteShit(nameNumber);
+    i++;
+    console.log(i);
+    updateCohortInDB(cohortNumber);
+});
+
+
+function deleteShit(poop) {
+    cohortsArray[cohortNumber].personArray.splice(poop, 1);
+};
+
 
 function cohortPageInit() {
     $('.classroomShit').hide();
