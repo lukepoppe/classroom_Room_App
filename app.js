@@ -13,7 +13,7 @@ var cohorts = require('./routes/cohorts');
 var app = express();
 
 //Mongoose setup
-var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+var mongoURI = "mongodb://casie:kubRA6Ub@ds033103.mongolab.com:33103/primeclassroomapp";
 //var mongoURI = "mongodb://localhost:27017/classroom_app";
 var MongoDB = mongoose.connect(mongoURI).connection;
 

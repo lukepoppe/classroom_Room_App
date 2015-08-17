@@ -351,11 +351,16 @@ span.glyphicon-warning-sign {
 .editName{
     float: right;
     margin: 2px 5px 2px 5px;
+    font-size: 10px;
 }
 
+.submitPerson{
+    font-size: 10px;
+}
 .deleteName{
     float: right;
     margin: 2px 5px 2px 5px;
+    font-size: 10px;
 }
 
 .showList ul li{
@@ -365,10 +370,15 @@ span.glyphicon-warning-sign {
 .deleteCohort{
     float: right;
     margin: 2px 5px 2px 5px;
+    font-size: 10px;
 }
 
 .chooseCohort ul li{
     clear: both;
+}
+
+.chooseCohort{
+    height: 259px;
 }
 
 h1{
@@ -384,6 +394,7 @@ h1{
 .editCohortName{
     float: right;
     margin: 2px 5px 2px 5px;
+    font-size: 10px;
 }
 
 .cohortID{
