@@ -7,7 +7,9 @@ var help_status = {};
 var cohortNumber = 0;
 var classroomNumber = 0;
 var userCohortNumber;
-var currentDeskArray, classroomsArray, i;
+var currentDeskArray;
+var classroomsArray;
+var i;
 
 // Edit Ability Toggle
 var toggleEditing = false;
@@ -36,7 +38,7 @@ function refreshClassroom() {
         appendName();
         hideSignInButton();
 
-        if (authenticated) {
+        if (authenticated)
             names();
         }
 
