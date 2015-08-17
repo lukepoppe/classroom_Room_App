@@ -297,9 +297,9 @@ $(document).ready(function () {
 
     // Set On Click of Plus Button (Create New Classroom)
     $('.newClassroomButton').on('click', function () {
-        classroomNumber = classroomsArray.length;
-        classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
-        createClassroomInDB();
+            classroomNumber = classroomsArray.length;
+            classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
+            createClassroomInDB();
     });
 
     // Set On Click of Save Button (toggle?)
