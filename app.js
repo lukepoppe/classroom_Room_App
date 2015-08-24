@@ -15,8 +15,9 @@ var app = express();
 //Mongoose setup
 //var mongoURI = process.env.MONGOLAB_URI;
 //var mongoURI = "mongodb://localhost:27017/classroom_app";
-var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+//var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
 //var mongoURI = "mongodb://heroku_9734fn1w:e9kv8js07cu8jq29l6spn1kl8l@ds035553.mongolab.com:35553/heroku_9734fn1w";
+var mongoURI = "mongodb://casie:kubRA6Ub@ds033123.mongolab.com:33123/apptest";
 
 var MongoDB = mongoose.connect(mongoURI).connection;
 
