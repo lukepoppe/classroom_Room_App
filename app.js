@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
@@ -15,7 +15,9 @@ var app = express();
 //Mongoose setup
 //var mongoURI = process.env.MONGOLAB_URI;
 //var mongoURI = "mongodb://localhost:27017/classroom_app";
-var mongoURI = "mongodb://ds035300.mongolab.com:35300";
+var mongoURI = "mongodb://prime:classy@ds035300.mongolab.com:35300/classroom_app";
+//var mongoURI = "mongodb://heroku_9734fn1w:e9kv8js07cu8jq29l6spn1kl8l@ds035553.mongolab.com:35553/heroku_9734fn1w";
+
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function (err) {

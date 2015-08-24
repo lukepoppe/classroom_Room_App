@@ -7,9 +7,7 @@ var help_status = {};
 var cohortNumber = 0;
 var classroomNumber = 0;
 var userCohortNumber;
-var currentDeskArray;
-var classroomsArray;
-var i;
+var currentDeskArray, classroomsArray, i;
 
 // Edit Ability Toggle
 var toggleEditing = false;
@@ -38,7 +36,7 @@ function refreshClassroom() {
         appendName();
         hideSignInButton();
 
-        if (authenticated)
+        if (authenticated) {
             names();
         }
 
@@ -299,9 +297,9 @@ $(document).ready(function () {
 
     // Set On Click of Plus Button (Create New Classroom)
     $('.newClassroomButton').on('click', function () {
-            classroomNumber = classroomsArray.length;
-            classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
-            createClassroomInDB();
+        classroomNumber = classroomsArray.length;
+        classroomsArray.push(new Classroom(cohortNumber, "Bloomington", "defaultName"));
+        createClassroomInDB();
     });
 
     // Set On Click of Save Button (toggle?)
