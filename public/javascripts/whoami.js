@@ -61,7 +61,6 @@ function hideSignInButton() {
         $('.hideMe').removeClass('hidden');
         $('.newClassroomButton').removeClass('hidden');
         $('.lastpipe').removeClass('hidden');
-        $('.classroomShit').removeClass('hidden');
         //$('.navBar').addClass('hidden');
         //$('.navBar1').removeClass('hidden');
         //$('.adminViews').addClass('hidden');
@@ -71,6 +70,7 @@ function hideSignInButton() {
             $('.editButtons').removeClass('hidden');
             $('.navBar1').addClass('hidden');
             $('.navBar').removeClass('hidden');
+            //$('.classroomShit').removeClass('hidden');
         if (help_status.flag == 'red') {
             redStatus();
         } else if (help_status.flag == 'yellow') {
@@ -79,13 +79,14 @@ function hideSignInButton() {
             greenStatus();
         }
 
-        if (admin) {
-            $('.editClassroomNameButton').removeClass('hidden');
-            $('.adminViews').removeClass('hidden');
-            $('.editButtons').removeClass('hidden');
-            $('.navBar1').addClass('hidden');
-            $('.navBar').removeClass('hidden');
-        }
+        //
+        //if (admin) {
+        //    $('.editClassroomNameButton').removeClass('hidden');
+        //    $('.adminViews').removeClass('hidden');
+        //    $('.editButtons').removeClass('hidden');
+        //    $('.navBar1').addClass('hidden');
+        //    $('.navBar').removeClass('hidden');
+        //}
 
     //} else {
     //    //signOut();
