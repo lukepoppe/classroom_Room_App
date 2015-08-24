@@ -304,6 +304,7 @@ $(document).ready(function () {
 
     // Set On Click of Save Button (toggle?)
     $('.saveButton').on('click', function () {
+        updateClassroom(classroomNumber);
     });
 
 });
