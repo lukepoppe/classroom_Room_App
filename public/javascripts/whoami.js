@@ -62,10 +62,15 @@ function hideSignInButton() {
         $('.newClassroomButton').removeClass('hidden');
         $('.lastpipe').removeClass('hidden');
         $('.classroomShit').removeClass('hidden');
-        $('.navBar').addClass('hidden');
-        $('.navBar1').removeClass('hidden');
-        $('.adminViews').addClass('hidden');
-        $('.editButtons').addClass('hidden');
+        //$('.navBar').addClass('hidden');
+        //$('.navBar1').removeClass('hidden');
+        //$('.adminViews').addClass('hidden');
+        //$('.editButtons').addClass('hidden');
+            $('.editClassroomNameButton').removeClass('hidden');
+            $('.adminViews').removeClass('hidden');
+            $('.editButtons').removeClass('hidden');
+            $('.navBar1').addClass('hidden');
+            $('.navBar').removeClass('hidden');
         if (help_status.flag == 'red') {
             redStatus();
         } else if (help_status.flag == 'yellow') {
@@ -82,25 +87,25 @@ function hideSignInButton() {
             $('.navBar').removeClass('hidden');
         }
 
-    } else {
-        //signOut();
-        $('.helpModalButton').removeClass('hidden');
-        $('.label').removeClass('hidden');
-        $('.hideMe').removeClass('hidden');
-        $('.newClassroomButton').removeClass('hidden');
-        $('.lastpipe').removeClass('hidden');
-        $('.classroomShit').removeClass('hidden');
-        $('.navBar').addClass('hidden');
-        $('.navBar1').removeClass('hidden');
-        $('.adminViews').addClass('hidden');
-        $('.editButtons').addClass('hidden');
-        if (help_status.flag == 'red') {
-            redStatus();
-        } else if (help_status.flag == 'yellow') {
-            yellowStatus();
-        } else {
-            greenStatus();
-        }
+    //} else {
+    //    //signOut();
+    //    $('.helpModalButton').removeClass('hidden');
+    //    $('.label').removeClass('hidden');
+    //    $('.hideMe').removeClass('hidden');
+    //    $('.newClassroomButton').removeClass('hidden');
+    //    $('.lastpipe').removeClass('hidden');
+    //    $('.classroomShit').removeClass('hidden');
+    //    $('.navBar').addClass('hidden');
+    //    $('.navBar1').removeClass('hidden');
+    //    $('.adminViews').addClass('hidden');
+    //    $('.editButtons').addClass('hidden');
+    //    if (help_status.flag == 'red') {
+    //        redStatus();
+    //    } else if (help_status.flag == 'yellow') {
+    //        yellowStatus();
+    //    } else {
+    //        greenStatus();
+    //    }
 
     }
 }
