@@ -125,6 +125,7 @@ function updateClassroom(number) {
         },
         complete: function (jqXHR, textStatus) {
             console.log("updateClassroom() Ajax PUT Complete:", textStatus);
+            console.log(classroomsArray[number]._id);
         }
     });
 }
